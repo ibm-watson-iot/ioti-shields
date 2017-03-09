@@ -1,3 +1,6 @@
+## EnOcean
+The shields in this category are designed to work with [EnOcean devices](https://www.enocean.com/en/)
+
 ### EnOcean button shield
 
 #### Required sensors/devices/services

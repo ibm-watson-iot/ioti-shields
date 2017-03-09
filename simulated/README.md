@@ -1,7 +1,9 @@
-### Simulated Devices Shields
-The shields in this category are using simulated events. The shields were tested using payloads send programatically to IoT Platform. 
+## Simulated Devices
+The shields in this category are using simulated devices. The shields were developed and tested using payloads sent programatically to the [IBM Watson IoT Platform](https://console.ng.bluemix.net/catalog/services/internet-of-things-platform/) 
 
+### Car Shield
 #### Required sensors/devices/services
-- not tested with actual sensors
+N/A
 
 #### Shield parameters
+

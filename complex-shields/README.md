@@ -1,3 +1,6 @@
+## Complex Shields
+These shields use information from multiple sensors and other sources of data. 
+
 ### Not at home shield (Elderly Care Scenarios)
 
 #### Required sensors/devices/services
