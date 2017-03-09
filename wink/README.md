@@ -1,6 +1,6 @@
 ### Home Shield
 
 #### Required sensors/devices/services
-- Wink Water Leak shield
+- Wink Water Leak sensor
 
 #### Shield parameters
