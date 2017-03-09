@@ -3,7 +3,7 @@ context.contactSensor = context.contactSensor || {};
 
 (function() {
     var shieldUuid = 99999;
-    var shieldName = 'weather-shield';
+    var shieldName = 'weather-contact-shield';
     var hazardTitle = 'Temperature outside limits and window is open';
 
     var delay = 5000;
@@ -23,8 +23,13 @@ context.contactSensor = context.contactSensor || {};
     function preProcessing(payload) {
         var currentUser = payload.username;
 
-        context.temperature[currentUser] = payload.weatherData.temperature;
-        context.contactSensor[currentUser] = payload.d.states.contact.value;
+        if (payload.weatherData && payload.weatherData.temperature) {
+            context.temperature[currentUser] = payload.weatherData.temperature;
+        }
+
+        if (payload.d && payload.d.states && payload.d.states.contact && payload.d.states.contact.value) {
+            context.contactSensor[currentUser] = payload.d.states.contact.value;
+        }
 
         return payload; // required
     }
