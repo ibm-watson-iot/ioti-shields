@@ -110,10 +110,5 @@
 		return (constructMessage(payload, shieldUuid, hazardUuid, hazardTitle));
 	};
 
-	var trappedDetectionShield = function(payload) {
-		var shield = getShieldByName(shieldName);
-		return (commonShield(payload, shield));
-	};
-
 	registerShield(shieldUuid, shieldName, entryCondition,preProcessing, safelet, message, delay);
 })();

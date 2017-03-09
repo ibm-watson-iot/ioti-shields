@@ -23,10 +23,5 @@
 		return (constructMessage(payload, shieldUuid, hazardUuid, payload.behaviorName));
 	};
 
-	var carShield = function(payload) {
-		var shield = getShieldByName(shieldName);
-		return (commonShield(payload, shield));
-	};
-
 	registerShield(shieldUuid, shieldName, entryCondition, undefined, safelet, message, delay);
 })();
