@@ -1,6 +1,3 @@
-context.temperature = context.temperature || {};
-context.contactSensor = context.contactSensor || {};
-
 (function() {
     var shieldUuid = 99999;
     var shieldName = 'weather-contact-shield';
@@ -10,6 +7,9 @@ context.contactSensor = context.contactSensor || {};
 
     var tempMin = -10;
     var tempMax = 35;
+
+    context.temperature = context.temperature || {};
+    context.contactSensor = context.contactSensor || {};
 
     function safelet(payload) {
         var currentUser = payload.username;
