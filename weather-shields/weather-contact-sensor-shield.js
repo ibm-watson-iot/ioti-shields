@@ -17,20 +17,21 @@ context.contactSensor = context.contactSensor || {};
         var temperature = context.temperature[currentUser];
         var contactSensor = context.contactSensor[currentUser];
 
-        return (temperature < tempMin || temperature > tempMax) && contactSensor;
+        return (temperature < tempMin || temperature > tempMax) && (contactSensor === "open");
     }
 
     function preProcessing(payload) {
         var currentUser = payload.username;
 
         context.temperature[currentUser] = payload.weatherData.temperature;
-        context.contactSensor[currentUser] = payload.contactSensor;
+        context.contactSensor[currentUser] = payload.d.states.contact.value;
 
         return payload; // required
     }
 
     function entryCondition(payload) {
-        return (payload && payload.weatherData && payload.weatherData.temperature) || payload.contactSensor;
+        return (payload && payload.weatherData && payload.weatherData.temperature) ||
+            (payload && payload.d && payload.d.states && payload.d.states.contact && payload.d.states.contact.value);
     }
 
     function message(payload) {
