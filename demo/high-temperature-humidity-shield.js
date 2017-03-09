@@ -1,7 +1,7 @@
 (function() {
 	var shieldUuid = 99999;
-	var shieldName = "WaterWetTemperatureShied";
-	var hazardUuid = "WaterWetTemperatureHazard";
+	var shieldName = "HighTemperatureAndHumidityShied";
+	var hazardUuid = "HighTemperatureAndHumidityHazard";
 	var hazardTitle = "Humidity and hot temperature detected!";
 	
 	var delay = 20000;
