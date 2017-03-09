@@ -1,17 +1,14 @@
 # IoT for Insurance Shield Repository
 A collection of shields for use with [IBM Watson IoT for Insurance](https://www.ibm.com/internet-of-things/iot-solutions/iot-insurance/). 
 
-### Shield Usage
-To use a shield from this collection you need to replace `shieldUuid` variable in the shield code. There you need to use the same `UUID` as that of the shield object you created in IoT4I. 
+## Shield Usage
+The [Shield Toolkit](https://console.ng.bluemix.net/docs/services/IotInsurance/iotinsurance_shield_toolkit.html) section in the Infocenter describes in detail the process of deploying new shields in your IoT4I instance.
 
-The IoT4I APIs you will use are:
+To use a shield from this collection you need to replace `shieldUuid` variable in the shield code. There you need to use the same `UUID` as that of the shield object you created in IoT4I.
 
-- POST `/shield` - create shield
-- POST `/jscode` - associate the JavaScript code with the shield object
-- POST `/shieldassociation` - associate the shield to users 
-
-
-###Shield Design 
+## Shield Design
+When designing a new shield there are a few important points to remember:  
+ 
 - encapsulate the shield in a JavaScript self invoking function `(function(){...code...})();`
 - `shield UUID` must be of type ***number***
 - when creating a `shield` in database the `shield UUID` must be ***string***
