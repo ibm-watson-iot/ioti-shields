@@ -9,6 +9,8 @@ The shields in this category are designed to work with [Wally devices](https://w
 - Wally organisation
 - Wally developer account with access to the Wally organisation
 
+Make sure the IoT4I instance is up to date to gurantee you have access to the Wally functionality. To do that verify there is no upgrade option in the IoT4I Service Console. If the upgrade option exists you need to use it before attempting to integrate Wally data.
+
 #### Configuration
 You need to configure the IoT4I Transformer as described in the [IoT4I Infocenter](https://console.ng.bluemix.net/docs/services/IotInsurance/iotinsurance_wally_integration.html#wallysupport).
 
