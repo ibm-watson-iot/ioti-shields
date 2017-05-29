@@ -1,16 +1,16 @@
 (function() {
 	var shieldUuid = 99999;	// replace with a new UUID
-	var shieldName = 'wallyLeakShield';
-	var hazardUuid = 'WaterLeak';
-	var hazardTitle = 'A water leak was detected.';
+	var shieldName = 'humidityShield';
+	var hazardUuid = 'Humidity';
+	var hazardTitle = 'A potential water leak was detected by the humidity sensor.';
 	var delay = 20000;
 
 	var safelet = function(payload) {
-		return payload.traitStates.traitStates.WaterSense.waterPresent;
+		return payload.traitStates.traitStates.Humidity.humidityPct*1>75;
 	};
 
 	var entryCondition = function(payload) {
-		return payload.traitStates && payload.traitStates.traitStates && payload.traitStates.traitStates.WaterSense;
+		return payload.traitStates && payload.traitStates.traitStates && payload.traitStates.traitStates.Humidity;
 	};
 
 	var message = function(payload) {
