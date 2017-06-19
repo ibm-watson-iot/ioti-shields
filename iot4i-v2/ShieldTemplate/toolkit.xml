@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<toolkitModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/toolkit" productVersion="4.2.1.1" xmlns:common="http://www.ibm.com/xmlns/prod/streams/spl/common" xmlns:ti="http://www.ibm.com/xmlns/prod/streams/spl/toolkitInfo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <toolkit name="ShieldTemplate" requiredProductVersion="4.2.1.1" version="1.0.0">
+    <description/>
+    <uriTable>
+      <uri index="3" value="application/SimpleShield"/>
+      <uri index="2" value="application/Transformer"/>
+      <uri index="1" value="application/ShieldTemplate.spl"/>
+    </uriTable>
+    <namespace name="application">
+      <primitiveOp language="Java" modelUriIndex="2" name="Transformer" public="true">
+        <description>Java Operator Transformer</description>
+        <customLiterals name="application.Transformer.ProviderTypes">
+          <value name="digital_concepts"/>
+          <value name="wibutler"/>
+          <value name="bosch"/>
+        </customLiterals>
+        <parameter expressionMode="Constant" name="vmArg" optional="true" type="rstring">
+          <description>
+Specifies command-line arguments that are passed to the Java virtual machine that the operator runs within.
+</description>
+        </parameter>
+        <parameter cardinality="1" expressionMode="AttributeFree" name="dbHost" optional="true" type="rstring">
+          <description/>
+        </parameter>
+        <parameter cardinality="1" expressionMode="AttributeFree" name="dbName" optional="true" type="rstring">
+          <description/>
+        </parameter>
+        <parameter cardinality="1" expressionMode="AttributeFree" name="dbPassword" optional="true" type="rstring">
+          <description/>
+        </parameter>
+        <parameter cardinality="1" expressionMode="AttributeFree" name="dbUser" optional="true" type="rstring">
+          <description/>
+        </parameter>
+        <parameter cardinality="1" expressionMode="AttributeFree" name="checkShieldActivationRule" optional="true" type="boolean">
+          <description/>
+        </parameter>
+        <parameter cardinality="1" expressionMode="AttributeFree" name="deviceIdAttributeName" optional="true" type="rstring">
+          <description/>
+        </parameter>
+        <parameter cardinality="1" expressionMode="CustomLiteral" name="gatewayType" optional="true" type="application.Transformer.ProviderTypes">
+          <description/>
+        </parameter>
+        <parameter cardinality="1" expressionMode="AttributeFree" name="shieldId" optional="true" type="rstring">
+          <description/>
+        </parameter>
+        <inputPort maxNumPorts="1" minNumPorts="1" optional="false" windowPunctInputMode="Oblivious">
+          <description>Port that ingests tuples</description>
+          <windowPolicy>NonWindowed</windowPolicy>
+        </inputPort>
+        <outputPort expressionMode="Nonexistent" maxNumPorts="1" minNumPorts="1" optional="false" windowPunctOutputMode="Generating">
+          <description>Port that produces tuples</description>
+        </outputPort>
+      </primitiveOp>
+      <primitiveOp language="Java" modelUriIndex="3" name="SimpleShield" public="true">
+        <description>Java Operator SimpleShield</description>
+        <customLiterals name="application.SimpleShield.OperationTypes">
+          <value name="greaterThan"/>
+          <value name="LessThan"/>
+          <value name="equals"/>
+          <value name="greaterThanOrEquals"/>
+          <value name="lessThanOrEquals"/>
+        </customLiterals>
+        <parameter expressionMode="Constant" name="vmArg" optional="true" type="rstring">
+          <description>
+Specifies command-line arguments that are passed to the Java virtual machine that the operator runs within.
+</description>
+        </parameter>
+        <parameter cardinality="1" expressionMode="AttributeFree" name="attributeName" optional="false" type="rstring">
+          <description/>
+        </parameter>
+        <parameter cardinality="1" expressionMode="AttributeFree" name="attributeValue" optional="false" type="rstring">
+          <description/>
+        </parameter>
+        <parameter cardinality="1" expressionMode="AttributeFree" name="hazardTitle" optional="true" type="rstring">
+          <description/>
+        </parameter>
+        <parameter cardinality="1" expressionMode="CustomLiteral" name="operationType" optional="false" type="application.SimpleShield.OperationTypes">
+          <description/>
+        </parameter>
+        <parameter cardinality="1" expressionMode="AttributeFree" name="shieldId" optional="false" type="rstring">
+          <description/>
+        </parameter>
+        <inputPort maxNumPorts="1" minNumPorts="1" optional="false" windowPunctInputMode="Oblivious">
+          <description>Port that ingests tuples</description>
+          <windowPolicy>NonWindowed</windowPolicy>
+        </inputPort>
+        <inputPort minNumPorts="0" optional="true" windowPunctInputMode="Oblivious">
+          <description>Optional input ports</description>
+          <windowPolicy>NonWindowed</windowPolicy>
+        </inputPort>
+        <outputPort expressionMode="Nonexistent" maxNumPorts="1" minNumPorts="1" optional="false" windowPunctOutputMode="Generating">
+          <description>Port that produces tuples</description>
+        </outputPort>
+        <outputPort expressionMode="Nonexistent" minNumPorts="0" optional="true" windowPunctOutputMode="Generating">
+          <description>Optional output ports</description>
+        </outputPort>
+      </primitiveOp>
+      <compositeOp column="11" line="9" name="ShieldTemplate" potentialMain="true" uriIndex="1"/>
+      <compositeOp column="11" line="26" name="Main" potentialMain="true" uriIndex="1">
+        <parameter defaultValue="getSubmissionTimeValue(&quot;ORG&quot;)" metaType="Expression" name="ORG" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="getSubmissionTimeValue(&quot;AUTH_KEY&quot;)" metaType="Expression" name="AUTH_KEY" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="getSubmissionTimeValue(&quot;AUTH_TOKEN&quot;)" metaType="Expression" name="AUTH_TOKEN" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="(int32)getSubmissionTimeValue(&quot;QOS&quot;)" metaType="Expression" name="QOS" optional="true" type="&lt;int32>"/>
+        <parameter defaultValue="(rstring)jobID() + &quot;_evt&quot;" metaType="Expression" name="SOURCE_APP_ID" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="(rstring)jobID() + &quot;_notification&quot;" metaType="Expression" name="NOTIFICATION_APP_ID" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="(rstring)jobID() + &quot;_cmd&quot;" metaType="Expression" name="SINK_APP_ID" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="&quot;iot-2/type/+/id/+/evt/+/fmt/+&quot;" metaType="Expression" name="SOURCE_TOPIC" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="&quot;iot-2/type/hazard/id/shield/cmd/status/fmt/json&quot;" metaType="Expression" name="SINK_TOPIC" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="&quot;iot-2/type/+/id/+/cmd/notification/fmt/json&quot;" metaType="Expression" name="NOTIFICATION_TOPIC" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="&quot;topic&quot;" metaType="Expression" name="TOPIC_ATTR_NAME" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="&quot;payload&quot;" metaType="Expression" name="DATA_ATTR_NAME" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="&quot;streamsx.iotf.123&quot;" metaType="Expression" name="TRUST_STORE_PASSWORD" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="getThisToolkitDir() + &quot;/opt/messaging.ts&quot;" metaType="Expression" name="TRUST_STORE" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="getIotPUrl(getSubmissionTimeValue(&quot;ORG&quot;), &quot;internetofthings.ibmcloud.com&quot;, true)" metaType="Expression" name="IoTPUrl" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="getSubmissionTimeValue(&quot;DB_NAME&quot;)" metaType="Expression" name="DB_NAME" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="getSubmissionTimeValue(&quot;DB_HOST&quot;)" metaType="Expression" name="DB_HOST" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="getSubmissionTimeValue(&quot;DB_USER&quot;)" metaType="Expression" name="DB_USER" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="getSubmissionTimeValue(&quot;DB_PASSWORD&quot;)" metaType="Expression" name="DB_PASSWORD" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="getSubmissionTimeValue(&quot;SHIELD_ID&quot;)" metaType="Expression" name="SHIELD_ID" optional="true" type="&lt;rstring>"/>
+      </compositeOp>
+      <function column="1" line="19" name="getIotPUrl" native="false" returnType="rstring" uriIndex="1">
+        <prototype>rstring getIotPUrl(rstring org, rstring domain, boolean encrypted)</prototype>
+        <parameter name="org" type="rstring"/>
+        <parameter name="domain" type="rstring"/>
+        <parameter name="encrypted" type="boolean"/>
+      </function>
+    </namespace>
+    <dependency>
+      <common:name>com.ibm.streams.cep</common:name>
+      <common:version>2.1.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streams.cybersecurity</common:name>
+      <common:version>2.1.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streams.dataexplorer</common:name>
+      <common:version>2.1.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streams.db</common:name>
+      <common:version>2.1.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streams.financial</common:name>
+      <common:version>2.1.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streams.geospatial</common:name>
+      <common:version>3.1.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streams.mining</common:name>
+      <common:version>2.1.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streams.rproject</common:name>
+      <common:version>2.1.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streams.rules</common:name>
+      <common:version>2.1.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streams.rulescompiler</common:name>
+      <common:version>1.1.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streams.teda</common:name>
+      <common:version>2.1.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streams.text</common:name>
+      <common:version>2.3.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streams.timeseries</common:name>
+      <common:version>4.0.1</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streamsx.datetime</common:name>
+      <common:version>1.1.2</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streamsx.dps</common:name>
+      <common:version>3.1.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streamsx.hbase</common:name>
+      <common:version>2.2.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streamsx.hdfs</common:name>
+      <common:version>3.1.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streamsx.inet</common:name>
+      <common:version>2.1.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streamsx.iot</common:name>
+      <common:version>1.1.0.commit_67acf7a</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streamsx.jdbc</common:name>
+      <common:version>1.1.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streamsx.json</common:name>
+      <common:version>1.3.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streamsx.messaging</common:name>
+      <common:version>5.3.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streamsx.network</common:name>
+      <common:version>3.0.5</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streamsx.sparkmllib</common:name>
+      <common:version>1.1.0</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streamsx.topology</common:name>
+      <common:version>1.6.0</common:version>
+    </dependency>
+    <sabFiles>
+      <ti:include path="toolkit.xml" root="toolkitDir"/>
+      <ti:include path="impl/java/lib/**" root="toolkitDir"/>
+      <ti:include path="impl/java/bin/**" root="toolkitDir"/>
+      <ti:include path="impl/bin/**" root="toolkitDir"/>
+      <ti:include path="impl/lib/**" root="toolkitDir"/>
+      <ti:include path="impl/nl/*.dat" root="toolkitDir"/>
+      <ti:include path="etc/**" root="toolkitDir"/>
+      <ti:include path="lib/**" root="toolkitDir"/>
+      <ti:include path="nl/**" root="toolkitDir"/>
+      <ti:include path="opt/**" root="toolkitDir"/>
+    </sabFiles>
+  </toolkit>
+
+</toolkitModel>
