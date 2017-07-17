@@ -1,1 +1,9 @@
 /.project
+iot4i-v2/ShieldTemplates/output
+iot4i-v2/SimpleShields/CrashShield/.apt_generated
+iot4i-v2/SimpleShields/CrashShield/impl/java/bin
+iot4i-v2/SimpleShields/CrashShield/output/com.ibm.iot4i.examples.CrashShield/BuildConfig
+iot4i-v2/SupportJobs/ActionJob/output
+iot4i-v2/SupportJobs/TransformerJob/.apt_generated
+iot4i-v2/SupportJobs/TransformerJob/impl/java/bin
+iot4i-v2/SupportJobs/TransformerJob/output/com.ibm.iot4i.transformerjob.Main/BuildConfig

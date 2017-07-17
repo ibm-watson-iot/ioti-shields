@@ -1,0 +1,119 @@
+namespace com.ibm.iot4i.shields.templates ;
+
+use com.ibm.iot4i.hazards.IoTP::* ;
+use com.ibm.iot4i.events.IoTP::* ;
+use com.ibm.iot4i.models::Hazard ;
+
+composite ShieldTemplateWithIoTP
+{
+	param
+	// Tenant IoTP params
+		expression<rstring> $ORG : getSubmissionTimeValue("ORG") ;
+		expression<rstring> $AUTH_KEY : getSubmissionTimeValue("AUTH_KEY") ;
+		expression<rstring> $AUTH_TOKEN : getSubmissionTimeValue("AUTH_TOKEN") ;
+		expression<int32> $QOS :(int32) getSubmissionTimeValue("QOS") ;
+		expression<rstring> $SOURCE_TOPIC : "iot-2/type/+/id/+/evt/+/fmt/+" ;
+		expression<rstring> $SOURCE_APP_ID :(rstring) jobID() + "_evt" ;
+
+		// API params
+		expression<rstring> $API_URL : "" ; // URL for API service, example: http://10.0.2.2:10010/ 
+		expression<rstring> $API_TOKEN : getSubmissionTimeValue("API_TOKEN") ;
+
+		// Other params
+		expression<rstring> $SHIELD_ID : getSubmissionTimeValue("SHIELD_ID") ;
+		expression<rstring> $TENANT_ID : getSubmissionTimeValue("TENANT_ID") ;
+	graph
+
+	//  get events from source
+		@view(name = "Events", port = SourceStream, sampleSize = 5, bufferSize = 50)
+		@parallel(width = 1)
+		(stream<rstring key, rstring message> SourceStream) as source = Source()
+		{
+			param
+				SOURCE_CLIENT_ID :(getMaxChannels() >= 2 ? "A:" : "a:") + $ORG + ":" +
+					$SOURCE_APP_ID ;
+				ORG : $ORG ;
+				AUTH_KEY : $AUTH_KEY ;
+				AUTH_TOKEN : $AUTH_TOKEN ;
+				QOS : $QOS ;
+				SOURCE_TOPIC : $SOURCE_TOPIC ;
+		}
+
+		//  filter events based on entry condition
+		@view(name = "FilteredEvents", port = FilteredStream, sampleSize = 5,
+			bufferSize = 50)
+		@parallel(width = 1)
+		(stream<rstring key, rstring message> FilteredStream) as filter =
+			Filter(SourceStream)
+		{
+			param
+				filter : 2 > 1 ; // put here any condition to filter events, java native functions can be used here
+
+		}
+
+		//  Transforming Events
+		@view(name = "TransformedEvents", port = TransformedStream, sampleSize = 5,
+			bufferSize = 50)
+		@parallel(width = 1)
+		(stream<rstring userId, rstring key, rstring message> TransformedStream) as
+			transform = Transformer(FilteredStream)
+		{
+			param
+				ORG : $ORG ;
+				AUTH_KEY : $AUTH_KEY ;
+				AUTH_TOKEN : $AUTH_TOKEN ;
+				QOS : $QOS ;
+				API_URL : $API_URL ;
+				API_TOKEN : $API_TOKEN ;
+				TENANT_ID : $TENANT_ID ;
+				DEVICE_ID_ATTRIBUTE_NAMES : "" ; // attribute name in the payload/topic that contains the gateway Id, example: gatewayId
+
+		}
+
+		//  Check shield activations
+		@view(name = "ValidatedEvents", port = ValidatedStream, sampleSize = 5,
+			bufferSize = 50)
+		@parallel(width = 1)
+		(stream<rstring userId, rstring key, rstring message> ValidatedStream) as
+			checkActivation = CheckActivation(TransformedStream)
+		{
+			param
+				ORG : $ORG ;
+				AUTH_KEY : $AUTH_KEY ;
+				AUTH_TOKEN : $AUTH_TOKEN ;
+				QOS : $QOS ;
+				API_URL : $API_URL ;
+				API_TOKEN : $API_TOKEN ;
+				SHIELD_ID : $SHIELD_ID ;
+				TENANT_ID : $TENANT_ID ;
+		}
+
+		//  Shield Specific Operators goes here, example:
+		@view(name = "Hazards", port = HazardStream, sampleSize = 5, bufferSize = 50)
+		@parallel(width = 1)
+		(stream<Hazard> HazardStream) as shield = Functor(ValidatedStream)
+		{
+			param
+				filter : 4 == 4 ; // put here shield specific condition
+
+			output
+				HazardStream : userId = userId, rawEvents = [ message ], actionParams =
+					"{\"hazardTitle\":\"hazard detected\"}" ;
+		}
+
+		//  Submitting Hazards
+		@parallel(width = 1)
+		() as hazards = SubmitHazards(HazardStream)
+		{
+			param
+				ORG : $ORG ;
+				AUTH_KEY : $AUTH_KEY ;
+				AUTH_TOKEN : $AUTH_TOKEN ;
+				QOS : $QOS ;
+				SHIELD_ID : $SHIELD_ID ;
+				API_URL : $API_URL ;
+				API_TOKEN : $API_TOKEN ;
+				TENANT_ID : $TENANT_ID ;
+		}
+
+}
