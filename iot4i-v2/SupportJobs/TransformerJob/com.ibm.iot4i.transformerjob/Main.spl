@@ -34,7 +34,8 @@ composite Main
 				PASSWORD : $PASSWORD ;
 				TOPIC : $SOURCE_TOPIC ;
 				GROUP_ID : "group_source_transformer_job_" +(rstring) jobID() ;
-				CLIENT_ID : "consumer_transformer_job_" +(rstring) jobID() + "_" +(rstring) getChannel() ;
+				CLIENT_ID : "consumer_transformer_job_" +(rstring) jobID() + "_" +(rstring)
+					getChannel() ;
 		}
 
 		//  Transform Events

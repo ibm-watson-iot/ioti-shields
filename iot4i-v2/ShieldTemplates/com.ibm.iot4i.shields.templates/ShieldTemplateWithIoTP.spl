@@ -16,7 +16,7 @@ composite ShieldTemplateWithIoTP
 		expression<rstring> $SOURCE_APP_ID :(rstring) jobID() + "_evt" ;
 
 		// API params
-		expression<rstring> $API_URL : "" ; // URL for API service, example: http://10.0.2.2:10010/ 
+		expression<rstring> $API_URL : getSubmissionTimeValue("API_URL") ; // URL for API service, example: http://10.0.2.2:10010/ 
 		expression<rstring> $API_TOKEN : getSubmissionTimeValue("API_TOKEN") ;
 
 		// Other params

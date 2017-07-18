@@ -15,7 +15,7 @@
         <parameter defaultValue="getSubmissionTimeValue(&quot;SOURCE_TOPIC&quot;)" metaType="Expression" name="SOURCE_TOPIC" optional="true" type="&lt;rstring>"/>
         <parameter defaultValue="getSubmissionTimeValue(&quot;NOTIFICATION_TOPIC&quot;)" metaType="Expression" name="NOTIFICATION_TOPIC" optional="true" type="&lt;rstring>"/>
         <parameter defaultValue="getSubmissionTimeValue(&quot;SINK_TOPIC&quot;)" metaType="Expression" name="SINK_TOPIC" optional="true" type="&lt;rstring>"/>
-        <parameter defaultValue="&quot;&quot;" metaType="Expression" name="API_URL" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="getSubmissionTimeValue(&quot;API_URL&quot;)" metaType="Expression" name="API_URL" optional="true" type="&lt;rstring>"/>
         <parameter defaultValue="getSubmissionTimeValue(&quot;API_TOKEN&quot;)" metaType="Expression" name="API_TOKEN" optional="true" type="&lt;rstring>"/>
         <parameter defaultValue="getSubmissionTimeValue(&quot;SHIELD_ID&quot;)" metaType="Expression" name="SHIELD_ID" optional="true" type="&lt;rstring>"/>
         <parameter defaultValue="getSubmissionTimeValue(&quot;TENANT_ID&quot;)" metaType="Expression" name="TENANT_ID" optional="true" type="&lt;rstring>"/>
@@ -27,7 +27,7 @@
         <parameter defaultValue="(int32)getSubmissionTimeValue(&quot;QOS&quot;)" metaType="Expression" name="QOS" optional="true" type="&lt;int32>"/>
         <parameter defaultValue="&quot;iot-2/type/+/id/+/evt/+/fmt/+&quot;" metaType="Expression" name="SOURCE_TOPIC" optional="true" type="&lt;rstring>"/>
         <parameter defaultValue="(rstring)jobID() + &quot;_evt&quot;" metaType="Expression" name="SOURCE_APP_ID" optional="true" type="&lt;rstring>"/>
-        <parameter defaultValue="&quot;&quot;" metaType="Expression" name="API_URL" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="getSubmissionTimeValue(&quot;API_URL&quot;)" metaType="Expression" name="API_URL" optional="true" type="&lt;rstring>"/>
         <parameter defaultValue="getSubmissionTimeValue(&quot;API_TOKEN&quot;)" metaType="Expression" name="API_TOKEN" optional="true" type="&lt;rstring>"/>
         <parameter defaultValue="getSubmissionTimeValue(&quot;SHIELD_ID&quot;)" metaType="Expression" name="SHIELD_ID" optional="true" type="&lt;rstring>"/>
         <parameter defaultValue="getSubmissionTimeValue(&quot;TENANT_ID&quot;)" metaType="Expression" name="TENANT_ID" optional="true" type="&lt;rstring>"/>
