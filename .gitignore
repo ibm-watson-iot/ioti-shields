@@ -7,3 +7,8 @@ iot4i-v2/SupportJobs/ActionJob/output
 iot4i-v2/SupportJobs/TransformerJob/.apt_generated
 iot4i-v2/SupportJobs/TransformerJob/impl/java/bin
 iot4i-v2/SupportJobs/TransformerJob/output/com.ibm.iot4i.transformerjob.Main/BuildConfig
+iot4i-v2/SimpleShields/CrashShield/com.ibm.iot4i.examples/native.function/javaFunction.xml
+iot4i-v2/SimpleShields/CrashShield/com.ibm.iot4i.examples/native.function/SPL_JNIFunctions_com_ibm_iot4i_examples.h
+iot4i-v2/SupportJobs/TransformerJob/com.ibm.iot4i.transformerjob/native.function/javaFunction.xml
+iot4i-v2/SupportJobs/TransformerJob/com.ibm.iot4i.transformerjob/native.function/SPL_JNIFunctions_com_ibm_iot4i_transformerjob.h
+javaFunction.xml
