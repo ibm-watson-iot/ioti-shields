@@ -1,0 +1,31 @@
+namespace com.ibm.iot4i.hazards.common ;
+
+use com.ibm.iot4i.models::Hazard ;
+
+public composite PrepareHazards(input stream<Hazard> HazardStream ; output
+	stream<rstring data> PreparedHazardStream)
+{
+	param
+		expression<rstring> $SHIELD_ID ;
+	graph
+		(stream<rstring data> PreparedHazardStream) as stringify =
+			Functor(HazardStream)
+		{
+			logic
+				onTuple HazardStream :
+				{
+					if(userId == "")
+					{
+						appTrc(Trace.warn, "UserId is not given") ;
+					}
+
+				}
+
+			param
+				filter : userId != "" ;
+			output
+				PreparedHazardStream : data = getJsonStringHazard($SHIELD_ID, userId,
+					rawEvents, actionParams) ;
+		}
+
+}

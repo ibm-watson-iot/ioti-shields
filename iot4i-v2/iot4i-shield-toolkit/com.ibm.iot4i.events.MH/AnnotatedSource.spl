@@ -1,0 +1,43 @@
+namespace com.ibm.iot4i.events.MH ;
+
+public composite AnnotatedSource(output stream<rstring userId, rstring key,
+	rstring message> AnnotatedStream )
+{
+	param
+		expression<rstring> $KAFKA_BROKERS_SASL ;
+		expression<rstring> $USERNAME ;
+		expression<rstring> $PASSWORD ;
+		expression<rstring> $TOPIC ;
+	graph
+		(stream<rstring key, rstring message> SourceStream) as source = Source()
+		{
+			param
+				KAFKA_BROKERS_SASL : $KAFKA_BROKERS_SASL ;
+				USERNAME : $USERNAME ;
+				PASSWORD : $PASSWORD ;
+				TOPIC : $TOPIC ;
+				GROUP_ID : "group_source_" +(rstring) jobID() ;
+				CLIENT_ID : "consumer_" +(rstring) jobID() + "_" +(rstring) getChannel() ;
+		}
+
+		stream<rstring userId, rstring key, rstring message> AnnotatedStream =
+			Functor(SourceStream)
+		{
+			logic
+				state :
+				{
+					mutable rstring _userId = "" ;
+				}
+
+				onTuple SourceStream :
+				{
+					_userId = getUserId(message) ;
+				}
+
+			param
+				filter : _userId != "" ;
+			output
+				AnnotatedStream : userId = _userId, key = key, message = message ;
+		}
+
+}

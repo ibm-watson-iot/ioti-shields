@@ -1,0 +1,31 @@
+namespace com.ibm.iot4i.hazards.common ;
+
+use com.ibm.iot4i.models::Hazard ;
+use com.ibm.streamsx.inet.http::HTTPPost ;
+use com.ibm.iot4i.models::BodySchema ;
+
+public composite ActionSink(input stream<rstring data> PreparedHazardStream )
+{
+	param
+		expression<rstring> $API_URL ;
+		expression<rstring> $API_TOKEN ;
+		expression<int32> $RETRY_COUNT : 10 ;
+		expression<rstring> $TENANT_ID ;
+	graph
+		(stream<BodySchema> PreparedActionStream) as actionPrepare =
+			Functor(PreparedHazardStream)
+		{
+			output
+				PreparedActionStream : data = data ;
+		}
+
+		() as actionSink = HTTPPost(PreparedActionStream)
+		{
+			param
+				url : $API_URL + "api/v1/" + $TENANT_ID + "/hazards" ;
+				extraHeaders : "Authorization: Bearer " + $API_TOKEN ;
+				headerContentType : "application/json" ;
+				maxRetries : $RETRY_COUNT ;
+		}
+
+}

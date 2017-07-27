@@ -1,0 +1,43 @@
+namespace com.ibm.iot4i.events.MH ;
+
+use com.ibm.iot4i.events.common::* ;
+
+public composite Transformer(input stream<rstring key, rstring message>
+	SourceStream ; output stream<rstring userId, rstring key, rstring message>
+	TransformedStream)
+{
+	param
+		expression<rstring> $KAFKA_BROKERS_SASL ;
+		expression<rstring> $USERNAME ;
+		expression<rstring> $PASSWORD ;
+		expression<rstring> $API_URL ;
+		expression<rstring> $API_TOKEN ;
+		expression<rstring> $TENANT_ID ;
+		expression<rstring> $TOPIC ;
+		expression<rstring> $DEVICE_ID_ATTRIBUTE_NAMES ;
+	graph
+		(stream<rstring key, rstring message> NotificationStream) as notifications =
+			Source()
+		{
+			param
+				KAFKA_BROKERS_SASL : $KAFKA_BROKERS_SASL ;
+				USERNAME : $USERNAME ;
+				PASSWORD : $PASSWORD ;
+				TOPIC : $TOPIC ;
+				GROUP_ID : "group_notification_transformer_" +(rstring) jobID() + "_"
+					+(rstring) getChannel() ;
+				CLIENT_ID : "consumer_notification_transformer_" +(rstring) jobID() + "_"
+					+(rstring) getChannel() ;
+		}
+
+		stream<rstring userId, rstring key, rstring message> TransformedStream =
+			TransformerOp(SourceStream, NotificationStream)
+		{
+			param
+				apiURL : $API_URL ;
+				apiToken : $API_TOKEN ;
+				tenantId : $TENANT_ID ;
+				deviceIdAttributeNames : $DEVICE_ID_ATTRIBUTE_NAMES ;
+		}
+
+}

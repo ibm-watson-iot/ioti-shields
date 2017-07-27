@@ -1,0 +1,41 @@
+namespace com.ibm.iot4i.hazards.IoTP ;
+
+use com.ibm.streamsx.messaging.mqtt::* ;
+use com.ibm.iot4i.models::Hazard ;
+use com.ibm.iot4i.hazards.common::* ;
+
+public composite Sink(input stream<rstring data> PreparedHazardStream )
+{
+	param
+		expression<rstring> $ORG ;
+		expression<rstring> $AUTH_KEY ;
+		expression<rstring> $AUTH_TOKEN ;
+		expression<int32> $QOS ;
+		expression<rstring> $SINK_CLIENT_ID ;
+		expression<rstring> $SINK_TOPIC ;
+		expression<rstring> $PROTOCOL : "ssl://" ;
+		expression<rstring> $HOST : ".messaging.internetofthings.ibmcloud.com" ;
+		expression<rstring> $TRUST_STORE_PASSWORD : "streamsx.iotf.123" ;
+		expression<rstring> $TRUST_STORE : getThisToolkitDir() +
+			"/opt/messaging.ts" ;
+	graph
+		() as iotpSink = MQTTSink(PreparedHazardStream)
+		{
+			logic
+				state :
+				{
+					rstring _serverURI = $PROTOCOL + $ORG + $HOST ;
+				}
+
+			param
+				clientID : $SINK_CLIENT_ID ;
+				serverURI : _serverURI ;
+				userID : $AUTH_KEY ;
+				password : $AUTH_TOKEN ;
+				topic : $SINK_TOPIC ;
+				qos : $QOS ;
+				trustStore : $TRUST_STORE ;
+				trustStorePassword : $TRUST_STORE_PASSWORD ;
+		}
+
+}

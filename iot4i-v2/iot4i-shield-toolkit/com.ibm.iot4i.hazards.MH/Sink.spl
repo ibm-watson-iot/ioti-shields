@@ -1,0 +1,34 @@
+namespace com.ibm.iot4i.hazards.MH ;
+
+use com.ibm.iot4i.models::Hazard ;
+use com.ibm.streamsx.kafka::* ;
+use com.ibm.iot4i.common::* ;
+use com.ibm.iot4i.hazards.common::* ;
+
+public composite Sink(input stream<rstring topic, rstring key, rstring message>
+	KafkaSinkStream )
+{
+	param
+		expression<rstring> $KAFKA_BROKERS_SASL ;
+		expression<rstring> $USERNAME ;
+		expression<rstring> $PASSWORD ;
+		expression<rstring> $GROUP_ID ;
+		expression<rstring> $CLIENT_ID ;
+		expression<rstring> $SECURITY_PROTOCOL : "SASL_SSL" ;
+		expression<rstring> $SASL_MECHANISM : "PLAIN" ;
+		expression<rstring> $SSL_PROTOCOL : "TLSv1.2" ;
+		expression<rstring> $SSL_ENABLED_PROTOCOLS : "TLSv1.2" ;
+		expression<rstring> $SSL_TRUST_STORE_TYPE : "JKS" ;
+		expression<rstring> $SSL_ENDPOINT_IDENTIFICATION_ALGORITHM : "HTTPS" ;
+	graph
+		() as KafkaSinkOp = KafkaProducer(KafkaSinkStream)
+		{
+			param
+				propertiesFile : getKafkaPropertiesFileName(getThisToolkitDir(),
+					$KAFKA_BROKERS_SASL, $USERNAME, $PASSWORD, $GROUP_ID, $CLIENT_ID,
+					$SECURITY_PROTOCOL, $SASL_MECHANISM, $SSL_PROTOCOL,
+					$SSL_ENABLED_PROTOCOLS, $SSL_TRUST_STORE_TYPE,
+					$SSL_ENDPOINT_IDENTIFICATION_ALGORITHM) ;
+		}
+
+}

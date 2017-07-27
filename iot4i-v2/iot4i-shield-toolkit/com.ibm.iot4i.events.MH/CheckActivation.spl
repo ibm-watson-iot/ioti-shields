@@ -1,0 +1,52 @@
+namespace com.ibm.iot4i.events.MH ;
+
+use com.ibm.iot4i.events.common::* ;
+
+public composite CheckActivation(input stream<rstring userId, rstring key,
+	rstring message> SourceStream ; output stream<rstring userId, rstring key,
+	rstring message> ValidatedStream)
+{
+	param
+		expression<rstring> $KAFKA_BROKERS_SASL ;
+		expression<rstring> $USERNAME ;
+		expression<rstring> $PASSWORD ;
+		expression<rstring> $TOPIC ;
+		// API config params
+		expression<rstring> $API_URL ;
+		expression<rstring> $API_TOKEN ;
+		expression<rstring> $TENANT_ID ;
+		// others
+		expression<rstring> $SHIELD_ID ;
+	graph
+		(stream<rstring key, rstring message> NotificationStream) as source =
+			Source()
+		{
+			param
+				KAFKA_BROKERS_SASL : $KAFKA_BROKERS_SASL ;
+				USERNAME : $USERNAME ;
+				PASSWORD : $PASSWORD ;
+				TOPIC : $TOPIC ;
+				GROUP_ID : "group_notification_activation_" +(rstring) jobID() + "_"
+					+(rstring) getChannel() ;
+				CLIENT_ID : "consumer_notification_activation_" +(rstring) jobID() + "_"
+					+(rstring) getChannel() ;
+		}
+		
+		stream<rstring userId, rstring key, rstring message> UnifiedSchemaStream =
+			Functor(NotificationStream)
+		{
+			output
+				UnifiedSchemaStream : userId = "", key = key, message = message ;
+		}
+
+		stream<rstring userId, rstring key, rstring message> ValidatedStream =
+			CheckActivationOp(SourceStream, UnifiedSchemaStream)
+		{
+			param
+				apiURL : $API_URL ;
+				apiToken : $API_TOKEN ;
+				shieldId : $SHIELD_ID ;
+				tenantId : $TENANT_ID ;
+		}
+
+}

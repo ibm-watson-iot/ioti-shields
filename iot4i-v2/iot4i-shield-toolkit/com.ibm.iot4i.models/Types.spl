@@ -1,0 +1,6 @@
+namespace com.ibm.iot4i.models;
+
+// Hazard is what comes out of shield-specific stage
+type Hazard = rstring userId, list<rstring> rawEvents, rstring actionParams ;
+// ActionInput is what will be sent to create a hazard document and invoke action
+type BodySchema = rstring data;

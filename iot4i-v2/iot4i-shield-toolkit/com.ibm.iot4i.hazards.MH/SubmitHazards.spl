@@ -1,0 +1,41 @@
+namespace com.ibm.iot4i.hazards.MH ;
+
+use com.ibm.iot4i.models::Hazard ;
+use com.ibm.iot4i.hazards.common::* ;
+
+public composite SubmitHazards(input stream<Hazard> HazardStream )
+{
+	param
+		expression<rstring> $KAFKA_BROKERS_SASL ;
+		expression<rstring> $USERNAME ;
+		expression<rstring> $PASSWORD ;
+		expression<rstring> $TOPIC ;
+		expression<rstring> $KEY : "{\"timestamp:\"" +(rstring) getTimestampInSecs()
+			+ "\"}" ;
+		expression<rstring> $SHIELD_ID ;
+	graph
+		(stream<rstring data> PreparedHazardStream) as prepare =
+			PrepareHazards(HazardStream)
+		{
+			param
+				SHIELD_ID : $SHIELD_ID ;
+		}
+
+		(stream<rstring topic, rstring key, rstring message> KafkaSinkStream) as
+			kafkaPrepare = Functor(PreparedHazardStream)
+		{
+			output
+				KafkaSinkStream : key = $KEY, topic = $TOPIC, message = data ;
+		}
+
+		() as kafkaSink = Sink(KafkaSinkStream)
+		{
+			param
+				KAFKA_BROKERS_SASL : $KAFKA_BROKERS_SASL ;
+				USERNAME : $USERNAME ;
+				PASSWORD : $PASSWORD ;
+				GROUP_ID : "group_sink_" +(rstring) jobID() ;
+				CLIENT_ID : "producer_" +(rstring) jobID() + "_" +(rstring) getChannel() ;
+		}
+
+} 

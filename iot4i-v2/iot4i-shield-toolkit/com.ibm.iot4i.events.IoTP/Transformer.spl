@@ -1,0 +1,56 @@
+namespace com.ibm.iot4i.events.IoTP ;
+
+use com.ibm.streamsx.messaging.mqtt::* ;
+use com.ibm.iot4i.events.common::* ;
+
+public composite Transformer(input stream<rstring key, rstring message>
+	SourceStream ; output stream<rstring userId, rstring key, rstring message>
+	OutputStream)
+{
+	param
+	// IoTP config params
+		expression<rstring> $ORG ;
+		expression<rstring> $AUTH_KEY ;
+		expression<rstring> $AUTH_TOKEN ;
+		expression<int32> $QOS ;
+		expression<rstring> $NOTIFICATION_APP_ID :(rstring) jobID() +
+			"_notification_device" ;
+		expression<rstring> $NOTIFICATION_TOPIC :
+			"iot-2/type/IoT4i_deviceMappingChange/id/+/evt/notification/fmt/json" ;
+			// API config params
+		expression<rstring> $API_URL ;
+		expression<rstring> $API_TOKEN ;
+		expression<rstring> $TENANT_ID ;
+		// others
+		expression<rstring> $DEVICE_ID_ATTRIBUTE_NAMES ;
+	graph
+		stream<rstring key, rstring message> NotificationStream = Source()
+		{
+			param
+				SOURCE_CLIENT_ID : "a:" + $ORG + ":" + $NOTIFICATION_APP_ID +(rstring)
+					getChannel() ;
+				ORG : $ORG ;
+				AUTH_KEY : $AUTH_KEY ;
+				AUTH_TOKEN : $AUTH_TOKEN ;
+				QOS : $QOS ;
+				SOURCE_TOPIC : $NOTIFICATION_TOPIC ;
+		}
+
+		stream<rstring userId, rstring key, rstring message> TransformedStream =
+			TransformerOp(SourceStream, NotificationStream)
+		{
+			param
+				apiURL : $API_URL ;
+				apiToken : $API_TOKEN ;
+				tenantId : $TENANT_ID ;
+				deviceIdAttributeNames : $DEVICE_ID_ATTRIBUTE_NAMES ;
+		}
+
+		stream<rstring userId, rstring key, rstring message> OutputStream =
+			Filter(TransformedStream)
+		{
+			param
+				filter : userId != "" ;
+		}
+
+}
