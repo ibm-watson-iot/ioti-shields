@@ -1,0 +1,4 @@
+	@$(CXX) $(SPL_CXXFLAGS) -o bin/checkActivation.UnifiedSchemaStream.so -fPIC -shared $(SOcheckActivation.UnifiedSchemaStream) $(SPL_LDFLAGS)\
+	    build/operator/checkActivation/UnifiedSchemaStream.o \
+	    build/type/BeJwrMS42Ky1OLfJMKTbOTq0sNs9NLS5OTE8FAHEVAk7.o \
+	    build/type/BeJwrMSo2zk6tLDbPTS0uTkxPBQAysQYl.o 

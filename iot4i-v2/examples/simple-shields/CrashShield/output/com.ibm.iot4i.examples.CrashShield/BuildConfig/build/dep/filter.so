@@ -1,0 +1,3 @@
+	@$(CXX) $(SPL_CXXFLAGS) -o bin/filter.so -fPIC -shared $(SOfilter) -lstreams-stdtk-javaop -lstreams-stdtk-runtime -L /opt/ibm/InfoSphere_Streams/4.2.1.1/java/jre/lib/amd64/j9vm -Wl,-rpath -Wl,/opt/ibm/InfoSphere_Streams/4.2.1.1/java/jre/lib/amd64/j9vm -lpthread -ldl $(SPL_LDFLAGS)\
+	    build/operator/filter.o \
+	    build/type/BeJwrMS42Ky1OLfJMKTbOTq0sNs9NLS5OTE8FAHEVAk7.o 

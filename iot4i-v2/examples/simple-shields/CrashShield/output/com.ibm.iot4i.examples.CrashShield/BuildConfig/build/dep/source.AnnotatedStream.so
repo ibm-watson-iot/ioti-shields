@@ -1,0 +1,4 @@
+	@$(CXX) $(SPL_CXXFLAGS) -o bin/source.AnnotatedStream.so -fPIC -shared $(SOsource.AnnotatedStream) -lstreams-stdtk-javaop -lstreams-stdtk-runtime -L /opt/ibm/InfoSphere_Streams/4.2.1.1/java/jre/lib/amd64/j9vm -Wl,-rpath -Wl,/opt/ibm/InfoSphere_Streams/4.2.1.1/java/jre/lib/amd64/j9vm -lpthread -ldl $(SPL_LDFLAGS)\
+	    build/operator/source/AnnotatedStream.o \
+	    build/type/BeJwrMS42Ky1OLfJMKTbOTq0sNs9NLS5OTE8FAHEVAk7.o \
+	    build/type/BeJwrMSo2zk6tLDbPTS0uTkxPBQAysQYl.o 

@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<operatorInstanceModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/operator/instance" xmlns:an="http://www.ibm.com/xmlns/prod/streams/spl/annotation" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <context>
+    <kind>com.ibm.iot4i.events.common::CheckActivationOp</kind>
+    <class>checkActivation::ValidatedStream</class>
+    <operatorModelDirectory>/opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/spl/spl/utility/JavaOp</operatorModelDirectory>
+    <applicationDirectory>/home/streamsadmin/workspace/CrashShield</applicationDirectory>
+    <dataDirectory>/home/streamsadmin/workspace/CrashShield/data</dataDirectory>
+    <outputDirectory>/home/streamsadmin/workspace/CrashShield/output/com.ibm.iot4i.examples.CrashShield/BuildConfig</outputDirectory>
+    <toolkits>
+      <toolkit isCurrentToolkit="false">
+        <name>CrashShield</name>
+        <rootDirectory>/home/streamsadmin/workspace/CrashShield</rootDirectory>
+        <index>0</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>spl</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/spl</rootDirectory>
+        <index>1</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.inet</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/com.ibm.streamsx.inet</rootDirectory>
+        <index>2</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.kafka</name>
+        <rootDirectory>/home/streamsadmin/Downloads/streamsx.kafka-1.0.0/build/release/com.ibm.streamsx.kafka</rootDirectory>
+        <index>3</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.messaging</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/com.ibm.streamsx.messaging</rootDirectory>
+        <index>4</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="true">
+        <name>iot4i-shield-toolkit</name>
+        <rootDirectory>/home/streamsadmin/workspace/iot4i-shield-toolkit</rootDirectory>
+        <index>5</index>
+      </toolkit>
+    </toolkits>
+    <optimized>true</optimized>
+    <verbose>false</verbose>
+    <networkByteOrdering>false</networkByteOrdering>
+    <codeBeautification>false</codeBeautification>
+    <includes>
+      <include>"../../type/BeJwrMS42Ky1OLfJMKTbOTq0sNs9NLS5OTE8FAHEVAk7.h"</include>
+    </includes>
+    <stateVariables/>
+    <runtimeConstants/>
+    <sourceLocation>
+      <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.events.MH/CheckActivation.spl</file>
+      <line>42</line>
+      <column>3</column>
+    </sourceLocation>
+    <productVersion>4.2.1.1</productVersion>
+    <types>
+      <type index="0" type="rstring"/>
+    </types>
+    <javaOperatorModelDirectory>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.events.common/CheckActivationOp</javaOperatorModelDirectory>
+    <checkpointKind>none</checkpointKind>
+  </context>
+
+  <parameters>
+    <parameter>
+      <name>className</name>
+      <values>
+        <value>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+          <hasRuntimeConstant>false</hasRuntimeConstant>
+          <cppExpression>SPL::rstring("com.ibm.iot4i.events.common.CheckActivationOp")</cppExpression>
+          <splExpression>"com.ibm.iot4i.events.common.CheckActivationOp"</splExpression>
+          <hasFunctions>false</hasFunctions>
+          <hasSideEffects>false</hasSideEffects>
+          <readsState>false</readsState>
+          <hasStreamAttributes>false</hasStreamAttributes>
+          <parameterExpressionMode>AttributeFree</parameterExpressionMode>
+          <sourceLocation>
+            <file>&lt;invalid&gt;</file>
+            <line>-1</line>
+            <column>0</column>
+          </sourceLocation>
+        </value>
+      </values>
+      <sourceLocation>
+        <file>&lt;invalid&gt;</file>
+        <line>-1</line>
+        <column>0</column>
+      </sourceLocation>
+    </parameter>
+    <parameter>
+      <name>classLibrary</name>
+      <values>
+        <value>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+          <hasRuntimeConstant>false</hasRuntimeConstant>
+          <cppExpression>(SPL::Functions::Utility::getToolkitDirectory(SPL::rstring("iot4i-shield-toolkit")) + SPL::rstring("/impl/java/bin"))</cppExpression>
+          <splExpression>getToolkitDirectory("iot4i-shield-toolkit") + "/impl/java/bin"</splExpression>
+          <hasFunctions>true</hasFunctions>
+          <hasSideEffects>false</hasSideEffects>
+          <readsState>false</readsState>
+          <hasStreamAttributes>false</hasStreamAttributes>
+          <parameterExpressionMode>AttributeFree</parameterExpressionMode>
+          <sourceLocation>
+            <file>&lt;invalid&gt;</file>
+            <line>-1</line>
+            <column>0</column>
+          </sourceLocation>
+          <expressionTree>
+            <binary op="+" type="0">
+              <lhs>
+                <call fcn="getToolkitDirectory" type="0">
+                  <args count="1">
+                    <arg type="0">
+                      <literal type="0">"iot4i-shield-toolkit"</literal>
+                    </arg>
+                  </args>
+                </call>
+              </lhs>
+              <rhs>
+                <literal type="0">"/impl/java/bin"</literal>
+              </rhs>
+            </binary>
+          </expressionTree>
+        </value>
+        <value>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+          <hasRuntimeConstant>false</hasRuntimeConstant>
+          <cppExpression>(SPL::Functions::Utility::getToolkitDirectory(SPL::rstring("iot4i-shield-toolkit")) + SPL::rstring("/impl/lib/*"))</cppExpression>
+          <splExpression>getToolkitDirectory("iot4i-shield-toolkit") + "/impl/lib/*"</splExpression>
+          <hasFunctions>true</hasFunctions>
+          <hasSideEffects>false</hasSideEffects>
+          <readsState>false</readsState>
+          <hasStreamAttributes>false</hasStreamAttributes>
+          <parameterExpressionMode>AttributeFree</parameterExpressionMode>
+          <sourceLocation>
+            <file>&lt;invalid&gt;</file>
+            <line>-1</line>
+            <column>0</column>
+          </sourceLocation>
+          <expressionTree>
+            <binary op="+" type="0">
+              <lhs>
+                <call fcn="getToolkitDirectory" type="0">
+                  <args count="1">
+                    <arg type="0">
+                      <literal type="0">"iot4i-shield-toolkit"</literal>
+                    </arg>
+                  </args>
+                </call>
+              </lhs>
+              <rhs>
+                <literal type="0">"/impl/lib/*"</literal>
+              </rhs>
+            </binary>
+          </expressionTree>
+        </value>
+      </values>
+      <sourceLocation>
+        <file>&lt;invalid&gt;</file>
+        <line>-1</line>
+        <column>0</column>
+      </sourceLocation>
+    </parameter>
+    <parameter>
+      <name>apiURL</name>
+      <values>
+        <value>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+          <hasRuntimeConstant>false</hasRuntimeConstant>
+          <cppExpression>::getSubmissionTimeValue(SPL::rstring("API_URL"))</cppExpression>
+          <splExpression>getSubmissionTimeValue("API_URL")</splExpression>
+          <hasFunctions>false</hasFunctions>
+          <hasSideEffects>false</hasSideEffects>
+          <readsState>false</readsState>
+          <hasStreamAttributes>false</hasStreamAttributes>
+          <parameterExpressionMode>AttributeFree</parameterExpressionMode>
+          <sourceLocation>
+            <file>com.ibm.iot4i.examples/CrashShield.spl</file>
+            <line>21</line>
+            <column>34</column>
+          </sourceLocation>
+          <expressionTree>
+            <call fcn="::getSubmissionTimeValue" type="0">
+              <args count="1">
+                <arg type="0">
+                  <literal type="0">"API_URL"</literal>
+                </arg>
+              </args>
+            </call>
+          </expressionTree>
+        </value>
+      </values>
+      <sourceLocation>
+        <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.events.MH/CheckActivation.spl</file>
+        <line>46</line>
+        <column>5</column>
+      </sourceLocation>
+    </parameter>
+    <parameter>
+      <name>apiToken</name>
+      <values>
+        <value>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+          <hasRuntimeConstant>false</hasRuntimeConstant>
+          <cppExpression>::getSubmissionTimeValue(SPL::rstring("API_TOKEN"))</cppExpression>
+          <splExpression>getSubmissionTimeValue("API_TOKEN")</splExpression>
+          <hasFunctions>false</hasFunctions>
+          <hasSideEffects>false</hasSideEffects>
+          <readsState>false</readsState>
+          <hasStreamAttributes>false</hasStreamAttributes>
+          <parameterExpressionMode>AttributeFree</parameterExpressionMode>
+          <sourceLocation>
+            <file>com.ibm.iot4i.examples/CrashShield.spl</file>
+            <line>22</line>
+            <column>36</column>
+          </sourceLocation>
+          <expressionTree>
+            <call fcn="::getSubmissionTimeValue" type="0">
+              <args count="1">
+                <arg type="0">
+                  <literal type="0">"API_TOKEN"</literal>
+                </arg>
+              </args>
+            </call>
+          </expressionTree>
+        </value>
+      </values>
+      <sourceLocation>
+        <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.events.MH/CheckActivation.spl</file>
+        <line>47</line>
+        <column>5</column>
+      </sourceLocation>
+    </parameter>
+    <parameter>
+      <name>shieldId</name>
+      <values>
+        <value>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+          <hasRuntimeConstant>false</hasRuntimeConstant>
+          <cppExpression>::getSubmissionTimeValue(SPL::rstring("SHIELD_ID"))</cppExpression>
+          <splExpression>getSubmissionTimeValue("SHIELD_ID")</splExpression>
+          <hasFunctions>false</hasFunctions>
+          <hasSideEffects>false</hasSideEffects>
+          <readsState>false</readsState>
+          <hasStreamAttributes>false</hasStreamAttributes>
+          <parameterExpressionMode>AttributeFree</parameterExpressionMode>
+          <sourceLocation>
+            <file>com.ibm.iot4i.examples/CrashShield.spl</file>
+            <line>25</line>
+            <column>36</column>
+          </sourceLocation>
+          <expressionTree>
+            <call fcn="::getSubmissionTimeValue" type="0">
+              <args count="1">
+                <arg type="0">
+                  <literal type="0">"SHIELD_ID"</literal>
+                </arg>
+              </args>
+            </call>
+          </expressionTree>
+        </value>
+      </values>
+      <sourceLocation>
+        <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.events.MH/CheckActivation.spl</file>
+        <line>48</line>
+        <column>5</column>
+      </sourceLocation>
+    </parameter>
+    <parameter>
+      <name>tenantId</name>
+      <values>
+        <value>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+          <hasRuntimeConstant>false</hasRuntimeConstant>
+          <cppExpression>::getSubmissionTimeValue(SPL::rstring("TENANT_ID"))</cppExpression>
+          <splExpression>getSubmissionTimeValue("TENANT_ID")</splExpression>
+          <hasFunctions>false</hasFunctions>
+          <hasSideEffects>false</hasSideEffects>
+          <readsState>false</readsState>
+          <hasStreamAttributes>false</hasStreamAttributes>
+          <parameterExpressionMode>AttributeFree</parameterExpressionMode>
+          <sourceLocation>
+            <file>com.ibm.iot4i.examples/CrashShield.spl</file>
+            <line>26</line>
+            <column>36</column>
+          </sourceLocation>
+          <expressionTree>
+            <call fcn="::getSubmissionTimeValue" type="0">
+              <args count="1">
+                <arg type="0">
+                  <literal type="0">"TENANT_ID"</literal>
+                </arg>
+              </args>
+            </call>
+          </expressionTree>
+        </value>
+      </values>
+      <sourceLocation>
+        <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.events.MH/CheckActivation.spl</file>
+        <line>49</line>
+        <column>5</column>
+      </sourceLocation>
+    </parameter>
+  </parameters>
+
+  <inputPorts>
+    <inputPort>
+      <index>0</index>
+      <tupleCppName>iport$0</tupleCppName>
+      <tupleCppType>SPL::BeJwrMS42Ky1OLfJMKTbOTq0sNs9NLS5OTE8FAHEVAk7</tupleCppType>
+      <tupleSPLType>tuple&lt;rstring userId,rstring key,rstring message&gt;</tupleSPLType>
+      <facade>false</facade>
+      <mutationAllowed>false</mutationAllowed>
+      <sourceLocation>
+        <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.events.MH/CheckActivation.spl</file>
+        <line>43</line>
+        <column>22</column>
+      </sourceLocation>
+      <attributes>
+        <attribute>
+          <name>userId</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+        </attribute>
+        <attribute>
+          <name>key</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+        </attribute>
+        <attribute>
+          <name>message</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+        </attribute>
+      </attributes>
+      <tuple>
+        <tt:attr name="userId" type="rstring"/>
+        <tt:attr name="key" type="rstring"/>
+        <tt:attr name="message" type="rstring"/>
+      </tuple>
+    </inputPort>
+  </inputPorts>
+
+  <outputPorts>
+    <outputPort>
+      <index>0</index>
+      <tupleCppName>oport$0</tupleCppName>
+      <tupleCppType>SPL::BeJwrMS42Ky1OLfJMKTbOTq0sNs9NLS5OTE8FAHEVAk7</tupleCppType>
+      <tupleSPLType>tuple&lt;rstring userId,rstring key,rstring message&gt;</tupleSPLType>
+      <facade>false</facade>
+      <mutationAllowed>true</mutationAllowed>
+      <sourceLocation>
+        <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.events.MH/CheckActivation.spl</file>
+        <line>42</line>
+        <column>3</column>
+      </sourceLocation>
+      <attributes>
+        <attribute>
+          <name>userId</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+        </attribute>
+        <attribute>
+          <name>key</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+        </attribute>
+        <attribute>
+          <name>message</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+        </attribute>
+      </attributes>
+      <tuple>
+        <tt:attr name="userId" type="rstring"/>
+        <tt:attr name="key" type="rstring"/>
+        <tt:attr name="message" type="rstring"/>
+      </tuple>
+      <finalPunctuationPortScope>
+        <port>0</port>
+      </finalPunctuationPortScope>
+    </outputPort>
+  </outputPorts>
+
+</operatorInstanceModel>

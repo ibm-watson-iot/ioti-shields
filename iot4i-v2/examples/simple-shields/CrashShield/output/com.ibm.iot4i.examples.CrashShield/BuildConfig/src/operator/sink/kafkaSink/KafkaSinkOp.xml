@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<operatorInstanceModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/operator/instance" xmlns:an="http://www.ibm.com/xmlns/prod/streams/spl/annotation" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <context>
+    <kind>com.ibm.streamsx.kafka::KafkaProducer</kind>
+    <class>sink::kafkaSink::KafkaSinkOp</class>
+    <operatorModelDirectory>/opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/spl/spl/utility/JavaOp</operatorModelDirectory>
+    <applicationDirectory>/home/streamsadmin/workspace/CrashShield</applicationDirectory>
+    <dataDirectory>/home/streamsadmin/workspace/CrashShield/data</dataDirectory>
+    <outputDirectory>/home/streamsadmin/workspace/CrashShield/output/com.ibm.iot4i.examples.CrashShield/BuildConfig</outputDirectory>
+    <toolkits>
+      <toolkit isCurrentToolkit="false">
+        <name>CrashShield</name>
+        <rootDirectory>/home/streamsadmin/workspace/CrashShield</rootDirectory>
+        <index>0</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>spl</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/spl</rootDirectory>
+        <index>1</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.inet</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/com.ibm.streamsx.inet</rootDirectory>
+        <index>2</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="true">
+        <name>com.ibm.streamsx.kafka</name>
+        <rootDirectory>/home/streamsadmin/Downloads/streamsx.kafka-1.0.0/build/release/com.ibm.streamsx.kafka</rootDirectory>
+        <index>3</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.messaging</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/com.ibm.streamsx.messaging</rootDirectory>
+        <index>4</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>iot4i-shield-toolkit</name>
+        <rootDirectory>/home/streamsadmin/workspace/iot4i-shield-toolkit</rootDirectory>
+        <index>5</index>
+      </toolkit>
+    </toolkits>
+    <optimized>true</optimized>
+    <verbose>false</verbose>
+    <networkByteOrdering>false</networkByteOrdering>
+    <codeBeautification>false</codeBeautification>
+    <includes>
+      <include>"../../../type/BeJwrMS42LckvyEwuNs5OrSw2z00tLk5MTwUAaSIIDt.h"</include>
+      <include>&lt;SPL_JNIFunctions_com_ibm_iot4i_common.h&gt;</include>
+    </includes>
+    <stateVariables/>
+    <runtimeConstants/>
+    <sourceLocation>
+      <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.MH/Sink.spl</file>
+      <line>24</line>
+      <column>3</column>
+    </sourceLocation>
+    <productVersion>4.2.1.1</productVersion>
+    <types>
+      <type index="0" type="rstring"/>
+      <type index="1" type="uint64"/>
+      <type index="2" type="int32"/>
+    </types>
+    <javaOperatorModelDirectory>/home/streamsadmin/Downloads/streamsx.kafka-1.0.0/build/release/com.ibm.streamsx.kafka/com.ibm.streamsx.kafka/KafkaProducer</javaOperatorModelDirectory>
+    <checkpointKind>none</checkpointKind>
+  </context>
+
+  <parameters>
+    <parameter>
+      <name>className</name>
+      <values>
+        <value>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+          <hasRuntimeConstant>false</hasRuntimeConstant>
+          <cppExpression>SPL::rstring("com.ibm.streamsx.kafka.operators.KafkaProducerOperator")</cppExpression>
+          <splExpression>"com.ibm.streamsx.kafka.operators.KafkaProducerOperator"</splExpression>
+          <hasFunctions>false</hasFunctions>
+          <hasSideEffects>false</hasSideEffects>
+          <readsState>false</readsState>
+          <hasStreamAttributes>false</hasStreamAttributes>
+          <parameterExpressionMode>AttributeFree</parameterExpressionMode>
+          <sourceLocation>
+            <file>&lt;invalid&gt;</file>
+            <line>-1</line>
+            <column>0</column>
+          </sourceLocation>
+        </value>
+      </values>
+      <sourceLocation>
+        <file>&lt;invalid&gt;</file>
+        <line>-1</line>
+        <column>0</column>
+      </sourceLocation>
+    </parameter>
+    <parameter>
+      <name>classLibrary</name>
+      <values>
+        <value>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+          <hasRuntimeConstant>false</hasRuntimeConstant>
+          <cppExpression>(SPL::Functions::Utility::getToolkitDirectory(SPL::rstring("com.ibm.streamsx.kafka")) + SPL::rstring("/impl/java/bin"))</cppExpression>
+          <splExpression>getToolkitDirectory("com.ibm.streamsx.kafka") + "/impl/java/bin"</splExpression>
+          <hasFunctions>true</hasFunctions>
+          <hasSideEffects>false</hasSideEffects>
+          <readsState>false</readsState>
+          <hasStreamAttributes>false</hasStreamAttributes>
+          <parameterExpressionMode>AttributeFree</parameterExpressionMode>
+          <sourceLocation>
+            <file>&lt;invalid&gt;</file>
+            <line>-1</line>
+            <column>0</column>
+          </sourceLocation>
+          <expressionTree>
+            <binary op="+" type="0">
+              <lhs>
+                <call fcn="getToolkitDirectory" type="0">
+                  <args count="1">
+                    <arg type="0">
+                      <literal type="0">"com.ibm.streamsx.kafka"</literal>
+                    </arg>
+                  </args>
+                </call>
+              </lhs>
+              <rhs>
+                <literal type="0">"/impl/java/bin"</literal>
+              </rhs>
+            </binary>
+          </expressionTree>
+        </value>
+        <value>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+          <hasRuntimeConstant>false</hasRuntimeConstant>
+          <cppExpression>(SPL::Functions::Utility::getToolkitDirectory(SPL::rstring("com.ibm.streamsx.kafka")) + SPL::rstring("/opt/downloaded/*"))</cppExpression>
+          <splExpression>getToolkitDirectory("com.ibm.streamsx.kafka") + "/opt/downloaded/*"</splExpression>
+          <hasFunctions>true</hasFunctions>
+          <hasSideEffects>false</hasSideEffects>
+          <readsState>false</readsState>
+          <hasStreamAttributes>false</hasStreamAttributes>
+          <parameterExpressionMode>AttributeFree</parameterExpressionMode>
+          <sourceLocation>
+            <file>&lt;invalid&gt;</file>
+            <line>-1</line>
+            <column>0</column>
+          </sourceLocation>
+          <expressionTree>
+            <binary op="+" type="0">
+              <lhs>
+                <call fcn="getToolkitDirectory" type="0">
+                  <args count="1">
+                    <arg type="0">
+                      <literal type="0">"com.ibm.streamsx.kafka"</literal>
+                    </arg>
+                  </args>
+                </call>
+              </lhs>
+              <rhs>
+                <literal type="0">"/opt/downloaded/*"</literal>
+              </rhs>
+            </binary>
+          </expressionTree>
+        </value>
+        <value>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+          <hasRuntimeConstant>false</hasRuntimeConstant>
+          <cppExpression>(SPL::Functions::Utility::getToolkitDirectory(SPL::rstring("com.ibm.streamsx.kafka")) + SPL::rstring("/impl/lib/*"))</cppExpression>
+          <splExpression>getToolkitDirectory("com.ibm.streamsx.kafka") + "/impl/lib/*"</splExpression>
+          <hasFunctions>true</hasFunctions>
+          <hasSideEffects>false</hasSideEffects>
+          <readsState>false</readsState>
+          <hasStreamAttributes>false</hasStreamAttributes>
+          <parameterExpressionMode>AttributeFree</parameterExpressionMode>
+          <sourceLocation>
+            <file>&lt;invalid&gt;</file>
+            <line>-1</line>
+            <column>0</column>
+          </sourceLocation>
+          <expressionTree>
+            <binary op="+" type="0">
+              <lhs>
+                <call fcn="getToolkitDirectory" type="0">
+                  <args count="1">
+                    <arg type="0">
+                      <literal type="0">"com.ibm.streamsx.kafka"</literal>
+                    </arg>
+                  </args>
+                </call>
+              </lhs>
+              <rhs>
+                <literal type="0">"/impl/lib/*"</literal>
+              </rhs>
+            </binary>
+          </expressionTree>
+        </value>
+      </values>
+      <sourceLocation>
+        <file>&lt;invalid&gt;</file>
+        <line>-1</line>
+        <column>0</column>
+      </sourceLocation>
+    </parameter>
+    <parameter>
+      <name>propertiesFile</name>
+      <values>
+        <value>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+          <hasRuntimeConstant>false</hasRuntimeConstant>
+          <cppExpression>::SPL::JNIFunctions::com::ibm::iot4i::common::SPL_JNIFunctions::getKafkaPropertiesFileName(SPL::Functions::Utility::getToolkitDirectory(SPL::rstring("iot4i-shield-toolkit")), ::getSubmissionTimeValue(SPL::rstring("KAFKA_BROKERS_SASL")), ::getSubmissionTimeValue(SPL::rstring("USERNAME")), ::getSubmissionTimeValue(SPL::rstring("PASSWORD")), (SPL::rstring("group_sink_") + ::SPL::spl_cast&lt;SPL::rstring, SPL::uint64 &gt;::cast(::SPL::Functions::Utility::jobID())), (((SPL::rstring("producer_") + ::SPL::spl_cast&lt;SPL::rstring, SPL::uint64 &gt;::cast(::SPL::Functions::Utility::jobID())) + SPL::rstring("_")) + ::SPL::spl_cast&lt;SPL::rstring, SPL::int32 &gt;::cast(::SPL::Functions::Utility::getChannel())), SPL::rstring("SASL_SSL"), SPL::rstring("PLAIN"), SPL::rstring("TLSv1.2"), SPL::rstring("TLSv1.2"), SPL::rstring("JKS"), SPL::rstring("HTTPS"))</cppExpression>
+          <splExpression>getKafkaPropertiesFileName(getToolkitDirectory("iot4i-shield-toolkit"), getSubmissionTimeValue("KAFKA_BROKERS_SASL"), getSubmissionTimeValue("USERNAME"), getSubmissionTimeValue("PASSWORD"), "group_sink_" + (rstring)(jobID()), (("producer_" + (rstring)(jobID())) + "_") + (rstring)(getChannel()), "SASL_SSL", "PLAIN", "TLSv1.2", "TLSv1.2", "JKS", "HTTPS")</splExpression>
+          <hasFunctions>true</hasFunctions>
+          <hasSideEffects>false</hasSideEffects>
+          <readsState>false</readsState>
+          <hasStreamAttributes>false</hasStreamAttributes>
+          <parameterExpressionMode>AttributeFree</parameterExpressionMode>
+          <sourceLocation>
+            <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.MH/Sink.spl</file>
+            <line>27</line>
+            <column>22</column>
+          </sourceLocation>
+          <expressionTree>
+            <call fcn="com.ibm.iot4i.common::getKafkaPropertiesFileName" type="0">
+              <args count="12">
+                <arg type="0">
+                  <call fcn="getToolkitDirectory" type="0">
+                    <args count="1">
+                      <arg type="0">
+                        <literal type="0">"iot4i-shield-toolkit"</literal>
+                      </arg>
+                    </args>
+                  </call>
+                </arg>
+                <arg type="0">
+                  <call fcn="::getSubmissionTimeValue" type="0">
+                    <args count="1">
+                      <arg type="0">
+                        <literal type="0">"KAFKA_BROKERS_SASL"</literal>
+                      </arg>
+                    </args>
+                  </call>
+                </arg>
+                <arg type="0">
+                  <call fcn="::getSubmissionTimeValue" type="0">
+                    <args count="1">
+                      <arg type="0">
+                        <literal type="0">"USERNAME"</literal>
+                      </arg>
+                    </args>
+                  </call>
+                </arg>
+                <arg type="0">
+                  <call fcn="::getSubmissionTimeValue" type="0">
+                    <args count="1">
+                      <arg type="0">
+                        <literal type="0">"PASSWORD"</literal>
+                      </arg>
+                    </args>
+                  </call>
+                </arg>
+                <arg type="0">
+                  <binary op="+" type="0">
+                    <lhs>
+                      <literal type="0">"group_sink_"</literal>
+                    </lhs>
+                    <rhs>
+                      <cast type="0">
+                        <call fcn="spl.utility::jobID" type="1">
+                          <args count="0"/>
+                        </call>
+                      </cast>
+                    </rhs>
+                  </binary>
+                </arg>
+                <arg type="0">
+                  <binary op="+" type="0">
+                    <lhs>
+                      <binary op="+" type="0">
+                        <lhs>
+                          <binary op="+" type="0">
+                            <lhs>
+                              <literal type="0">"producer_"</literal>
+                            </lhs>
+                            <rhs>
+                              <cast type="0">
+                                <call fcn="spl.utility::jobID" type="1">
+                                  <args count="0"/>
+                                </call>
+                              </cast>
+                            </rhs>
+                          </binary>
+                        </lhs>
+                        <rhs>
+                          <literal type="0">"_"</literal>
+                        </rhs>
+                      </binary>
+                    </lhs>
+                    <rhs>
+                      <cast type="0">
+                        <call fcn="spl.utility::getChannel" type="2">
+                          <args count="0"/>
+                        </call>
+                      </cast>
+                    </rhs>
+                  </binary>
+                </arg>
+                <arg type="0">
+                  <literal type="0">"SASL_SSL"</literal>
+                </arg>
+                <arg type="0">
+                  <literal type="0">"PLAIN"</literal>
+                </arg>
+                <arg type="0">
+                  <literal type="0">"TLSv1.2"</literal>
+                </arg>
+                <arg type="0">
+                  <literal type="0">"TLSv1.2"</literal>
+                </arg>
+                <arg type="0">
+                  <literal type="0">"JKS"</literal>
+                </arg>
+                <arg type="0">
+                  <literal type="0">"HTTPS"</literal>
+                </arg>
+              </args>
+            </call>
+          </expressionTree>
+        </value>
+      </values>
+      <sourceLocation>
+        <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.MH/Sink.spl</file>
+        <line>27</line>
+        <column>5</column>
+      </sourceLocation>
+    </parameter>
+  </parameters>
+
+  <inputPorts>
+    <inputPort>
+      <index>0</index>
+      <tupleCppName>iport$0</tupleCppName>
+      <tupleCppType>SPL::BeJwrMS42LckvyEwuNs5OrSw2z00tLk5MTwUAaSIIDt</tupleCppType>
+      <tupleSPLType>tuple&lt;rstring topic,rstring key,rstring message&gt;</tupleSPLType>
+      <facade>false</facade>
+      <mutationAllowed>false</mutationAllowed>
+      <sourceLocation>
+        <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.MH/Sink.spl</file>
+        <line>24</line>
+        <column>37</column>
+      </sourceLocation>
+      <attributes>
+        <attribute>
+          <name>topic</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+        </attribute>
+        <attribute>
+          <name>key</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+        </attribute>
+        <attribute>
+          <name>message</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+        </attribute>
+      </attributes>
+      <tuple>
+        <tt:attr name="topic" type="rstring"/>
+        <tt:attr name="key" type="rstring"/>
+        <tt:attr name="message" type="rstring"/>
+      </tuple>
+    </inputPort>
+  </inputPorts>
+
+  <outputPorts/>
+
+</operatorInstanceModel>

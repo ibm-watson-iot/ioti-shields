@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<operatorInstanceModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/operator/instance" xmlns:an="http://www.ibm.com/xmlns/prod/streams/spl/annotation" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <context>
+    <kind>spl.relational::Functor</kind>
+    <class>sink::prepare::stringify</class>
+    <operatorModelDirectory>/opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/spl/spl/relational/Functor</operatorModelDirectory>
+    <applicationDirectory>/home/streamsadmin/workspace/CrashShield</applicationDirectory>
+    <dataDirectory>/home/streamsadmin/workspace/CrashShield/data</dataDirectory>
+    <outputDirectory>/home/streamsadmin/workspace/CrashShield/output/com.ibm.iot4i.examples.CrashShield/BuildConfig</outputDirectory>
+    <toolkits>
+      <toolkit isCurrentToolkit="false">
+        <name>CrashShield</name>
+        <rootDirectory>/home/streamsadmin/workspace/CrashShield</rootDirectory>
+        <index>0</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="true">
+        <name>spl</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/spl</rootDirectory>
+        <index>1</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.inet</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/com.ibm.streamsx.inet</rootDirectory>
+        <index>2</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.kafka</name>
+        <rootDirectory>/home/streamsadmin/Downloads/streamsx.kafka-1.0.0/build/release/com.ibm.streamsx.kafka</rootDirectory>
+        <index>3</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.messaging</name>
+        <rootDirectory>/home/streamsadmin/workspace/com.ibm.streamsx.messaging</rootDirectory>
+        <index>4</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>iot4i-shield-toolkit</name>
+        <rootDirectory>/home/streamsadmin/workspace/iot4i-shield-toolkit</rootDirectory>
+        <index>5</index>
+      </toolkit>
+    </toolkits>
+    <optimized>true</optimized>
+    <verbose>false</verbose>
+    <networkByteOrdering>false</networkByteOrdering>
+    <codeBeautification>false</codeBeautification>
+    <includes>
+      <include>"../../../type/BeJwrMS42Ky1OLfJMySm2LEosdy1LzSspLjY0SkwuyczPC0gsSswtBgAMAA5M.h"</include>
+      <include>"../../../type/BeJwrMSw2SUksSQQADLECDn.h"</include>
+      <include>"../../../type/BeJyrNI03TS0qyi8yKU8syjPJzEvLN01JTSpNNy0pSkxOBQC5eQu5.h"</include>
+      <include>&lt;SPL_JNIFunctions_com_ibm_iot4i_hazards_common.h&gt;</include>
+    </includes>
+    <stateVariables/>
+    <runtimeConstants>
+      <runtimeConstant>
+        <name>lit$0</name>
+        <cppType>SPL::rstring</cppType>
+        <splType>rstring</splType>
+        <value>""</value>
+      </runtimeConstant>
+      <runtimeConstant>
+        <name>lit$1</name>
+        <cppType>SPL::rstring</cppType>
+        <splType>rstring</splType>
+        <value>""</value>
+      </runtimeConstant>
+      <runtimeConstant>
+        <name>lit$2</name>
+        <cppType>SPL::rstring</cppType>
+        <splType>rstring</splType>
+        <value>""</value>
+      </runtimeConstant>
+      <runtimeConstant>
+        <name>lit$3</name>
+        <cppType>SPL::rstring</cppType>
+        <splType>rstring</splType>
+        <value>"UserId is not given"</value>
+      </runtimeConstant>
+      <runtimeConstant>
+        <name>lit$4</name>
+        <cppType>SPL::rstring</cppType>
+        <splType>rstring</splType>
+        <value>"/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.common/PrepareHazards.spl"</value>
+      </runtimeConstant>
+      <runtimeConstant>
+        <name>lit$5</name>
+        <cppType>SPL::uint32</cppType>
+        <splType>uint32</splType>
+        <value>19</value>
+      </runtimeConstant>
+    </runtimeConstants>
+    <sourceLocation>
+      <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.common/PrepareHazards.spl</file>
+      <line>11</line>
+      <column>3</column>
+    </sourceLocation>
+    <productVersion>4.2.1.1</productVersion>
+    <checkpointKind>none</checkpointKind>
+  </context>
+
+  <parameters>
+    <parameter>
+      <name>filter</name>
+      <values>
+        <value>
+          <cppType>SPL::boolean</cppType>
+          <splType>boolean</splType>
+          <hasRuntimeConstant>true</hasRuntimeConstant>
+          <cppExpression>(iport$0.get_userId() != lit$0)</cppExpression>
+          <splExpression>HazardStream.userId != ""</splExpression>
+          <hasFunctions>false</hasFunctions>
+          <hasSideEffects>false</hasSideEffects>
+          <readsState>false</readsState>
+          <hasStreamAttributes>true</hasStreamAttributes>
+          <parameterExpressionMode>Expression</parameterExpressionMode>
+          <sourceLocation>
+            <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.common/PrepareHazards.spl</file>
+            <line>25</line>
+            <column>14</column>
+          </sourceLocation>
+        </value>
+      </values>
+      <sourceLocation>
+        <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.common/PrepareHazards.spl</file>
+        <line>25</line>
+        <column>5</column>
+      </sourceLocation>
+    </parameter>
+  </parameters>
+
+  <inputPorts>
+    <inputPort>
+      <index>0</index>
+      <tupleCppName>iport$0</tupleCppName>
+      <tupleCppType>SPL::BeJwrMS42Ky1OLfJMySm2LEosdy1LzSspLjY0SkwuyczPC0gsSswtBgAMAA5M</tupleCppType>
+      <tupleSPLType>tuple&lt;rstring userId,list&lt;rstring&gt; rawEvents,rstring actionParams&gt;</tupleSPLType>
+      <facade>false</facade>
+      <mutationAllowed>false</mutationAllowed>
+      <sourceLocation>
+        <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.common/PrepareHazards.spl</file>
+        <line>12</line>
+        <column>12</column>
+      </sourceLocation>
+      <tupleLogic>{
+    if ((iport$0.get_userId() == lit$2)) 
+        {
+            ::SPL::Functions::Utility::appTrc(SPL::BeJyrNI03TS0qyi8yKU8syjPJzEvLN01JTSpNNy0pSkxOBQC5eQu5::warn, lit$3, lit$4, lit$5);
+        }
+}
+</tupleLogic>
+      <attributes>
+        <attribute>
+          <name>userId</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+        </attribute>
+        <attribute>
+          <name>rawEvents</name>
+          <cppType>SPL::list&lt;SPL::rstring &gt;</cppType>
+          <splType>list&lt;rstring&gt;</splType>
+        </attribute>
+        <attribute>
+          <name>actionParams</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+        </attribute>
+      </attributes>
+      <tuple>
+        <tt:attr name="userId" type="rstring"/>
+        <tt:attr name="rawEvents">
+          <tt:list elementType="rstring"/>
+        </tt:attr>
+        <tt:attr name="actionParams" type="rstring"/>
+      </tuple>
+    </inputPort>
+  </inputPorts>
+
+  <outputPorts>
+    <outputPort>
+      <index>0</index>
+      <tupleCppName>oport$0</tupleCppName>
+      <tupleCppType>SPL::BeJwrMSw2SUksSQQADLECDn</tupleCppType>
+      <tupleSPLType>tuple&lt;rstring data&gt;</tupleSPLType>
+      <facade>false</facade>
+      <mutationAllowed>true</mutationAllowed>
+      <sourceLocation>
+        <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.common/PrepareHazards.spl</file>
+        <line>11</line>
+        <column>4</column>
+      </sourceLocation>
+      <attributes>
+        <attribute>
+          <name>data</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+          <assignment>
+            <sourceLocation>
+              <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.common/PrepareHazards.spl</file>
+              <line>27</line>
+              <column>28</column>
+            </sourceLocation>
+            <values>
+              <value>
+                <cppType>SPL::rstring</cppType>
+                <splType>rstring</splType>
+                <hasRuntimeConstant>true</hasRuntimeConstant>
+                <cppExpression>::SPL::JNIFunctions::com::ibm::iot4i::hazards::common::SPL_JNIFunctions::getJsonStringHazard(lit$1, iport$0.get_userId(), iport$0.get_rawEvents(), iport$0.get_actionParams())</cppExpression>
+                <splExpression>getJsonStringHazard(getSubmissionTimeValue("SHIELD_ID"), HazardStream.userId, HazardStream.rawEvents, HazardStream.actionParams)</splExpression>
+                <hasFunctions>true</hasFunctions>
+                <hasSideEffects>false</hasSideEffects>
+                <readsState>false</readsState>
+                <hasStreamAttributes>true</hasStreamAttributes>
+                <sourceLocation>
+                  <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.common/PrepareHazards.spl</file>
+                  <line>27</line>
+                  <column>35</column>
+                </sourceLocation>
+              </value>
+            </values>
+          </assignment>
+        </attribute>
+      </attributes>
+      <tuple>
+        <tt:attr name="data" type="rstring"/>
+      </tuple>
+      <finalPunctuationPortScope>
+        <port>0</port>
+      </finalPunctuationPortScope>
+    </outputPort>
+  </outputPorts>
+
+</operatorInstanceModel>

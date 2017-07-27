@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<enumerationModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/enumeration" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <class>BeJyrNI03TS0qyi8yKU8syjPJzEvLN01JTSpNNy0pSkxOBQC5eQu5</class>
+
+  <enumerators>
+    <enumerator>
+      <name>error</name>
+    </enumerator>
+    <enumerator>
+      <name>warn</name>
+    </enumerator>
+    <enumerator>
+      <name>info</name>
+    </enumerator>
+    <enumerator>
+      <name>debug</name>
+    </enumerator>
+    <enumerator>
+      <name>trace</name>
+    </enumerator>
+  </enumerators>
+
+</enumerationModel>

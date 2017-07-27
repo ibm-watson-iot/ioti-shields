@@ -1,0 +1,3 @@
+	@$(CXX) $(SPL_CXXFLAGS) -o bin/sink.kafkaSink.KafkaSinkOp.so -fPIC -shared $(SOsink.kafkaSink.KafkaSinkOp) -lstreams-stdtk-javaop -lstreams-stdtk-runtime -L /opt/ibm/InfoSphere_Streams/4.2.1.1/java/jre/lib/amd64/j9vm -Wl,-rpath -Wl,/opt/ibm/InfoSphere_Streams/4.2.1.1/java/jre/lib/amd64/j9vm -lpthread -ldl -lstreams-stdtk-javaop -lpthread -ldl -lstreams-stdtk-runtime $(SPL_LDFLAGS)\
+	    build/operator/sink/kafkaSink/KafkaSinkOp.o \
+	    build/type/BeJwrMS42LckvyEwuNs5OrSw2z00tLk5MTwUAaSIIDt.o 

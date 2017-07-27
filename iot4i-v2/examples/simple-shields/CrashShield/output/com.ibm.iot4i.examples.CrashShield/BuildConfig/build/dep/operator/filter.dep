@@ -1,0 +1,1 @@
+-I ../../.././com.ibm.iot4i.examples/native.function/. -I /opt/ibm/InfoSphere_Streams/4.2.1.1/java/include 

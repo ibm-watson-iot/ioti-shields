@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<tupleModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/tuple" class="BeJwrMS42Ky1OLfJMySm2LEosdy1LzSspLjY0SkwuyczPC0gsSswtBgAMAA5M" equalitySupported="true" facade="false" splType="tuple&lt;rstring userId,list&lt;rstring> rawEvents,rstring actionParams>" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <headers/>
+
+  <attributes>
+    <attribute>
+      <name>userId</name>
+      <cppType>SPL::rstring</cppType>
+      <splType>rstring</splType>
+    </attribute>
+    <attribute>
+      <name>rawEvents</name>
+      <cppType>SPL::list&lt;SPL::rstring &gt;</cppType>
+      <splType>list&lt;rstring&gt;</splType>
+    </attribute>
+    <attribute>
+      <name>actionParams</name>
+      <cppType>SPL::rstring</cppType>
+      <splType>rstring</splType>
+    </attribute>
+  </attributes>
+
+</tupleModel>

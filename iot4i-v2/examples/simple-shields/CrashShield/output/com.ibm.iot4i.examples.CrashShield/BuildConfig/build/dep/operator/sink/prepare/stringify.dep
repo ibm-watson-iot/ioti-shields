@@ -1,0 +1,1 @@
+-I /home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.common/native.function/. -I /opt/ibm/InfoSphere_Streams/4.2.1.1/java/include 

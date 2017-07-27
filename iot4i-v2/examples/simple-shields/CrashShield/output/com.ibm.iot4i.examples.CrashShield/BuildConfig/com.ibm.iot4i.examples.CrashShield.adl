@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<applicationSet xmlns="http://www.ibm.com/xmlns/prod/streams/application/v4200" name="com.ibm.iot4i.examples::CrashShield.appset" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <description>com.ibm.iot4i.examples::CrashShield application set</description>
+
+  <splApplication adlPath="BuildConfig/com.ibm.iot4i.examples.CrashShield.adl" applicationDirectory="toolkits/CrashShield" applicationScope="Default" avoidRuntimeYield="auto" buildId="" bundle="./com.ibm.iot4i.examples.CrashShield.sab" checkpointDirectory="/home/streamsadmin/workspace/CrashShield/data/ckpt" dataDirectory="/home/streamsadmin/workspace/CrashShield/data" name="com.ibm.iot4i.examples::CrashShield" outputDirectory="BuildConfig" productVersion="4.2.1.1" standaloneApplicationDirectory="toolkits/CrashShield" version="1.0.0">
+    <libraries/>
+    <hostpools>
+      <hostpool index="0" membershipMode="shared" name="$default"/>
+    </hostpools>
+    <tupleTypes>
+      <tupleType index="0">
+        <attribute name="key" type="rstring"/>
+        <attribute name="message" type="rstring"/>
+        <tuple>
+          <tt:attr name="key" type="rstring"/>
+          <tt:attr name="message" type="rstring"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="1">
+        <attribute name="userId" type="rstring"/>
+        <attribute name="key" type="rstring"/>
+        <attribute name="message" type="rstring"/>
+        <tuple>
+          <tt:attr name="userId" type="rstring"/>
+          <tt:attr name="key" type="rstring"/>
+          <tt:attr name="message" type="rstring"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="2">
+        <attribute name="userId" type="rstring"/>
+        <attribute name="rawEvents" type="list&lt;rstring>"/>
+        <attribute name="actionParams" type="rstring"/>
+        <tuple>
+          <tt:attr name="userId" type="rstring"/>
+          <tt:attr name="rawEvents">
+            <tt:list elementType="rstring"/>
+          </tt:attr>
+          <tt:attr name="actionParams" type="rstring"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="3">
+        <attribute name="data" type="rstring"/>
+        <tuple>
+          <tt:attr name="data" type="rstring"/>
+        </tuple>
+      </tupleType>
+      <tupleType index="4">
+        <attribute name="topic" type="rstring"/>
+        <attribute name="key" type="rstring"/>
+        <attribute name="message" type="rstring"/>
+        <tuple>
+          <tt:attr name="topic" type="rstring"/>
+          <tt:attr name="key" type="rstring"/>
+          <tt:attr name="message" type="rstring"/>
+        </tuple>
+      </tupleType>
+    </tupleTypes>
+    <primitiveOperDefinitions>
+      <primitiveOperDefinition index="0" kind="com.ibm.streamsx.kafka::KafkaConsumer" runtimeType="SPL_Java" toolkitIndex="3"/>
+      <primitiveOperDefinition index="1" kind="spl.relational::Functor" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+      <primitiveOperDefinition index="2" kind="com.ibm.iot4i.events.common::CheckActivationOp" runtimeType="SPL_Java" toolkitIndex="5"/>
+      <primitiveOperDefinition index="3" kind="com.ibm.streamsx.kafka::KafkaProducer" runtimeType="SPL_Java" toolkitIndex="3"/>
+      <primitiveOperDefinition index="4" kind="spl.relational::Filter" runtimeType="SPL_CPlusPlus" toolkitIndex="1"/>
+    </primitiveOperDefinitions>
+    <composites>
+      <sourceUris>
+        <uri index="0" path="file:///home/streamsadmin/workspace/CrashShield/com.ibm.iot4i.examples/CrashShield.spl"/>
+        <uri index="1" path="file:///home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.events.MH/AnnotatedSource.spl"/>
+        <uri index="2" path="file:///home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.events.MH/CheckActivation.spl"/>
+        <uri index="3" path="file:///home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.MH/SubmitHazards.spl"/>
+        <uri index="4" path="file:///home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.events.MH/Source.spl"/>
+        <uri index="5" path="file:///home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.common/PrepareHazards.spl"/>
+        <uri index="6" path="file:///home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.MH/Sink.spl"/>
+        <uri index="7" path="file:///opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/spl/spl/Sys.spl"/>
+      </sourceUris>
+      <compositeOperDefinitions>
+        <compositeOperDefinition endLine="94" index="0" kind="com.ibm.iot4i.examples::CrashShield" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="0" startLine="7" toolkitIndex="0">
+          <description>com.ibm.iot4i.examples::CrashShield Composite</description>
+        </compositeOperDefinition>
+        <compositeOperDefinition endLine="43" index="1" kind="com.ibm.iot4i.events.MH::AnnotatedSource" numberOfInputPorts="0" numberOfOutputPorts="1" sourceIndex="1" startLine="3" toolkitIndex="5">
+          <description>com.ibm.iot4i.events.MH::AnnotatedSource Composite</description>
+        </compositeOperDefinition>
+        <compositeOperDefinition endLine="52" index="2" kind="com.ibm.iot4i.events.MH::CheckActivation" numberOfInputPorts="1" numberOfOutputPorts="1" sourceIndex="2" startLine="5" toolkitIndex="5">
+          <description>com.ibm.iot4i.events.MH::CheckActivation Composite</description>
+        </compositeOperDefinition>
+        <compositeOperDefinition endLine="41" index="3" kind="com.ibm.iot4i.hazards.MH::SubmitHazards" numberOfInputPorts="1" numberOfOutputPorts="0" sourceIndex="3" startLine="6" toolkitIndex="5">
+          <description>com.ibm.iot4i.hazards.MH::SubmitHazards Composite</description>
+        </compositeOperDefinition>
+        <compositeOperDefinition endLine="34" index="4" kind="com.ibm.iot4i.events.MH::Source" numberOfInputPorts="0" numberOfOutputPorts="1" sourceIndex="4" startLine="6" toolkitIndex="5">
+          <description>com.ibm.iot4i.events.MH::Source Composite</description>
+        </compositeOperDefinition>
+        <compositeOperDefinition endLine="31" index="5" kind="com.ibm.iot4i.hazards.common::PrepareHazards" numberOfInputPorts="1" numberOfOutputPorts="1" sourceIndex="5" startLine="5" toolkitIndex="5">
+          <description>com.ibm.iot4i.hazards.common::PrepareHazards Composite</description>
+        </compositeOperDefinition>
+        <compositeOperDefinition endLine="34" index="6" kind="com.ibm.iot4i.hazards.MH::Sink" numberOfInputPorts="1" numberOfOutputPorts="0" sourceIndex="6" startLine="8" toolkitIndex="5">
+          <description>com.ibm.iot4i.hazards.MH::Sink Composite</description>
+        </compositeOperDefinition>
+        <compositeOperDefinition endLine="226" index="7" kind="spl::Sys" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="7" startLine="20" toolkitIndex="1">
+          <description>spl::Sys Composite</description>
+        </compositeOperDefinition>
+        <compositeOperDefinition endLine="247" index="8" kind="spl::Log" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="7" startLine="231" toolkitIndex="1">
+          <description>spl::Log Composite</description>
+        </compositeOperDefinition>
+        <compositeOperDefinition endLine="270" index="9" kind="spl::Trace" numberOfInputPorts="0" numberOfOutputPorts="0" sourceIndex="7" startLine="252" toolkitIndex="1">
+          <description>spl::Trace Composite</description>
+        </compositeOperDefinition>
+      </compositeOperDefinitions>
+      <compositeOperInstances>
+        <compositeOperInstance definitionIndex="0" endLine="94" index="10" name="com.ibm.iot4i.examples::CrashShield" sourceIndex="0" startLine="7">
+          <compositeOperInstance definitionIndex="1" endLine="39" index="11" name="source" sourceIndex="0" startLine="29">
+            <outputPorts>
+              <port index="0">
+                <incomingConnections>
+                  <connection operIndex="2" operName="source.AnnotatedStream" portIndex="0" portKind="output"/>
+                </incomingConnections>
+                <outgoingConnections>
+                  <connection operIndex="0" operName="filter" portIndex="0" portKind="input"/>
+                </outgoingConnections>
+              </port>
+            </outputPorts>
+            <compositeOperInstance definitionIndex="4" endLine="21" index="12" name="source.source" sourceIndex="1" startLine="12">
+              <outputPorts>
+                <port index="0">
+                  <incomingConnections>
+                    <connection operIndex="3" operName="source.source.SourceStream" portIndex="0" portKind="output"/>
+                  </incomingConnections>
+                  <outgoingConnections>
+                    <connection operIndex="2" operName="source.AnnotatedStream" portIndex="0" portKind="input"/>
+                  </outgoingConnections>
+                </port>
+              </outputPorts>
+              <primitiveOperInstance definitionIndex="0" endLine="32" index="3" name="source.source.SourceStream" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="false" sourceIndex="4" startLine="23">
+                <outputPorts>
+                  <port encoding="LE" index="0" isMutable="true" name="SourceStream" streamName="source.SourceStream" transport="TCP" tupleTypeIndex="0" viewable="true">
+                    <connections>
+                      <connection operIndex="12" operName="source.source" portIndex="0" portKind="output"/>
+                    </connections>
+                  </port>
+                </outputPorts>
+                <envVars/>
+                <resources>
+                  <poolLocation poolIndex="0"/>
+                </resources>
+                <runtimeConstants>
+                  <runtimeConstant name="lit$0" submissionTimeValueIndex="0" value="&quot;&quot;"/>
+                  <runtimeConstant name="lit$1" value="&quot;iot4i-shield-toolkit&quot;"/>
+                  <runtimeConstant name="lit$2" submissionTimeValueIndex="1" value="&quot;&quot;"/>
+                  <runtimeConstant name="lit$3" submissionTimeValueIndex="2" value="&quot;&quot;"/>
+                  <runtimeConstant name="lit$4" submissionTimeValueIndex="3" value="&quot;&quot;"/>
+                  <runtimeConstant name="lit$5" value="&quot;group_source_&quot;"/>
+                  <runtimeConstant name="lit$6" value="&quot;_&quot;"/>
+                  <runtimeConstant name="lit$7" value="&quot;consumer_&quot;"/>
+                  <runtimeConstant name="lit$8" value="&quot;SASL_SSL&quot;"/>
+                  <runtimeConstant name="lit$9" value="&quot;PLAIN&quot;"/>
+                  <runtimeConstant name="lit$10" value="&quot;TLSv1.2&quot;"/>
+                  <runtimeConstant name="lit$11" value="&quot;TLSv1.2&quot;"/>
+                  <runtimeConstant name="lit$12" value="&quot;JKS&quot;"/>
+                  <runtimeConstant name="lit$13" value="&quot;HTTPS&quot;"/>
+                </runtimeConstants>
+                <sharedObject class="source::source::SourceStream">
+                  <wrapper>none</wrapper>
+                  <uri>bin/source.source.SourceStream.so</uri>
+                </sharedObject>
+                <jvmArguments/>
+                <tracing level="error"/>
+              </primitiveOperInstance>
+            </compositeOperInstance>
+            <primitiveOperInstance definitionIndex="1" endLine="41" index="2" name="source.AnnotatedStream" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="1" startLine="23">
+              <splAnnotation tag="view">
+                <value key="name" type="rstring">Events</value>
+                <value key="port" type="enum{AnnotatedStream}">AnnotatedStream</value>
+                <value key="sampleSize" type="int32">5</value>
+                <value key="bufferSize" type="int32">50</value>
+              </splAnnotation>
+              <splAnnotation internal="true" tag="logicClause">
+                <value key="hasState" type="boolean">true</value>
+                <value key="hasOnProcess" type="boolean">false</value>
+                <value key="hasOnTuple" type="boolean">true</value>
+                <value key="hasOnPunct" type="boolean">false</value>
+              </splAnnotation>
+              <inputPorts>
+                <port encoding="LE" index="0" isMutable="false" name="SourceStream" transport="TCP" tupleTypeIndex="0">
+                  <connections>
+                    <connection operIndex="12" operName="source.source" portIndex="0" portKind="output"/>
+                  </connections>
+                </port>
+              </inputPorts>
+              <outputPorts>
+                <port encoding="LE" index="0" isMutable="true" name="AnnotatedStream" streamName="SourceStream" transport="TCP" tupleTypeIndex="1" viewable="true">
+                  <connections>
+                    <connection operIndex="11" operName="source" portIndex="0" portKind="output"/>
+                  </connections>
+                </port>
+              </outputPorts>
+              <envVars/>
+              <resources>
+                <poolLocation poolIndex="0"/>
+              </resources>
+              <runtimeConstants>
+                <runtimeConstant name="lit$0" value="&quot;&quot;"/>
+                <runtimeConstant name="lit$1" value="&quot;&quot;"/>
+              </runtimeConstants>
+              <sharedObject class="source::AnnotatedStream">
+                <wrapper>none</wrapper>
+                <uri>bin/source.AnnotatedStream.so</uri>
+              </sharedObject>
+              <jvmArguments/>
+              <tracing level="error"/>
+            </primitiveOperInstance>
+          </compositeOperInstance>
+          <compositeOperInstance definitionIndex="2" endLine="68" index="13" name="checkActivation" sourceIndex="0" startLine="53">
+            <inputPorts>
+              <port index="0">
+                <incomingConnections>
+                  <connection operIndex="0" operName="filter" portIndex="0" portKind="output"/>
+                </incomingConnections>
+                <outgoingConnections>
+                  <connection operIndex="5" operName="checkActivation.ValidatedStream" portIndex="0" portKind="input"/>
+                </outgoingConnections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port index="0">
+                <incomingConnections>
+                  <connection operIndex="5" operName="checkActivation.ValidatedStream" portIndex="0" portKind="output"/>
+                </incomingConnections>
+                <outgoingConnections>
+                  <connection operIndex="1" operName="shield" portIndex="0" portKind="input"/>
+                </outgoingConnections>
+              </port>
+            </outputPorts>
+            <compositeOperInstance definitionIndex="4" endLine="33" index="14" name="checkActivation.source" sourceIndex="2" startLine="21">
+              <outputPorts>
+                <port index="0">
+                  <incomingConnections>
+                    <connection operIndex="6" operName="checkActivation.source.SourceStream" portIndex="0" portKind="output"/>
+                  </incomingConnections>
+                  <outgoingConnections>
+                    <connection operIndex="4" operName="checkActivation.UnifiedSchemaStream" portIndex="0" portKind="input"/>
+                  </outgoingConnections>
+                </port>
+              </outputPorts>
+              <primitiveOperInstance definitionIndex="0" endLine="32" index="6" name="checkActivation.source.SourceStream" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="false" sourceIndex="4" startLine="23">
+                <outputPorts>
+                  <port encoding="LE" index="0" isMutable="true" name="SourceStream" streamName="checkActivation.NotificationStream" transport="TCP" tupleTypeIndex="0" viewable="true">
+                    <connections>
+                      <connection operIndex="14" operName="checkActivation.source" portIndex="0" portKind="output"/>
+                    </connections>
+                  </port>
+                </outputPorts>
+                <envVars/>
+                <resources>
+                  <poolLocation poolIndex="0"/>
+                </resources>
+                <runtimeConstants>
+                  <runtimeConstant name="lit$0" submissionTimeValueIndex="4" value="&quot;&quot;"/>
+                  <runtimeConstant name="lit$1" value="&quot;iot4i-shield-toolkit&quot;"/>
+                  <runtimeConstant name="lit$2" submissionTimeValueIndex="1" value="&quot;&quot;"/>
+                  <runtimeConstant name="lit$3" submissionTimeValueIndex="2" value="&quot;&quot;"/>
+                  <runtimeConstant name="lit$4" submissionTimeValueIndex="3" value="&quot;&quot;"/>
+                  <runtimeConstant name="lit$5" value="&quot;_&quot;"/>
+                  <runtimeConstant name="lit$6" value="&quot;group_notification_activation_&quot;"/>
+                  <runtimeConstant name="lit$7" value="&quot;_&quot;"/>
+                  <runtimeConstant name="lit$8" value="&quot;consumer_notification_activation_&quot;"/>
+                  <runtimeConstant name="lit$9" value="&quot;SASL_SSL&quot;"/>
+                  <runtimeConstant name="lit$10" value="&quot;PLAIN&quot;"/>
+                  <runtimeConstant name="lit$11" value="&quot;TLSv1.2&quot;"/>
+                  <runtimeConstant name="lit$12" value="&quot;TLSv1.2&quot;"/>
+                  <runtimeConstant name="lit$13" value="&quot;JKS&quot;"/>
+                  <runtimeConstant name="lit$14" value="&quot;HTTPS&quot;"/>
+                </runtimeConstants>
+                <sharedObject class="checkActivation::source::SourceStream">
+                  <wrapper>none</wrapper>
+                  <uri>bin/checkActivation.source.SourceStream.so</uri>
+                </sharedObject>
+                <jvmArguments/>
+                <tracing level="error"/>
+              </primitiveOperInstance>
+            </compositeOperInstance>
+            <primitiveOperInstance definitionIndex="1" endLine="40" index="4" name="checkActivation.UnifiedSchemaStream" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="2" startLine="35">
+              <inputPorts>
+                <port encoding="LE" index="0" isMutable="false" name="NotificationStream" transport="TCP" tupleTypeIndex="0">
+                  <connections>
+                    <connection operIndex="14" operName="checkActivation.source" portIndex="0" portKind="output"/>
+                  </connections>
+                </port>
+              </inputPorts>
+              <outputPorts>
+                <port encoding="LE" index="0" isMutable="true" name="UnifiedSchemaStream" streamName="checkActivation.UnifiedSchemaStream" transport="TCP" tupleTypeIndex="1" viewable="true">
+                  <connections>
+                    <connection operIndex="5" operName="checkActivation.ValidatedStream" portIndex="0" portKind="input"/>
+                  </connections>
+                </port>
+              </outputPorts>
+              <envVars/>
+              <resources>
+                <poolLocation poolIndex="0"/>
+              </resources>
+              <runtimeConstants>
+                <runtimeConstant name="lit$0" value="&quot;&quot;"/>
+              </runtimeConstants>
+              <sharedObject class="checkActivation::UnifiedSchemaStream">
+                <wrapper>none</wrapper>
+                <uri>bin/checkActivation.UnifiedSchemaStream.so</uri>
+              </sharedObject>
+              <tracing level="error"/>
+            </primitiveOperInstance>
+            <primitiveOperInstance definitionIndex="2" endLine="50" index="5" name="checkActivation.ValidatedStream" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="false" sourceIndex="2" startLine="42">
+              <splAnnotation tag="view">
+                <value key="name" type="rstring">ValidatedEvents</value>
+                <value key="port" type="enum{ValidatedStream}">ValidatedStream</value>
+                <value key="sampleSize" type="int32">5</value>
+                <value key="bufferSize" type="int32">50</value>
+              </splAnnotation>
+              <inputPorts>
+                <port encoding="LE" index="0" isMutable="false" name="SourceStream" transport="TCP" tupleTypeIndex="1">
+                  <connections>
+                    <connection operIndex="13" operName="checkActivation" portIndex="0" portKind="input"/>
+                    <connection operIndex="4" operName="checkActivation.UnifiedSchemaStream" portIndex="0" portKind="output"/>
+                  </connections>
+                </port>
+              </inputPorts>
+              <outputPorts>
+                <port encoding="LE" index="0" isMutable="true" name="ValidatedStream" streamName="ValidatedStream" transport="TCP" tupleTypeIndex="1" viewable="true">
+                  <connections>
+                    <connection operIndex="13" operName="checkActivation" portIndex="0" portKind="output"/>
+                  </connections>
+                </port>
+              </outputPorts>
+              <envVars/>
+              <resources>
+                <poolLocation poolIndex="0"/>
+              </resources>
+              <runtimeConstants>
+                <runtimeConstant name="lit$0" submissionTimeValueIndex="5" value="&quot;&quot;"/>
+                <runtimeConstant name="lit$1" submissionTimeValueIndex="6" value="&quot;&quot;"/>
+                <runtimeConstant name="lit$2" submissionTimeValueIndex="7" value="&quot;&quot;"/>
+                <runtimeConstant name="lit$3" submissionTimeValueIndex="8" value="&quot;&quot;"/>
+              </runtimeConstants>
+              <sharedObject class="checkActivation::ValidatedStream">
+                <wrapper>none</wrapper>
+                <uri>bin/checkActivation.ValidatedStream.so</uri>
+              </sharedObject>
+              <jvmArguments/>
+              <tracing level="error"/>
+            </primitiveOperInstance>
+          </compositeOperInstance>
+          <compositeOperInstance definitionIndex="3" endLine="92" index="15" name="sink" sourceIndex="0" startLine="83">
+            <inputPorts>
+              <port index="0">
+                <incomingConnections>
+                  <connection operIndex="1" operName="shield" portIndex="0" portKind="output"/>
+                </incomingConnections>
+                <outgoingConnections>
+                  <connection operIndex="16" operName="sink.prepare" portIndex="0" portKind="input"/>
+                </outgoingConnections>
+              </port>
+            </inputPorts>
+            <compositeOperInstance definitionIndex="5" endLine="22" index="16" name="sink.prepare" sourceIndex="3" startLine="17">
+              <inputPorts>
+                <port index="0">
+                  <incomingConnections>
+                    <connection operIndex="15" operName="sink" portIndex="0" portKind="input"/>
+                  </incomingConnections>
+                  <outgoingConnections>
+                    <connection operIndex="8" operName="sink.prepare.stringify" portIndex="0" portKind="input"/>
+                  </outgoingConnections>
+                </port>
+              </inputPorts>
+              <outputPorts>
+                <port index="0">
+                  <incomingConnections>
+                    <connection operIndex="8" operName="sink.prepare.stringify" portIndex="0" portKind="output"/>
+                  </incomingConnections>
+                  <outgoingConnections>
+                    <connection operIndex="7" operName="sink.kafkaPrepare" portIndex="0" portKind="input"/>
+                  </outgoingConnections>
+                </port>
+              </outputPorts>
+              <primitiveOperInstance definitionIndex="1" endLine="29" index="8" name="sink.prepare.stringify" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="5" startLine="11">
+                <splAnnotation internal="true" tag="logicClause">
+                  <value key="hasState" type="boolean">false</value>
+                  <value key="hasOnProcess" type="boolean">false</value>
+                  <value key="hasOnTuple" type="boolean">true</value>
+                  <value key="hasOnPunct" type="boolean">false</value>
+                </splAnnotation>
+                <inputPorts>
+                  <port encoding="LE" index="0" isMutable="false" name="HazardStream" transport="TCP" tupleTypeIndex="2">
+                    <connections>
+                      <connection operIndex="16" operName="sink.prepare" portIndex="0" portKind="input"/>
+                    </connections>
+                  </port>
+                </inputPorts>
+                <outputPorts>
+                  <port encoding="LE" index="0" isMutable="true" name="PreparedHazardStream" streamName="sink.PreparedHazardStream" transport="TCP" tupleTypeIndex="3" viewable="true">
+                    <connections>
+                      <connection operIndex="16" operName="sink.prepare" portIndex="0" portKind="output"/>
+                    </connections>
+                  </port>
+                </outputPorts>
+                <envVars/>
+                <resources>
+                  <poolLocation poolIndex="0"/>
+                </resources>
+                <runtimeConstants>
+                  <runtimeConstant name="lit$0" value="&quot;&quot;"/>
+                  <runtimeConstant name="lit$1" submissionTimeValueIndex="7" value="&quot;&quot;"/>
+                  <runtimeConstant name="lit$2" value="&quot;&quot;"/>
+                  <runtimeConstant name="lit$3" value="&quot;UserId is not given&quot;"/>
+                  <runtimeConstant name="lit$4" value="&quot;/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.common/PrepareHazards.spl&quot;"/>
+                  <runtimeConstant name="lit$5" value="19"/>
+                </runtimeConstants>
+                <sharedObject class="sink::prepare::stringify">
+                  <wrapper>none</wrapper>
+                  <uri>bin/sink.prepare.stringify.so</uri>
+                </sharedObject>
+                <jvmArguments/>
+                <tracing level="error"/>
+              </primitiveOperInstance>
+            </compositeOperInstance>
+            <compositeOperInstance definitionIndex="6" endLine="39" index="17" name="sink.kafkaSink" sourceIndex="3" startLine="31">
+              <inputPorts>
+                <port index="0">
+                  <incomingConnections>
+                    <connection operIndex="7" operName="sink.kafkaPrepare" portIndex="0" portKind="output"/>
+                  </incomingConnections>
+                  <outgoingConnections>
+                    <connection operIndex="9" operName="sink.kafkaSink.KafkaSinkOp" portIndex="0" portKind="input"/>
+                  </outgoingConnections>
+                </port>
+              </inputPorts>
+              <primitiveOperInstance definitionIndex="3" endLine="32" index="9" name="sink.kafkaSink.KafkaSinkOp" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="false" sourceIndex="6" startLine="24">
+                <inputPorts>
+                  <port encoding="LE" index="0" isMutable="false" name="KafkaSinkStream" transport="TCP" tupleTypeIndex="4">
+                    <connections>
+                      <connection operIndex="17" operName="sink.kafkaSink" portIndex="0" portKind="input"/>
+                    </connections>
+                  </port>
+                </inputPorts>
+                <envVars/>
+                <resources>
+                  <poolLocation poolIndex="0"/>
+                </resources>
+                <runtimeConstants>
+                  <runtimeConstant name="lit$0" value="&quot;iot4i-shield-toolkit&quot;"/>
+                  <runtimeConstant name="lit$1" submissionTimeValueIndex="1" value="&quot;&quot;"/>
+                  <runtimeConstant name="lit$2" submissionTimeValueIndex="2" value="&quot;&quot;"/>
+                  <runtimeConstant name="lit$3" submissionTimeValueIndex="3" value="&quot;&quot;"/>
+                  <runtimeConstant name="lit$4" value="&quot;group_sink_&quot;"/>
+                  <runtimeConstant name="lit$5" value="&quot;_&quot;"/>
+                  <runtimeConstant name="lit$6" value="&quot;producer_&quot;"/>
+                  <runtimeConstant name="lit$7" value="&quot;SASL_SSL&quot;"/>
+                  <runtimeConstant name="lit$8" value="&quot;PLAIN&quot;"/>
+                  <runtimeConstant name="lit$9" value="&quot;TLSv1.2&quot;"/>
+                  <runtimeConstant name="lit$10" value="&quot;TLSv1.2&quot;"/>
+                  <runtimeConstant name="lit$11" value="&quot;JKS&quot;"/>
+                  <runtimeConstant name="lit$12" value="&quot;HTTPS&quot;"/>
+                </runtimeConstants>
+                <sharedObject class="sink::kafkaSink::KafkaSinkOp">
+                  <wrapper>none</wrapper>
+                  <uri>bin/sink.kafkaSink.KafkaSinkOp.so</uri>
+                </sharedObject>
+                <jvmArguments/>
+                <tracing level="error"/>
+              </primitiveOperInstance>
+            </compositeOperInstance>
+            <primitiveOperInstance definitionIndex="1" endLine="29" index="7" name="sink.kafkaPrepare" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="3" startLine="24">
+              <inputPorts>
+                <port encoding="LE" index="0" isMutable="false" name="PreparedHazardStream" transport="TCP" tupleTypeIndex="3">
+                  <connections>
+                    <connection operIndex="16" operName="sink.prepare" portIndex="0" portKind="output"/>
+                  </connections>
+                </port>
+              </inputPorts>
+              <outputPorts>
+                <port encoding="LE" index="0" isMutable="true" name="KafkaSinkStream" streamName="sink.KafkaSinkStream" transport="TCP" tupleTypeIndex="4" viewable="true">
+                  <connections>
+                    <connection operIndex="17" operName="sink.kafkaSink" portIndex="0" portKind="input"/>
+                  </connections>
+                </port>
+              </outputPorts>
+              <envVars/>
+              <resources>
+                <poolLocation poolIndex="0"/>
+              </resources>
+              <runtimeConstants>
+                <runtimeConstant name="lit$0" value="&quot;\&quot;}&quot;"/>
+                <runtimeConstant name="lit$1" value="&quot;{\&quot;timestamp:\&quot;&quot;"/>
+                <runtimeConstant name="lit$2" submissionTimeValueIndex="9" value="&quot;&quot;"/>
+              </runtimeConstants>
+              <sharedObject class="sink::kafkaPrepare">
+                <wrapper>none</wrapper>
+                <uri>bin/sink.kafkaPrepare.so</uri>
+              </sharedObject>
+              <tracing level="error"/>
+            </primitiveOperInstance>
+          </compositeOperInstance>
+          <primitiveOperInstance definitionIndex="4" endLine="50" index="0" name="filter" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="42">
+            <splAnnotation tag="view">
+              <value key="name" type="rstring">FilteredEvents</value>
+              <value key="port" type="enum{FilteredStream}">FilteredStream</value>
+              <value key="sampleSize" type="int32">5</value>
+              <value key="bufferSize" type="int32">50</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="SourceStream" transport="TCP" tupleTypeIndex="1">
+                <connections>
+                  <connection operIndex="11" operName="source" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="FilteredStream" streamName="FilteredStream" transport="TCP" tupleTypeIndex="1" viewable="true">
+                <connections>
+                  <connection operIndex="13" operName="checkActivation" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants/>
+            <sharedObject class="filter">
+              <wrapper>none</wrapper>
+              <uri>bin/filter.so</uri>
+            </sharedObject>
+            <jvmArguments/>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+          <primitiveOperInstance definitionIndex="1" endLine="80" index="1" name="shield" optimized="true" relocatable="true" restartable="true" singleThreadedOnOutputs="true" sourceIndex="0" startLine="71">
+            <splAnnotation tag="view">
+              <value key="name" type="rstring">Hazards</value>
+              <value key="port" type="enum{HazardStream}">HazardStream</value>
+              <value key="sampleSize" type="int32">5</value>
+              <value key="bufferSize" type="int32">50</value>
+            </splAnnotation>
+            <inputPorts>
+              <port encoding="LE" index="0" isMutable="false" name="ValidatedStream" transport="TCP" tupleTypeIndex="1">
+                <connections>
+                  <connection operIndex="13" operName="checkActivation" portIndex="0" portKind="output"/>
+                </connections>
+              </port>
+            </inputPorts>
+            <outputPorts>
+              <port encoding="LE" index="0" isMutable="true" name="HazardStream" streamName="HazardStream" transport="TCP" tupleTypeIndex="2" viewable="true">
+                <connections>
+                  <connection operIndex="15" operName="sink" portIndex="0" portKind="input"/>
+                </connections>
+              </port>
+            </outputPorts>
+            <envVars/>
+            <resources>
+              <poolLocation poolIndex="0"/>
+            </resources>
+            <runtimeConstants>
+              <runtimeConstant name="lit$0" value="&quot;{\&quot;hazardTitle\&quot;:\&quot;Crash Detected\&quot;,\&quot;emailSubject\&quot;:\&quot;Alert from IoT for Insurance\&quot;,\&quot;emailText\&quot;:\&quot;Hello IoT for Insurance user. You have a hazard!!!\&quot; }&quot;"/>
+            </runtimeConstants>
+            <sharedObject class="shield">
+              <wrapper>none</wrapper>
+              <uri>bin/shield.so</uri>
+            </sharedObject>
+            <jvmArguments/>
+            <tracing level="error"/>
+          </primitiveOperInstance>
+        </compositeOperInstance>
+      </compositeOperInstances>
+    </composites>
+    <toolkits>
+      <toolkit index="0" name="CrashShield" uri="file:///home/streamsadmin/workspace/CrashShield" version="1.0.0"/>
+      <toolkit index="1" name="spl" uri="file:///opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/spl" version="1.3.0"/>
+      <toolkit index="2" name="com.ibm.streamsx.inet" uri="file:///opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/com.ibm.streamsx.inet" version="2.1.0"/>
+      <toolkit index="3" name="com.ibm.streamsx.kafka" uri="file:///home/streamsadmin/Downloads/streamsx.kafka-1.0.0/build/release/com.ibm.streamsx.kafka" version="1.0.0"/>
+      <toolkit index="4" name="com.ibm.streamsx.messaging" uri="file:///opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/com.ibm.streamsx.messaging" version="5.3.0"/>
+      <toolkit index="5" name="iot4i-shield-toolkit" uri="file:///home/streamsadmin/workspace/iot4i-shield-toolkit" version="1.0.0"/>
+    </toolkits>
+    <parallelRegions>
+      <parallelRegion index="0" name="source">
+        <parallelOperator operIndex="11"/>
+        <parallelWidth>
+          <constantWidth>1</constantWidth>
+        </parallelWidth>
+      </parallelRegion>
+      <parallelRegion index="1" name="checkActivation">
+        <parallelOperator operIndex="13">
+          <splitter iportIndex="0" kind="RoundRobin"/>
+        </parallelOperator>
+        <parallelWidth>
+          <constantWidth>1</constantWidth>
+        </parallelWidth>
+      </parallelRegion>
+      <parallelRegion index="2" name="sink">
+        <parallelOperator operIndex="15">
+          <splitter iportIndex="0" kind="RoundRobin"/>
+        </parallelOperator>
+        <parallelWidth>
+          <constantWidth>1</constantWidth>
+        </parallelWidth>
+      </parallelRegion>
+      <parallelRegion index="3" name="filter">
+        <parallelOperator operIndex="0">
+          <splitter iportIndex="0" kind="RoundRobin"/>
+        </parallelOperator>
+        <parallelWidth>
+          <constantWidth>1</constantWidth>
+        </parallelWidth>
+      </parallelRegion>
+      <parallelRegion index="4" name="shield">
+        <parallelOperator operIndex="1">
+          <splitter iportIndex="0" kind="RoundRobin"/>
+        </parallelOperator>
+        <parallelWidth>
+          <constantWidth>1</constantWidth>
+        </parallelWidth>
+      </parallelRegion>
+    </parallelRegions>
+    <submissionTimeValues>
+      <submissionTimeValue compositeName="com.ibm.iot4i.examples::CrashShield" index="7" kind="named" name="SHIELD_ID" required="true"/>
+      <submissionTimeValue compositeName="com.ibm.iot4i.examples::CrashShield" index="5" kind="named" name="API_URL" required="true"/>
+      <submissionTimeValue compositeName="com.ibm.iot4i.examples::CrashShield" index="3" kind="named" name="PASSWORD" required="true"/>
+      <submissionTimeValue compositeName="com.ibm.iot4i.examples::CrashShield" index="0" kind="named" name="SOURCE_TOPIC" required="true"/>
+      <submissionTimeValue compositeName="com.ibm.iot4i.examples::CrashShield" index="1" kind="named" name="KAFKA_BROKERS_SASL" required="true"/>
+      <submissionTimeValue compositeName="com.ibm.iot4i.examples::CrashShield" index="8" kind="named" name="TENANT_ID" required="true"/>
+      <submissionTimeValue compositeName="com.ibm.iot4i.examples::CrashShield" index="6" kind="named" name="API_TOKEN" required="true"/>
+      <submissionTimeValue compositeName="com.ibm.iot4i.examples::CrashShield" index="4" kind="named" name="NOTIFICATION_TOPIC" required="true"/>
+      <submissionTimeValue compositeName="com.ibm.iot4i.examples::CrashShield" index="9" kind="named" name="SINK_TOPIC" required="true"/>
+      <submissionTimeValue compositeName="com.ibm.iot4i.examples::CrashShield" index="2" kind="named" name="USERNAME" required="true"/>
+    </submissionTimeValues>
+  </splApplication>
+
+</applicationSet>

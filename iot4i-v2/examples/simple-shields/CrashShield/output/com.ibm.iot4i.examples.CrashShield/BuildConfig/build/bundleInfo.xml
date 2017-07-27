@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<bundleInfoModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/bundleInfoModel" adlFile="com.ibm.iot4i.examples.CrashShield.adl" applicationDirectory="CrashShield" buildDate="" buildId="" bundleVersion="4200" executionMode="distributed" outputDirectory="BuildConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <toolkit compileRoot="/opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/spl" name="spl" version="1.3.0">
+    <file name="toolkit.xml"/>
+  </toolkit>
+
+  <toolkit compileRoot="/home/streamsadmin/Downloads/streamsx.kafka-1.0.0/build/release/com.ibm.streamsx.kafka" name="com.ibm.streamsx.kafka" version="1.0.0">
+    <file name="impl/lib/com.ibm.streamsx.kafka-1.0.0.jar"/>
+    <file name="opt/downloaded/lz4-1.3.0.jar"/>
+    <file name="opt/downloaded/kafka-clients-0.10.2.1.jar"/>
+    <file name="opt/downloaded/slf4j-log4j12-1.7.21.jar"/>
+    <file name="opt/downloaded/commons-lang3-3.5.jar"/>
+    <file name="opt/downloaded/log4j-1.2.17.jar"/>
+    <file name="opt/downloaded/guava-21.0.jar"/>
+    <file name="opt/downloaded/snappy-java-1.1.2.6.jar"/>
+    <file name="opt/downloaded/slf4j-api-1.7.21.jar"/>
+    <file name="toolkit.xml"/>
+  </toolkit>
+
+  <toolkit compileRoot="/home/streamsadmin/workspace/iot4i-shield-toolkit" name="iot4i-shield-toolkit" version="1.0.0">
+    <file name="impl/lib/okhttp-3.8.1.jar"/>
+    <file name="impl/lib/gson-2.8.1.jar"/>
+    <file name="impl/lib/retrofit-2.2.0.jar"/>
+    <file name="impl/lib/slf4j-api-1.7.7.jar"/>
+    <file name="impl/lib/converter-gson-2.2.0.jar"/>
+    <file name="impl/lib/okio-1.13.0.jar"/>
+    <file name="impl/lib/slf4j-jdk14-1.7.25.jar"/>
+    <file name="impl/java/bin/com/ibm/iot4i/events/MH/GetUserIdImpl.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/events/MH/GetUserIdImpl$StreamsModel.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/events/common/TransformerOp$StreamsModel.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/events/common/CheckActivationOp$StreamsModel.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/events/common/TransformerOp.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/events/common/CheckActivationOp.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/events/IoTP/GetJsonStringKeyImpl$StreamsModel.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/events/IoTP/GetJsonStringKeyImpl.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/hazards/common/GetJsonStringHazardImpl$StreamsModel.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/hazards/common/GetJsonStringHazardImpl.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/services/ServiceGenerator.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/services/DeviceCacheService.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/services/DeviceService.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/services/ServiceGenerator$1.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/services/ShieldActivationService.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/services/ShieldActivationCacheService.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/common/GetKafkaPropertiesFileNameImpl.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/common/GetKafkaPropertiesFileNameImpl$StreamsModel.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/models/ListResponse.class"/>
+    <file name="opt/messaging.ts"/>
+    <file name="toolkit.xml"/>
+  </toolkit>
+
+  <toolkit compileRoot="/home/streamsadmin/workspace/CrashShield" name="CrashShield" version="1.0.0">
+    <file name="impl/java/bin/com/ibm/iot4i/examples/CheckCrashImpl.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/examples/EntryConditionImpl.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/examples/CheckCrashImpl$StreamsModel.class"/>
+    <file name="impl/java/bin/com/ibm/iot4i/examples/EntryConditionImpl$StreamsModel.class"/>
+    <file name="toolkit.xml"/>
+  </toolkit>
+
+</bundleInfoModel>

@@ -1,0 +1,5 @@
+	@$(CXX) $(SPL_CXXFLAGS) -o bin/sink.prepare.stringify.so -fPIC -shared $(SOsink.prepare.stringify) -lstreams-stdtk-javaop -lstreams-stdtk-runtime -L /opt/ibm/InfoSphere_Streams/4.2.1.1/java/jre/lib/amd64/j9vm -Wl,-rpath -Wl,/opt/ibm/InfoSphere_Streams/4.2.1.1/java/jre/lib/amd64/j9vm -lpthread -ldl $(SPL_LDFLAGS)\
+	    build/operator/sink/prepare/stringify.o \
+	    build/type/BeJyrNI03TS0qyi8yKU8syjPJzEvLN01JTSpNNy0pSkxOBQC5eQu5.o \
+	    build/type/BeJwrMS42Ky1OLfJMySm2LEosdy1LzSspLjY0SkwuyczPC0gsSswtBgAMAA5M.o \
+	    build/type/BeJwrMSw2SUksSQQADLECDn.o 

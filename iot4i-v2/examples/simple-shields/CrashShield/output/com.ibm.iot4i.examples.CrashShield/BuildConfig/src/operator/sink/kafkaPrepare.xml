@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<operatorInstanceModel xmlns="http://www.ibm.com/xmlns/prod/streams/spl/operator/instance" xmlns:an="http://www.ibm.com/xmlns/prod/streams/spl/annotation" xmlns:tt="http://www.ibm.com/xmlns/prod/streams/spl/tupleType" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <context>
+    <kind>spl.relational::Functor</kind>
+    <class>sink::kafkaPrepare</class>
+    <operatorModelDirectory>/opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/spl/spl/relational/Functor</operatorModelDirectory>
+    <applicationDirectory>/home/streamsadmin/workspace/CrashShield</applicationDirectory>
+    <dataDirectory>/home/streamsadmin/workspace/CrashShield/data</dataDirectory>
+    <outputDirectory>/home/streamsadmin/workspace/CrashShield/output/com.ibm.iot4i.examples.CrashShield/BuildConfig</outputDirectory>
+    <toolkits>
+      <toolkit isCurrentToolkit="false">
+        <name>CrashShield</name>
+        <rootDirectory>/home/streamsadmin/workspace/CrashShield</rootDirectory>
+        <index>0</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="true">
+        <name>spl</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/spl</rootDirectory>
+        <index>1</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.inet</name>
+        <rootDirectory>/opt/ibm/InfoSphere_Streams/4.2.1.1/toolkits/com.ibm.streamsx.inet</rootDirectory>
+        <index>2</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.kafka</name>
+        <rootDirectory>/home/streamsadmin/Downloads/streamsx.kafka-1.0.0/build/release/com.ibm.streamsx.kafka</rootDirectory>
+        <index>3</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>com.ibm.streamsx.messaging</name>
+        <rootDirectory>/home/streamsadmin/workspace/com.ibm.streamsx.messaging</rootDirectory>
+        <index>4</index>
+      </toolkit>
+      <toolkit isCurrentToolkit="false">
+        <name>iot4i-shield-toolkit</name>
+        <rootDirectory>/home/streamsadmin/workspace/iot4i-shield-toolkit</rootDirectory>
+        <index>5</index>
+      </toolkit>
+    </toolkits>
+    <optimized>true</optimized>
+    <verbose>false</verbose>
+    <networkByteOrdering>false</networkByteOrdering>
+    <codeBeautification>false</codeBeautification>
+    <includes>
+      <include>"../../type/BeJwrMS42LckvyEwuNs5OrSw2z00tLk5MTwUAaSIIDt.h"</include>
+      <include>"../../type/BeJwrMSw2SUksSQQADLECDn.h"</include>
+    </includes>
+    <stateVariables/>
+    <runtimeConstants>
+      <runtimeConstant>
+        <name>lit$0</name>
+        <cppType>SPL::rstring</cppType>
+        <splType>rstring</splType>
+        <value>"\"}"</value>
+      </runtimeConstant>
+      <runtimeConstant>
+        <name>lit$1</name>
+        <cppType>SPL::rstring</cppType>
+        <splType>rstring</splType>
+        <value>"{\"timestamp:\""</value>
+      </runtimeConstant>
+      <runtimeConstant>
+        <name>lit$2</name>
+        <cppType>SPL::rstring</cppType>
+        <splType>rstring</splType>
+        <value>""</value>
+      </runtimeConstant>
+    </runtimeConstants>
+    <sourceLocation>
+      <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.MH/SubmitHazards.spl</file>
+      <line>24</line>
+      <column>3</column>
+    </sourceLocation>
+    <productVersion>4.2.1.1</productVersion>
+    <checkpointKind>none</checkpointKind>
+  </context>
+
+  <parameters/>
+
+  <inputPorts>
+    <inputPort>
+      <index>0</index>
+      <tupleCppName>iport$0</tupleCppName>
+      <tupleCppType>SPL::BeJwrMSw2SUksSQQADLECDn</tupleCppType>
+      <tupleSPLType>tuple&lt;rstring data&gt;</tupleSPLType>
+      <facade>false</facade>
+      <mutationAllowed>false</mutationAllowed>
+      <sourceLocation>
+        <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.MH/SubmitHazards.spl</file>
+        <line>25</line>
+        <column>27</column>
+      </sourceLocation>
+      <attributes>
+        <attribute>
+          <name>data</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+        </attribute>
+      </attributes>
+      <tuple>
+        <tt:attr name="data" type="rstring"/>
+      </tuple>
+    </inputPort>
+  </inputPorts>
+
+  <outputPorts>
+    <outputPort>
+      <index>0</index>
+      <tupleCppName>oport$0</tupleCppName>
+      <tupleCppType>SPL::BeJwrMS42LckvyEwuNs5OrSw2z00tLk5MTwUAaSIIDt</tupleCppType>
+      <tupleSPLType>tuple&lt;rstring topic,rstring key,rstring message&gt;</tupleSPLType>
+      <facade>false</facade>
+      <mutationAllowed>true</mutationAllowed>
+      <sourceLocation>
+        <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.MH/SubmitHazards.spl</file>
+        <line>24</line>
+        <column>4</column>
+      </sourceLocation>
+      <attributes>
+        <attribute>
+          <name>topic</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+          <assignment>
+            <sourceLocation>
+              <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.MH/SubmitHazards.spl</file>
+              <line>28</line>
+              <column>35</column>
+            </sourceLocation>
+            <values>
+              <value>
+                <cppType>SPL::rstring</cppType>
+                <splType>rstring</splType>
+                <hasRuntimeConstant>true</hasRuntimeConstant>
+                <cppExpression>lit$2</cppExpression>
+                <splExpression>getSubmissionTimeValue("SINK_TOPIC")</splExpression>
+                <hasFunctions>false</hasFunctions>
+                <hasSideEffects>false</hasSideEffects>
+                <readsState>false</readsState>
+                <hasStreamAttributes>false</hasStreamAttributes>
+                <sourceLocation>
+                  <file>com.ibm.iot4i.examples/CrashShield.spl</file>
+                  <line>18</line>
+                  <column>37</column>
+                </sourceLocation>
+              </value>
+            </values>
+          </assignment>
+        </attribute>
+        <attribute>
+          <name>key</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+          <assignment>
+            <sourceLocation>
+              <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.MH/SubmitHazards.spl</file>
+              <line>28</line>
+              <column>23</column>
+            </sourceLocation>
+            <values>
+              <value>
+                <cppType>SPL::rstring</cppType>
+                <splType>rstring</splType>
+                <hasRuntimeConstant>true</hasRuntimeConstant>
+                <cppExpression>((lit$1 + ::SPL::spl_cast&lt;SPL::rstring, SPL::float64 &gt;::cast(::SPL::Functions::Time::getTimestampInSecs())) + lit$0)</cppExpression>
+                <splExpression>("{\"timestamp:\"" + (rstring)(getTimestampInSecs())) + "\"}"</splExpression>
+                <hasFunctions>true</hasFunctions>
+                <hasSideEffects>true</hasSideEffects>
+                <readsState>false</readsState>
+                <hasStreamAttributes>false</hasStreamAttributes>
+                <sourceLocation>
+                  <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.MH/SubmitHazards.spl</file>
+                  <line>13</line>
+                  <column>30</column>
+                </sourceLocation>
+              </value>
+            </values>
+          </assignment>
+        </attribute>
+        <attribute>
+          <name>message</name>
+          <cppType>SPL::rstring</cppType>
+          <splType>rstring</splType>
+          <assignment>
+            <sourceLocation>
+              <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.MH/SubmitHazards.spl</file>
+              <line>28</line>
+              <column>51</column>
+            </sourceLocation>
+            <values>
+              <value>
+                <cppType>SPL::rstring</cppType>
+                <splType>rstring</splType>
+                <hasRuntimeConstant>false</hasRuntimeConstant>
+                <cppExpression>iport$0.get_data()</cppExpression>
+                <splExpression>sink.PreparedHazardStream.data</splExpression>
+                <hasFunctions>false</hasFunctions>
+                <hasSideEffects>false</hasSideEffects>
+                <readsState>false</readsState>
+                <hasStreamAttributes>true</hasStreamAttributes>
+                <sourceLocation>
+                  <file>/home/streamsadmin/workspace/iot4i-shield-toolkit/com.ibm.iot4i.hazards.MH/SubmitHazards.spl</file>
+                  <line>28</line>
+                  <column>61</column>
+                </sourceLocation>
+              </value>
+            </values>
+          </assignment>
+        </attribute>
+      </attributes>
+      <tuple>
+        <tt:attr name="topic" type="rstring"/>
+        <tt:attr name="key" type="rstring"/>
+        <tt:attr name="message" type="rstring"/>
+      </tuple>
+      <finalPunctuationPortScope>
+        <port>0</port>
+      </finalPunctuationPortScope>
+    </outputPort>
+  </outputPorts>
+
+</operatorInstanceModel>

@@ -1,0 +1,4 @@
+	@$(CXX) $(SPL_CXXFLAGS) -o bin/sink.kafkaPrepare.so -fPIC -shared $(SOsink.kafkaPrepare) $(SPL_LDFLAGS)\
+	    build/operator/sink/kafkaPrepare.o \
+	    build/type/BeJwrMS42LckvyEwuNs5OrSw2z00tLk5MTwUAaSIIDt.o \
+	    build/type/BeJwrMSw2SUksSQQADLECDn.o 
