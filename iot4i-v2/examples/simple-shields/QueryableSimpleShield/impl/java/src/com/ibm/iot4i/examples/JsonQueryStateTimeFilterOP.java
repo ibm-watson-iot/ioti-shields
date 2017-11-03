@@ -45,19 +45,19 @@ import com.google.gson.JsonParser;
 @OutputPorts({
 		@OutputPortSet(description = "Port that produces tuples", cardinality = 1, optional = false, windowPunctuationOutputMode = WindowPunctuationOutputMode.Generating) })
 public class JsonQueryStateTimeFilterOP extends AbstractOperator implements StateHandler {
-	
-	static Configuration conf = Configuration.defaultConfiguration().addOptions(Option.AS_PATH_LIST)
+
+	static Configuration conf = Configuration.defaultConfiguration()
 			.addOptions(Option.ALWAYS_RETURN_LIST).addOptions(Option.SUPPRESS_EXCEPTIONS);
 	static Logger logger = Logger.getLogger(JsonQueryStateTimeFilterOP.class);
-	
+
 	private Map<String, Long> timePeriodCache;
 	private Map<String, Boolean> stateCache;
-	
+
 	private List<String> jsonQueries = new ArrayList<String>();
 	private Long timePeriod = (long) 0;
 	private Boolean needResetState = false;
 	private String eventTimeKey = "";
-	
+
 	@Override
 	public synchronized void initialize(OperatorContext context) throws Exception {
 		super.initialize(context);
@@ -68,25 +68,25 @@ public class JsonQueryStateTimeFilterOP extends AbstractOperator implements Stat
 		this.stateCache = new HashMap<>();
 		this.timePeriodCache = new HashMap<>();
 	}
-	
+
 	@Parameter(name="jsonQueries", optional=false)
 	public void setJsonQueries(String jsonQueries) {
 	   	this.jsonQueries.clear();
 	   	for(JsonElement elem: new JsonParser().parse(jsonQueries).getAsJsonArray()) {
 	   		this.jsonQueries.add(elem.getAsString());
-	   	}	 
+	   	}
 	}
-	
+
 	@Parameter(name="timePeriod", optional=true)
 	public void setTimePeriod(String timePeriod) {
 	   	this.timePeriod = Long.parseLong(timePeriod);
 	}
-	
+
 	@Parameter(name="needResetState", optional=true)
 	public void setNeedResetState(String needResetState) {
 		this.needResetState = Boolean.parseBoolean(needResetState);
 	}
-	
+
 	@Parameter(name="eventTimeKey", optional=true)
 	public void setEventTimeKey(String eventTimeKey) {
 		this.eventTimeKey = eventTimeKey;
@@ -105,24 +105,25 @@ public class JsonQueryStateTimeFilterOP extends AbstractOperator implements Stat
 			outStream.submit(outTuple);
 		}
 	}
-	
+
 	public boolean executeJsonQuery(String message) {
 		String operatorName = this.getOperatorContext().getLogicalName();
-		try {			
+		try {
 			JsonObject messageJson = new JsonParser().parse(message).getAsJsonObject();
 			String rawEvent = messageJson.getAsJsonObject("event").toString();
 			logger.log(Level.WARN, operatorName + ": Incoming event: " + rawEvent);
 			DocumentContext parsedRawEvent = JsonPath.using(conf).parse(rawEvent);
 
 			for (String jsonQuery : jsonQueries) {
-				// check if the query is encoded		
+				// check if the query is encoded
 
-				String vendorId = messageJson.get("vendorId").getAsString();				
+				String vendorId = messageJson.get("vendorId").getAsString();
 				logger.log(Level.WARN, operatorName + ": Json query: " + jsonQuery);
 				List<Object> results = parsedRawEvent.read(jsonQuery);
-				logger.log(Level.WARN, operatorName + ": Json query results: " + results);				
-				
-				boolean timeDidPass = false;
+				logger.log(Level.WARN, operatorName + ": Json query results: " + results);
+				boolean pastJsonQuery = !results.isEmpty();
+
+				Boolean timeDidPass = null;
 				Long eventTime = (long) -1;
 				if (timePeriod > 0) {
 					List<Object> timestamps = parsedRawEvent.read(eventTimeKey);
@@ -132,26 +133,29 @@ public class JsonQueryStateTimeFilterOP extends AbstractOperator implements Stat
 						if (isNumber) {
 							otherTime = Long.parseLong(eventTimeElement.toString());
 						} else {
-							otherTime = Instant.parse(eventTimeElement.toString()).getEpochSecond();		
+							otherTime = Instant.parse(eventTimeElement.toString()).getEpochSecond();
 						}
 						eventTime = Math.max(otherTime, eventTime);
-					}												
+					}
 					if (eventTime == -1) {
 						eventTime = Instant.parse(messageJson.get("arrivedAtMH").getAsString()).getEpochSecond();
 					}
 					timeDidPass = eventTime - timePeriodCache.getOrDefault(vendorId, (long) 0) > timePeriod;
 				}
-						
-				boolean stateChanged = true;
-				if (needResetState && stateCache.containsKey(vendorId)) {
-					stateChanged = stateCache.get(vendorId) != (!results.isEmpty());
+
+				Boolean stateChanged = null;
+				if (needResetState) {
+					stateChanged = false;
+					if (!stateCache.containsKey(vendorId) && pastJsonQuery) {
+						stateChanged = true;
+					}
 				}
 				logger.log(Level.WARN, operatorName + ": needResetState: " + needResetState);
 				logger.log(Level.WARN, operatorName + ": stateChanged: " + stateChanged);
 				logger.log(Level.WARN, operatorName + ": timeDidPass: " + timeDidPass);
-				logger.log(Level.WARN, operatorName + ": timePeriodCache: " + timePeriodCache);
-				logger.log(Level.WARN, operatorName + ": stateCache: " + stateCache);
-				
+				logger.log(Level.WARN, operatorName + ": timePeriodCache: " + timePeriodCache.getOrDefault(vendorId, null));
+				logger.log(Level.WARN, operatorName + ": stateCache: " + stateCache.getOrDefault(vendorId, null));
+
 				if (!results.isEmpty()) {
 					if (needResetState && !stateChanged) {
 						logger.log(Level.WARN, operatorName + ": not passing - state did not change");
@@ -162,13 +166,18 @@ public class JsonQueryStateTimeFilterOP extends AbstractOperator implements Stat
 						return false;
 					}
 					logger.log(Level.WARN, operatorName + ": Event passed json query, results: " + results);
-					timePeriodCache.put(vendorId, eventTime);
-					stateCache.put(vendorId, true);
+
+					if (timePeriod > 0) {
+						timePeriodCache.put(vendorId, eventTime);
+					}
+					if (needResetState) {
+						stateCache.put(vendorId, true);
+					}
 					return true;
 				}
 				if (stateCache.containsKey(vendorId)) {
-					stateCache.remove(vendorId);	
-				}						
+					stateCache.remove(vendorId);
+				}
 			}
 
 			logger.log(Level.WARN, operatorName + ": Event failed json query" );
@@ -183,12 +192,11 @@ public class JsonQueryStateTimeFilterOP extends AbstractOperator implements Stat
 	@Override
 	public void close() throws IOException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void checkpoint(Checkpoint checkpoint) throws Exception {
-		logger.log(Level.WARN, "Checkpointing maps."); 		
 		checkpoint.getOutputStream().writeObject(this.stateCache);
 		checkpoint.getOutputStream().writeObject(this.timePeriodCache);
 	}
@@ -196,7 +204,7 @@ public class JsonQueryStateTimeFilterOP extends AbstractOperator implements Stat
 	@Override
 	public void drain() throws Exception {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -215,6 +223,6 @@ public class JsonQueryStateTimeFilterOP extends AbstractOperator implements Stat
 	@Override
 	public void retireCheckpoint(long id) throws Exception {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
