@@ -51,7 +51,7 @@ These parameters needs to be provided when submitting/updating the shield code u
       // optional, values here are the default ones
       "hazardTimeInterval": 0 // in seconds,
       "hazardNeedsStateReset": false // only create new hazard if state changed,
-      "eventTimePath": "$.ts" // path to events timestamp
+      "eventTimePath": "$.timestamp" // path to events timestamp
    }
 }
  
