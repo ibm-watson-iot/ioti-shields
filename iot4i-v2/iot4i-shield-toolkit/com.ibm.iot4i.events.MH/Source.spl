@@ -13,6 +13,7 @@ public composite Source(output stream<rstring key, rstring message>
 		expression<rstring> $TOPIC ;
 		expression<rstring> $GROUP_ID ;
 		expression<rstring> $CLIENT_ID ;
+		expression<int64> $START_TIME : 0l ;
 		expression<rstring> $SECURITY_PROTOCOL : "SASL_SSL" ;
 		expression<rstring> $SASL_MECHANISM : "PLAIN" ;
 		expression<rstring> $SSL_PROTOCOL : "TLSv1.2" ;
@@ -22,8 +23,16 @@ public composite Source(output stream<rstring key, rstring message>
 	graph
 		stream<rstring key, rstring message> SourceStream = KafkaConsumer()
 		{
+			logic
+				state :
+				{
+					int64 _startTime =($START_TIME == 0l) ? getTimestampInMs() : $START_TIME ;
+				}
+
 			param
 				topic : $TOPIC ;
+				startPosition : Time ;
+				startTime : _startTime ;
 				propertiesFile : getKafkaPropertiesFileName(getThisToolkitDir(),
 					$KAFKA_BROKERS_SASL, $USERNAME, $PASSWORD, $GROUP_ID, $CLIENT_ID,
 					$SECURITY_PROTOCOL, $SASL_MECHANISM, $SSL_PROTOCOL,

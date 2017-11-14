@@ -12,12 +12,12 @@
       <common:version>2.1.0</common:version>
     </info:toolkit>
     <info:toolkit>
-      <common:name>com.ibm.streamsx.kafka</common:name>
-      <common:version>[1.0.0,2.0.0)</common:version>
-    </info:toolkit>
-    <info:toolkit>
       <common:name>com.ibm.streamsx.messaging</common:name>
       <common:version>[5.3.0,6.0.0)</common:version>
+    </info:toolkit>
+    <info:toolkit>
+      <common:name>com.ibm.streamsx.kafka</common:name>
+      <common:version>[1.2.2,2.0.0)</common:version>
     </info:toolkit>
   </info:dependencies>
 </info:toolkitInfoModel>

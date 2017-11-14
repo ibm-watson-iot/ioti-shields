@@ -141,6 +141,7 @@
         <parameter metaType="Expression" name="TOPIC" optional="false" type="&lt;rstring>"/>
         <parameter metaType="Expression" name="GROUP_ID" optional="false" type="&lt;rstring>"/>
         <parameter metaType="Expression" name="CLIENT_ID" optional="false" type="&lt;rstring>"/>
+        <parameter defaultValue="0l" metaType="Expression" name="START_TIME" optional="true" type="&lt;int64>"/>
         <parameter defaultValue="&quot;SASL_SSL&quot;" metaType="Expression" name="SECURITY_PROTOCOL" optional="true" type="&lt;rstring>"/>
         <parameter defaultValue="&quot;PLAIN&quot;" metaType="Expression" name="SASL_MECHANISM" optional="true" type="&lt;rstring>"/>
         <parameter defaultValue="&quot;TLSv1.2&quot;" metaType="Expression" name="SSL_PROTOCOL" optional="true" type="&lt;rstring>"/>
@@ -149,6 +150,9 @@
         <parameter defaultValue="&quot;HTTPS&quot;" metaType="Expression" name="SSL_ENDPOINT_IDENTIFICATION_ALGORITHM" optional="true" type="&lt;rstring>"/>
         <outputPort name="SourceStream" portIndex="0" type="stream&lt;rstring key, rstring message>"/>
       </compositeOp>
+      <function modelUriIndex="15" name="getTimestampInMs" native="true" public="true" returnType="int64" uriIndex="0">
+        <prototype>public int64 getTimestampInMs()</prototype>
+      </function>
       <function modelUriIndex="15" name="getUserId" native="true" public="true" returnType="T" uriIndex="0">
         <prototype>&lt;string T&gt; public T getUserId(T message)</prototype>
         <parameter name="message" type="T"/>
@@ -223,12 +227,12 @@ Specifies command-line arguments that are passed to the Java virtual machine tha
       <common:version>2.1.0</common:version>
     </dependency>
     <dependency>
-      <common:name>com.ibm.streamsx.kafka</common:name>
-      <common:version>[1.0.0,2.0.0)</common:version>
-    </dependency>
-    <dependency>
       <common:name>com.ibm.streamsx.messaging</common:name>
       <common:version>[5.3.0,6.0.0)</common:version>
+    </dependency>
+    <dependency>
+      <common:name>com.ibm.streamsx.kafka</common:name>
+      <common:version>[1.2.2,2.0.0)</common:version>
     </dependency>
     <sabFiles>
       <ti:include path="toolkit.xml" root="toolkitDir"/>
