@@ -21,7 +21,6 @@ public composite Sink(input stream<rstring topic, rstring key, rstring message>
 		expression<rstring> $SSL_TRUST_STORE_TYPE : "JKS" ;
 		expression<rstring> $SSL_ENDPOINT_IDENTIFICATION_ALGORITHM : "HTTPS" ;
 	graph
-		@catch(exception = all, tupleTrace = true, stackTrace = true)
 		() as KafkaSinkOp = KafkaProducer(KafkaSinkStream)
 		{
 			param

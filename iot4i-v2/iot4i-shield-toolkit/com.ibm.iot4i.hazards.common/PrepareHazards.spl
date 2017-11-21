@@ -8,7 +8,6 @@ public composite PrepareHazards(input stream<Hazard> HazardStream ; output
 	param
 		expression<rstring> $SHIELD_ID ;
 	graph
-		@catch(exception = all, tupleTrace = true, stackTrace = true)
 		(stream<rstring data> PreparedHazardStream) as stringify =
 			Functor(HazardStream)
 		{

@@ -14,7 +14,6 @@ public composite SubmitHazards(input stream<Hazard> HazardStream )
 			+ "\"}" ;
 		expression<rstring> $SHIELD_ID ;
 	graph
-		@catch(exception = all, tupleTrace = true, stackTrace = true)
 		(stream<rstring data> PreparedHazardStream) as prepare =
 			PrepareHazards(HazardStream)
 		{
@@ -22,7 +21,6 @@ public composite SubmitHazards(input stream<Hazard> HazardStream )
 				SHIELD_ID : $SHIELD_ID ;
 		}
 
-		@catch(exception = all, tupleTrace = true, stackTrace = true)
 		(stream<rstring topic, rstring key, rstring message> KafkaSinkStream) as
 			kafkaPrepare = Functor(PreparedHazardStream)
 		{
@@ -30,7 +28,6 @@ public composite SubmitHazards(input stream<Hazard> HazardStream )
 				KafkaSinkStream : key = $KEY, topic = $TOPIC, message = data ;
 		}
 
-		@catch(exception = all, tupleTrace = true, stackTrace = true)
 		() as kafkaSink = Sink(KafkaSinkStream)
 		{
 			param
