@@ -18,7 +18,8 @@ public class GetKafkaPropertiesFileNameImpl {
 	@Function(namespace = "com.ibm.iot4i.common", name = "getKafkaPropertiesFileName", description = "", stateful = false)
 	public static String getKafkaPropertiesFileName(String dir, String kafkaBrokerSasl, String username,
 			String password, String groupId, String clientId, String securityProtocol, String saslMechanism,
-			String sslProtocol, String sslEnabledProtocol, String sslTrustStoreType, String sslEndpointIdAlgorithm) {
+			String sslProtocol, String sslEnabledProtocol, String sslTrustStoreType, String sslEndpointIdAlgorithm,
+			String retriesNumber) {
 		try {
 			String fileName = dir + "/etc/kafka.properties";
 			Properties properties = new Properties();
@@ -27,6 +28,7 @@ public class GetKafkaPropertiesFileNameImpl {
 					"org.apache.kafka.common.security.plain.PlainLoginModule required username=\"" + username
 							+ "\" password=\"" + password + "\";");
 			properties.setProperty("group.id", groupId);
+			properties.setProperty("retries", retriesNumber);
 			properties.setProperty("client.id", clientId);
 			properties.setProperty("security.protocol", securityProtocol);
 			properties.setProperty("sasl.mechanism", saslMechanism);

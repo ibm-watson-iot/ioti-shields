@@ -13,6 +13,7 @@ public composite Source(output stream<rstring key, rstring message>
 		expression<rstring> $TOPIC ;
 		expression<rstring> $GROUP_ID ;
 		expression<rstring> $CLIENT_ID ;
+		expression<rstring> $RETRIES : "30" ;
 		expression<rstring> $SECURITY_PROTOCOL : "SASL_SSL" ;
 		expression<rstring> $SASL_MECHANISM : "PLAIN" ;
 		expression<rstring> $SSL_PROTOCOL : "TLSv1.2" ;
@@ -28,7 +29,7 @@ public composite Source(output stream<rstring key, rstring message>
 					$KAFKA_BROKERS_SASL, $USERNAME, $PASSWORD, $GROUP_ID, $CLIENT_ID,
 					$SECURITY_PROTOCOL, $SASL_MECHANISM, $SSL_PROTOCOL,
 					$SSL_ENABLED_PROTOCOLS, $SSL_TRUST_STORE_TYPE,
-					$SSL_ENDPOINT_IDENTIFICATION_ALGORITHM) ;
+					$SSL_ENDPOINT_IDENTIFICATION_ALGORITHM, $RETRIES) ;
 		}
 
 }
