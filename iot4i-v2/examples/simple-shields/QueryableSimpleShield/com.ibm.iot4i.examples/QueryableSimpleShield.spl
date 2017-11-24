@@ -39,7 +39,7 @@ composite QueryableSimpleShield
 	graph
 	//  get events from source
 		@view(name = "Events", port = SourceStream, sampleSize = 5, bufferSize = 50)
-		@parallel(width = 1)
+		// @parallel(width = 1)
 		(stream<rstring userId, rstring key, rstring message> SourceStream) as
 			source = AnnotatedSource()
 		{
@@ -50,7 +50,7 @@ composite QueryableSimpleShield
 				TOPIC : $SOURCE_TOPIC ;
 		}
 
-		@parallel(width = 1)
+		// @parallel(width = 1)
 		@view(name = "FilteredEvents", port = FilteredStream, sampleSize = 5,
 			bufferSize = 50)
 		stream<rstring userId, rstring key, rstring message, rstring vendorId>
@@ -63,9 +63,9 @@ composite QueryableSimpleShield
 				eventTimeKey : "" ;
 		}
 
-		@parallel(width = 1, partitionBy = [ { port = FilteredStream, attributes = [
-			vendorId ] } ])
-		@consistent(trigger = periodic, period = 10.0)
+		//@parallel(width = 1, partitionBy = [ { port = FilteredStream, attributes = [
+		//	vendorId ] } ])
+		//@consistent(trigger = periodic, period = 10.0)
 		@view(name = "ShieldEvents", port = ShieldStream, sampleSize = 5,
 			bufferSize = 50)
 		stream<rstring userId, rstring key, rstring message, rstring vendorId>
@@ -78,8 +78,8 @@ composite QueryableSimpleShield
 				eventTimeKey : $eventTimePath ;
 		}
 
-		@parallel(width = 1)
-		@autonomous
+		//@parallel(width = 1)
+		//@autonomous
 		@view(name = "HazardStream", port = HazardStream, sampleSize = 5,
 			bufferSize = 50)
 		stream<Hazard> HazardStream = Functor(ShieldStream)
@@ -89,7 +89,6 @@ composite QueryableSimpleShield
 					actionParams = $actionParams ;
 		}
 
-		@parallel(width = 1)
 		() as sink = SubmitHazards(HazardStream)
 		{
 			param

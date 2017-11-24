@@ -75,7 +75,6 @@ composite QueryableComplexShield
 		}
 
 		//  Submitting Hazards
-		@catch(exception = all, tupleTrace = true, stackTrace = true)
 		() as sink = SubmitHazards(HazardStream)
 		{
 			param
