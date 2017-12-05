@@ -23,7 +23,7 @@
     </uriTable>
     <namespace name="com.ibm.iot4i.common">
       <function modelUriIndex="12" name="getKafkaPropertiesFileName" native="true" public="true" returnType="T" uriIndex="0">
-        <prototype>&lt;string T&gt; public T getKafkaPropertiesFileName(T dir, T kafkaBrokerSasl, T username, T password, T groupId, T clientId, T securityProtocol, T saslMechanism, T sslProtocol, T sslEnabledProtocol, T sslTrustStoreType, T sslEndpointIdAlgorithm, T retriesNumber, T requestTimeoutMs, T maxBlockMs)</prototype>
+        <prototype>&lt;string T&gt; public T getKafkaPropertiesFileName(T dir, T kafkaBrokerSasl, T username, T password, T groupId, T clientId, T securityProtocol, T saslMechanism, T sslProtocol, T sslEnabledProtocol, T sslTrustStoreType, T sslEndpointIdAlgorithm, T retriesNumber, T maxBlockMs, T requestTimeoutMs)</prototype>
         <parameter name="dir" type="T"/>
         <parameter name="kafkaBrokerSasl" type="T"/>
         <parameter name="username" type="T"/>
@@ -37,8 +37,8 @@
         <parameter name="sslTrustStoreType" type="T"/>
         <parameter name="sslEndpointIdAlgorithm" type="T"/>
         <parameter name="retriesNumber" type="T"/>
-        <parameter name="requestTimeoutMs" type="T"/>
         <parameter name="maxBlockMs" type="T"/>
+        <parameter name="requestTimeoutMs" type="T"/>
       </function>
     </namespace>
     <namespace name="com.ibm.iot4i.hazards.common">

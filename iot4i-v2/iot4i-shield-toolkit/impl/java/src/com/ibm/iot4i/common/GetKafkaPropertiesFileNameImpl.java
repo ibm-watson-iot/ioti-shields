@@ -20,7 +20,7 @@ public class GetKafkaPropertiesFileNameImpl {
 	public static String getKafkaPropertiesFileName(String dir, String kafkaBrokerSasl, String username,
 			String password, String groupId, String clientId, String securityProtocol, String saslMechanism,
 			String sslProtocol, String sslEnabledProtocol, String sslTrustStoreType, String sslEndpointIdAlgorithm,
-			String retriesNumber, String requestTimeoutMs, String maxBlockMs) {
+			String retriesNumber, String maxBlockMs, String requestTimeoutMs) {
 		try {
 			String fileName = dir + "/etc/kafka.properties";
 			Properties properties = new Properties();
