@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
+import com.ibm.streams.operator.logging.*;
 
 import com.google.gson.JsonObject;
 import com.ibm.json.java.JSONArray;
@@ -26,6 +26,9 @@ public class ShieldActivationCacheService {
 	private int limit = 50000;
 
 	private Map<String, ArrayList<String>> userShieldMapCache;
+	
+	private static final Logger trace = Logger.getLogger(ShieldActivationCacheService.class.getName());
+	private static final Logger log = Logger.getLogger("com.ibm.streams.operator.log");
 
 	public ShieldActivationCacheService(String apiToken, String apiURL, String tenantId) {
 		this.apiToken = apiToken;
@@ -57,10 +60,10 @@ public class ShieldActivationCacheService {
 				this.skip += this.limit;
 				setUserShieldActivationsMapping();
 			} else {
-				Logger.getLogger(this.getClass()).log(Level.WARN, "User shield mapping was set successfully ");
+				log.log(LogLevel.WARN, "User shield mapping was set successfully ");
 			}
 		} else {
-			Logger.getLogger(this.getClass()).log(Level.WARN,
+			log.log(LogLevel.WARN,
 					"Not able to retrieve user-to-shield-activation mappings, error: "
 							+ activationsResponse.errorBody().toString());
 		}
@@ -87,7 +90,7 @@ public class ShieldActivationCacheService {
 	}
 
 	public void updateUserShieldMappingCache(String userId, String payload) {
-		Logger.getLogger(this.getClass()).log(Level.WARN,
+		log.log(LogLevel.WARN,
 				"User to Shield Mapping before notification: " + this.userShieldMapCache.get(userId));
 		JSONObject jsonObject;
 		try {
@@ -99,10 +102,10 @@ public class ShieldActivationCacheService {
 				shieldActivations.add(item.get("value").toString());
 			}
 			this.userShieldMapCache.put(userId, shieldActivations);
-			Logger.getLogger(this.getClass()).log(Level.WARN,
+			log.log(LogLevel.WARN,
 					"User to Shield Mapping after notification: " + this.userShieldMapCache.get(userId));
 		} catch (Exception e) {
-			Logger.getLogger(this.getClass()).log(Level.WARN, "Notification has not json payload, payload: " + payload);
+			log.log(LogLevel.ERROR, "Notification has not json payload, payload: " + payload);
 		}
 	}
 }

@@ -8,8 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
+import com.ibm.streams.operator.logging.*;
 
 import com.ibm.json.java.JSON;
 import com.ibm.streams.operator.AbstractOperator;
@@ -45,10 +45,12 @@ import com.google.gson.JsonParser;
 @OutputPorts({
 		@OutputPortSet(description = "Port that produces tuples", cardinality = 1, optional = false, windowPunctuationOutputMode = WindowPunctuationOutputMode.Generating) })
 public class JsonQueryStateTimeFilterOP extends AbstractOperator implements StateHandler {
+	
+	private static final Logger trace = Logger.getLogger(JsonQueryStateTimeFilterOP.class.getName());
+	private static final Logger log = Logger.getLogger("com.ibm.streams.operator.log");
 
 	static Configuration conf = Configuration.defaultConfiguration()
 			.addOptions(Option.ALWAYS_RETURN_LIST).addOptions(Option.SUPPRESS_EXCEPTIONS);
-	static Logger logger = Logger.getLogger(JsonQueryStateTimeFilterOP.class);
 
 	private Map<String, Long> timePeriodCache;
 	private Map<String, Boolean> stateCache;
@@ -62,7 +64,7 @@ public class JsonQueryStateTimeFilterOP extends AbstractOperator implements Stat
 	public synchronized void initialize(OperatorContext context) throws Exception {
 		super.initialize(context);
 
-		Logger.getLogger(this.getClass()).log(Level.WARN, "Operator " + context.getName() + " initializing in PE: "
+		log.log(LogLevel.WARN, "Operator " + context.getName() + " initializing in PE: "
 				+ context.getPE().getPEId() + " in Job: " + context.getPE().getJobId());
 
 		this.stateCache = new HashMap<>();
@@ -111,16 +113,16 @@ public class JsonQueryStateTimeFilterOP extends AbstractOperator implements Stat
 		try {
 			JsonObject messageJson = new JsonParser().parse(message).getAsJsonObject();
 			String rawEvent = messageJson.getAsJsonObject("event").toString();
-			logger.log(Level.WARN, operatorName + ": Incoming event: " + rawEvent);
+			log.log(LogLevel.WARN, operatorName + ": Incoming event: " + rawEvent);
 			DocumentContext parsedRawEvent = JsonPath.using(conf).parse(rawEvent);
 
 			for (String jsonQuery : jsonQueries) {
 				// check if the query is encoded
 
 				String vendorId = messageJson.get("vendorId").getAsString();
-				logger.log(Level.WARN, operatorName + ": Json query: " + jsonQuery);
+				log.log(LogLevel.WARN, operatorName + ": Json query: " + jsonQuery);
 				List<Object> results = parsedRawEvent.read(jsonQuery);
-				logger.log(Level.WARN, operatorName + ": Json query results: " + results);
+				log.log(LogLevel.WARN, operatorName + ": Json query results: " + results);
 				boolean pastJsonQuery = !results.isEmpty();
 
 				Boolean timeDidPass = null;
@@ -150,22 +152,22 @@ public class JsonQueryStateTimeFilterOP extends AbstractOperator implements Stat
 						stateChanged = true;
 					}
 				}
-				logger.log(Level.WARN, operatorName + ": needResetState: " + needResetState);
-				logger.log(Level.WARN, operatorName + ": stateChanged: " + stateChanged);
-				logger.log(Level.WARN, operatorName + ": timeDidPass: " + timeDidPass);
-				logger.log(Level.WARN, operatorName + ": timePeriodCache: " + timePeriodCache.getOrDefault(vendorId, null));
-				logger.log(Level.WARN, operatorName + ": stateCache: " + stateCache.getOrDefault(vendorId, null));
+				log.log(LogLevel.WARN, operatorName + ": needResetState: " + needResetState);
+				log.log(LogLevel.WARN, operatorName + ": stateChanged: " + stateChanged);
+				log.log(LogLevel.WARN, operatorName + ": timeDidPass: " + timeDidPass);
+				log.log(LogLevel.WARN, operatorName + ": timePeriodCache: " + timePeriodCache.getOrDefault(vendorId, null));
+				log.log(LogLevel.WARN, operatorName + ": stateCache: " + stateCache.getOrDefault(vendorId, null));
 
 				if (!results.isEmpty()) {
 					if (needResetState && !stateChanged) {
-						logger.log(Level.WARN, operatorName + ": not passing - state did not change");
+						log.log(LogLevel.WARN, operatorName + ": not passing - state did not change");
 						return false;
 					}
 					if (timePeriod > 0 && !timeDidPass) {
-						logger.log(Level.WARN, operatorName + ": not passing - time did not pass");
+						log.log(LogLevel.WARN, operatorName + ": not passing - time did not pass");
 						return false;
 					}
-					logger.log(Level.WARN, operatorName + ": Event passed json query, results: " + results);
+					log.log(LogLevel.WARN, operatorName + ": Event passed json query, results: " + results);
 
 					if (timePeriod > 0) {
 						timePeriodCache.put(vendorId, eventTime);
@@ -180,11 +182,11 @@ public class JsonQueryStateTimeFilterOP extends AbstractOperator implements Stat
 				}
 			}
 
-			logger.log(Level.WARN, operatorName + ": Event failed json query" );
+			log.log(LogLevel.WARN, operatorName + ": Event failed json query" );
 			return false;
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.log(Level.WARN, operatorName + ": Executing json query failed, error: " + e.getMessage());
+			log.log(LogLevel.WARN, operatorName + ": Executing json query failed, error: " + e.getMessage());
 			return false;
 		}
 	}

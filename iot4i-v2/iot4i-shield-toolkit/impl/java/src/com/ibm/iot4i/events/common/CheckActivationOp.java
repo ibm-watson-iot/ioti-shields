@@ -1,7 +1,7 @@
 package com.ibm.iot4i.events.common;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
+import com.ibm.streams.operator.logging.*;
 
 import com.ibm.iot4i.services.ShieldActivationCacheService;
 import com.ibm.json.java.JSONObject;
@@ -31,6 +31,9 @@ import com.ibm.streams.operator.model.PrimitiveOperator;
 		@OutputPortSet(description = "Port that produces tuples", cardinality = 1, optional = false, windowPunctuationOutputMode = WindowPunctuationOutputMode.Generating),
 		@OutputPortSet(description = "Optional output ports", optional = true, windowPunctuationOutputMode = WindowPunctuationOutputMode.Generating) })
 public class CheckActivationOp extends AbstractOperator {
+
+	private static final Logger trace = Logger.getLogger(CheckActivationOp.class.getName());
+	private static final Logger log = Logger.getLogger("com.ibm.streams.operator.log");
 
 	private final static String DEVICE_MAPPING_NOTIFICATION_TOPIC = "IoT4i_deviceMappingChange";
 	private final static String ACTIVATION_MAPPING_NOTIFICATION_TOPIC = "IoT4i_userActivationChange";
@@ -66,8 +69,8 @@ public class CheckActivationOp extends AbstractOperator {
 	@Override
 	public synchronized void initialize(OperatorContext context) throws Exception {
 		super.initialize(context);
-		Logger.getLogger(this.getClass()).trace("Operator " + context.getName() + " initializing in PE: "
-				+ context.getPE().getPEId() + " in Job: " + context.getPE().getJobId());
+		log.log(LogLevel.WARN, "Operator " + context.getName() + " initializing in PE: " + context.getPE().getPEId()
+				+ " in Job: " + context.getPE().getJobId());
 
 		shieldActivationCacheService = new ShieldActivationCacheService(this.apiToken, this.apiURL, this.tenantId);
 		shieldActivationCacheService.setCache();
@@ -77,8 +80,7 @@ public class CheckActivationOp extends AbstractOperator {
 		try {
 			this.key = JSONObject.parse(topic);
 		} catch (Exception e) {
-			Logger.getLogger(this.getClass()).log(Level.ERROR,
-					"parsing topic failed, error: " + e.getLocalizedMessage());
+			log.log(LogLevel.ERROR, "parsing topic failed, error: " + e.getLocalizedMessage());
 		}
 	}
 
@@ -92,14 +94,13 @@ public class CheckActivationOp extends AbstractOperator {
 				outTuple.setString("key", key);
 				outTuple.setString("message", message);
 
-				Logger.getLogger(this.getClass()).log(Level.WARN, "submitted tuple: " + outTuple.toString());
+				log.log(LogLevel.WARN, "submitted tuple: " + outTuple.toString());
 				outStream.submit(outTuple);
 			} else {
-				Logger.getLogger(this.getClass()).log(Level.WARN, "Shield not active for user, ignore event");
+				log.log(LogLevel.WARN, "Shield not active for user, ignore event");
 			}
 		} catch (Exception e) {
-			Logger.getLogger(this.getClass()).log(Level.WARN,
-					"Submitting tuple failed, error: " + e.getLocalizedMessage());
+			log.log(LogLevel.WARN, "Submitting tuple failed, error: " + e.getLocalizedMessage());
 		}
 	}
 
@@ -125,7 +126,7 @@ public class CheckActivationOp extends AbstractOperator {
 			String topicDeviceId = this.key.get("deviceId").toString();
 
 			if (!isNotification(topicDeviceType)) {
-				Logger.getLogger(this.getClass()).log(Level.WARN, "Incoming tuple:" + tuple.toString());
+				log.log(LogLevel.WARN, "Incoming tuple:" + tuple.toString());
 				submitTuple(userId, stringKey, message);
 			} else {
 				// notification to update cache

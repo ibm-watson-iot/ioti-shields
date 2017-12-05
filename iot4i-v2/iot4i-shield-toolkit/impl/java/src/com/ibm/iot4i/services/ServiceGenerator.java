@@ -14,12 +14,13 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
+import com.ibm.streams.operator.logging.*;
 
 public class ServiceGenerator {
 
-	static Logger logger = Logger.getLogger(ServiceGenerator.class);
+	private static final Logger trace = Logger.getLogger(ServiceGenerator.class.getName());
+	private static final Logger log = Logger.getLogger("com.ibm.streams.operator.log");
 
 	public static <S> S createService(String apiURL, String apiToken, Class<S> serviceClass) {
 
@@ -55,9 +56,9 @@ public class ServiceGenerator {
 			SSLContext sc = SSLContext.getInstance("TLS");
 			sc.init(null, trustAllCerts, new SecureRandom());
 			httpClient.sslSocketFactory(sc.getSocketFactory(), (X509TrustManager) trustAllCerts[0]);
-			logger.log(Level.WARN, "trust manager installed");
+			log.log(LogLevel.WARN, "trust manager installed");
 		} catch (Exception e) {
-			// logger.log(Level.WARN, "Failed to install trust manager" + e);
+			// log.log(LogLevel.WARN, "Failed to install trust manager" + e);
 		}
 
 		OkHttpClient client = httpClient.build();

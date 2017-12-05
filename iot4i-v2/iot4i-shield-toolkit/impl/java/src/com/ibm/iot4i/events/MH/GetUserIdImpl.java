@@ -1,14 +1,15 @@
 package com.ibm.iot4i.events.MH;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
+import com.ibm.streams.operator.logging.*;
 
 import com.ibm.json.java.JSONObject;
 import com.ibm.streams.function.model.Function;
 
 public class GetUserIdImpl {
 
-	static Logger logger = Logger.getLogger(GetUserIdImpl.class);
+	private static final Logger trace = Logger.getLogger(GetUserIdImpl.class.getName());
+	private static final Logger log = Logger.getLogger("com.ibm.streams.operator.log");
 
 	@Function(namespace = "com.ibm.iot4i.events.MH", name = "getUserId", description = "", stateful = false)
 	public static String getUserId(String message) {
@@ -20,7 +21,7 @@ public class GetUserIdImpl {
 				return "";
 			return userId;
 		} catch (Exception e) {
-			logger.log(Level.WARN, "get user id from message failed, error: " + e.getLocalizedMessage());
+			log.log(LogLevel.ERROR, "get user id from message failed, error: " + e.getLocalizedMessage());
 			return "";
 		}
 	}
