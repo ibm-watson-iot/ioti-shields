@@ -47,7 +47,7 @@ import com.google.gson.JsonParser;
 public class JsonQueryStateTimeFilterOP extends AbstractOperator implements StateHandler {
 	
 	private static final Logger trace = Logger.getLogger(JsonQueryStateTimeFilterOP.class.getName());
-	private static final Logger log = Logger.getLogger("com.ibm.streams.operator.log");
+	private static final Logger log = Logger.getLogger(JsonQueryStateTimeFilterOP.class.getName());
 
 	static Configuration conf = Configuration.defaultConfiguration()
 			.addOptions(Option.ALWAYS_RETURN_LIST).addOptions(Option.SUPPRESS_EXCEPTIONS);

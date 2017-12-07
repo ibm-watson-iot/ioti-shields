@@ -28,7 +28,7 @@ public class ShieldActivationCacheService {
 	private Map<String, ArrayList<String>> userShieldMapCache;
 	
 	private static final Logger trace = Logger.getLogger(ShieldActivationCacheService.class.getName());
-	private static final Logger log = Logger.getLogger("com.ibm.streams.operator.log");
+	private static final Logger log = Logger.getLogger(ShieldActivationCacheService.class.getName());
 
 	public ShieldActivationCacheService(String apiToken, String apiURL, String tenantId) {
 		this.apiToken = apiToken;

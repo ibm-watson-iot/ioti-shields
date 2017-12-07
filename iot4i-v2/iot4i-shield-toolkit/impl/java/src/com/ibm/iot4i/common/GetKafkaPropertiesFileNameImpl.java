@@ -14,7 +14,7 @@ import com.ibm.streams.function.model.Function;
 public class GetKafkaPropertiesFileNameImpl {
 
 	private static final Logger trace = Logger.getLogger(GetKafkaPropertiesFileNameImpl.class.getName());
-	private static final Logger log = Logger.getLogger("com.ibm.streams.operator.log");
+	private static final Logger log = Logger.getLogger(GetKafkaPropertiesFileNameImpl.class.getName());
 
 	@Function(namespace = "com.ibm.iot4i.common", name = "getKafkaPropertiesFileName", description = "", stateful = false)
 	public static String getKafkaPropertiesFileName(String dir, String kafkaBrokerSasl, String username,

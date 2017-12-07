@@ -20,7 +20,7 @@ import com.ibm.streams.operator.logging.*;
 public class ServiceGenerator {
 
 	private static final Logger trace = Logger.getLogger(ServiceGenerator.class.getName());
-	private static final Logger log = Logger.getLogger("com.ibm.streams.operator.log");
+	private static final Logger log = Logger.getLogger(ServiceGenerator.class.getName());
 
 	public static <S> S createService(String apiURL, String apiToken, Class<S> serviceClass) {
 

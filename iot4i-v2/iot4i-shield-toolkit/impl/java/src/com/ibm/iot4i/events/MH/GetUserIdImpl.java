@@ -9,7 +9,7 @@ import com.ibm.streams.function.model.Function;
 public class GetUserIdImpl {
 
 	private static final Logger trace = Logger.getLogger(GetUserIdImpl.class.getName());
-	private static final Logger log = Logger.getLogger("com.ibm.streams.operator.log");
+	private static final Logger log = Logger.getLogger(GetUserIdImpl.class.getName());
 
 	@Function(namespace = "com.ibm.iot4i.events.MH", name = "getUserId", description = "", stateful = false)
 	public static String getUserId(String message) {

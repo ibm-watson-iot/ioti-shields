@@ -21,7 +21,7 @@ public class ExecuteJsonQueryImpl {
 			.addOptions(Option.ALWAYS_RETURN_LIST).addOptions(Option.SUPPRESS_EXCEPTIONS);
 
 	private static final Logger trace = Logger.getLogger(ExecuteJsonQueryImpl.class.getName());
-	private static final Logger log = Logger.getLogger("com.ibm.streams.operator.log");
+	private static final Logger log = Logger.getLogger(ExecuteJsonQueryImpl.class.getName());
 	
 	@Function(namespace = "com.ibm.iot4i.examples", name = "executeJsonQuery", description = "", stateful = false)
 	public static boolean executeJsonQuery(String message, String[] jsonQueries, String operatorName) {

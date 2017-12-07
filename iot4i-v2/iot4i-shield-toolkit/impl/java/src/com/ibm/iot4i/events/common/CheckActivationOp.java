@@ -2,7 +2,6 @@ package com.ibm.iot4i.events.common;
 
 import java.util.logging.Logger;
 import com.ibm.streams.operator.logging.*;
-
 import com.ibm.iot4i.services.ShieldActivationCacheService;
 import com.ibm.json.java.JSONObject;
 import com.ibm.streams.operator.AbstractOperator;
@@ -33,7 +32,7 @@ import com.ibm.streams.operator.model.PrimitiveOperator;
 public class CheckActivationOp extends AbstractOperator {
 
 	private static final Logger trace = Logger.getLogger(CheckActivationOp.class.getName());
-	private static final Logger log = Logger.getLogger("com.ibm.streams.operator.log");
+	private static final Logger log = Logger.getLogger(CheckActivationOp.class.getName());
 
 	private final static String DEVICE_MAPPING_NOTIFICATION_TOPIC = "IoT4i_deviceMappingChange";
 	private final static String ACTIVATION_MAPPING_NOTIFICATION_TOPIC = "IoT4i_userActivationChange";
