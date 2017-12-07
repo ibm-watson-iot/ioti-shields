@@ -14,9 +14,7 @@ public composite Sink(input stream<rstring topic, rstring key, rstring message>
 		expression<rstring> $PASSWORD ;
 		expression<rstring> $GROUP_ID ;
 		expression<rstring> $CLIENT_ID ;
-		expression<rstring> $RETRIES : "0" ;
-		expression<rstring> $MAX_BLOCK_MS : "120000" ;
-		expression<rstring> $REQUEST_TIMEOUT_MS : "60000" ;
+		expression<rstring> $RETRIES : "5" ;
 		expression<rstring> $SECURITY_PROTOCOL : "SASL_SSL" ;
 		expression<rstring> $SASL_MECHANISM : "PLAIN" ;
 		expression<rstring> $SSL_PROTOCOL : "TLSv1.2" ;
@@ -31,8 +29,7 @@ public composite Sink(input stream<rstring topic, rstring key, rstring message>
 					$KAFKA_BROKERS_SASL, $USERNAME, $PASSWORD, $GROUP_ID, $CLIENT_ID,
 					$SECURITY_PROTOCOL, $SASL_MECHANISM, $SSL_PROTOCOL,
 					$SSL_ENABLED_PROTOCOLS, $SSL_TRUST_STORE_TYPE,
-					$SSL_ENDPOINT_IDENTIFICATION_ALGORITHM, $RETRIES, $MAX_BLOCK_MS,
-					$REQUEST_TIMEOUT_MS) ;
+					$SSL_ENDPOINT_IDENTIFICATION_ALGORITHM, $RETRIES) ;
 		}
 
 }

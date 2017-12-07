@@ -23,7 +23,7 @@
     </uriTable>
     <namespace name="com.ibm.iot4i.common">
       <function modelUriIndex="12" name="getKafkaPropertiesFileName" native="true" public="true" returnType="T" uriIndex="0">
-        <prototype>&lt;string T&gt; public T getKafkaPropertiesFileName(T dir, T kafkaBrokerSasl, T username, T password, T groupId, T clientId, T securityProtocol, T saslMechanism, T sslProtocol, T sslEnabledProtocol, T sslTrustStoreType, T sslEndpointIdAlgorithm, T retriesNumber, T maxBlockMs, T requestTimeoutMs)</prototype>
+        <prototype>&lt;string T&gt; public T getKafkaPropertiesFileName(T dir, T kafkaBrokerSasl, T username, T password, T groupId, T clientId, T securityProtocol, T saslMechanism, T sslProtocol, T sslEnabledProtocol, T sslTrustStoreType, T sslEndpointIdAlgorithm, T retriesNumber)</prototype>
         <parameter name="dir" type="T"/>
         <parameter name="kafkaBrokerSasl" type="T"/>
         <parameter name="username" type="T"/>
@@ -37,8 +37,6 @@
         <parameter name="sslTrustStoreType" type="T"/>
         <parameter name="sslEndpointIdAlgorithm" type="T"/>
         <parameter name="retriesNumber" type="T"/>
-        <parameter name="maxBlockMs" type="T"/>
-        <parameter name="requestTimeoutMs" type="T"/>
       </function>
     </namespace>
     <namespace name="com.ibm.iot4i.hazards.common">
@@ -99,9 +97,7 @@
         <parameter metaType="Expression" name="PASSWORD" optional="false" type="&lt;rstring>"/>
         <parameter metaType="Expression" name="GROUP_ID" optional="false" type="&lt;rstring>"/>
         <parameter metaType="Expression" name="CLIENT_ID" optional="false" type="&lt;rstring>"/>
-        <parameter defaultValue="&quot;0&quot;" metaType="Expression" name="RETRIES" optional="true" type="&lt;rstring>"/>
-        <parameter defaultValue="&quot;120000&quot;" metaType="Expression" name="MAX_BLOCK_MS" optional="true" type="&lt;rstring>"/>
-        <parameter defaultValue="&quot;60000&quot;" metaType="Expression" name="REQUEST_TIMEOUT_MS" optional="true" type="&lt;rstring>"/>
+        <parameter defaultValue="&quot;5&quot;" metaType="Expression" name="RETRIES" optional="true" type="&lt;rstring>"/>
         <parameter defaultValue="&quot;SASL_SSL&quot;" metaType="Expression" name="SECURITY_PROTOCOL" optional="true" type="&lt;rstring>"/>
         <parameter defaultValue="&quot;PLAIN&quot;" metaType="Expression" name="SASL_MECHANISM" optional="true" type="&lt;rstring>"/>
         <parameter defaultValue="&quot;TLSv1.2&quot;" metaType="Expression" name="SSL_PROTOCOL" optional="true" type="&lt;rstring>"/>

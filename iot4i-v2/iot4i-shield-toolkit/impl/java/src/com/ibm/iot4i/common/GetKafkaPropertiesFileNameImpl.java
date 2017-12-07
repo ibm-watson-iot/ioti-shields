@@ -20,7 +20,7 @@ public class GetKafkaPropertiesFileNameImpl {
 	public static String getKafkaPropertiesFileName(String dir, String kafkaBrokerSasl, String username,
 			String password, String groupId, String clientId, String securityProtocol, String saslMechanism,
 			String sslProtocol, String sslEnabledProtocol, String sslTrustStoreType, String sslEndpointIdAlgorithm,
-			String retriesNumber, String maxBlockMs, String requestTimeoutMs) {
+			String retriesNumber) {
 		try {
 			String fileName = dir + "/etc/kafka.properties";
 			Properties properties = new Properties();
@@ -31,10 +31,6 @@ public class GetKafkaPropertiesFileNameImpl {
 			properties.setProperty("group.id", groupId);
 			if (!retriesNumber.equals(""))
 				properties.setProperty("retries", retriesNumber);
-			if (!requestTimeoutMs.equals(""))
-				properties.setProperty("request.timeout.ms", requestTimeoutMs);
-			if (!maxBlockMs.equals(""))
-				properties.setProperty("max.block.ms", maxBlockMs);
 			properties.setProperty("client.id", clientId);
 			properties.setProperty("security.protocol", securityProtocol);
 			properties.setProperty("sasl.mechanism", saslMechanism);
