@@ -34,8 +34,9 @@ public composite SubmitHazards(input stream<Hazard> HazardStream )
 				KAFKA_BROKERS_SASL : $KAFKA_BROKERS_SASL ;
 				USERNAME : $USERNAME ;
 				PASSWORD : $PASSWORD ;
-				GROUP_ID : "group_sink_" +(rstring) jobID() ;
-				CLIENT_ID : "producer_" +(rstring) jobID() + "_" +(rstring) getChannel() ;
+				GROUP_ID : "group_sink_" + regexReplace(getJobName(), "::", ".", false) ;
+				CLIENT_ID : "producer_" + regexReplace(getJobName(), "::", ".", false) +
+					"_" +(rstring) getChannel() ;
 		}
 
 } 

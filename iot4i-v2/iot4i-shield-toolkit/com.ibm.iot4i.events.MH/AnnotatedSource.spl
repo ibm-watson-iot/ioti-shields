@@ -16,8 +16,9 @@ public composite AnnotatedSource(output stream<rstring userId, rstring key,
 				USERNAME : $USERNAME ;
 				PASSWORD : $PASSWORD ;
 				TOPIC : $TOPIC ;
-				GROUP_ID : "group_source_" +(rstring) jobID() ;
-				CLIENT_ID : "consumer_" +(rstring) jobID() + "_" +(rstring) getChannel() ;
+				GROUP_ID : "group_source_" + regexReplace(getJobName(), "::", ".", false) ;
+				CLIENT_ID : "consumer_" + regexReplace(getJobName(), "::", ".", false) +
+					"_" +(rstring) getChannel() ;
 		}
 
 		stream<rstring userId, rstring key, rstring message> AnnotatedStream =
