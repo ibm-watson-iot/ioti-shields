@@ -1,0 +1,64 @@
+apply plugin: 'java'
+
+
+def getVersion = {
+def infoXML = new XmlSlurper().parse("./com.ibm.iot4i/info.xml").declareNamespace('info':'http://www.ibm.com/xmlns/prod/streams/spl/toolkitInfo')
+return infoXML.identity.version.text()
+}
+
+def toolkitVersion = getVersion()
+
+dependencies {
+    compile project(':com.ibm.iot4i')
+}
+
+task copyToTemp(type: Copy) {
+    from 'com.ibm.iot4i'
+    into 'build/release/com.ibm.iot4i'
+}
+
+task removeSrc(type: Delete) {
+    delete 'build/release/com.ibm.iot4i/build'
+    delete 'build/release/com.ibm.iot4i/build.gradle'
+    delete 'build/release/com.ibm.iot4i/impl/java/src'
+    delete 'build/release/com.ibm.iot4i/impl/src'
+    delete 'build/release/com.ibm.iot4i/impl/bin'
+    delete 'build/release/com.ibm.iot4i/.gradle'
+    delete 'build/release/com.ibm.iot4i/.toolkitList'
+    delete 'build/release/com.ibm.iot4i/.classpath'
+    delete 'build/release/com.ibm.iot4i/.apt_generated'
+    delete 'build/release/com.ibm.iot4i/.project'
+    delete 'build/release/com.ibm.iot4i/.settings'
+    delete 'build/release/com.ibm.iot4i/impl/include'
+    delete 'build/release/com.ibm.iot4i/data'
+    delete 'build/release/com.ibm.iot4i/impl/java'
+}
+
+task removeOldRelease(type: Delete) {
+    delete fileTree(dir: 'build/release', include: '**/**')
+}
+
+task archive(type: Tar) {
+    from('build/release/') {
+        exclude('output')
+    }
+    compression = Compression.GZIP
+    destinationDir = file('build/release/output')
+    baseName = "com.ibm.iot4i"
+    version = toolkitVersion
+    doLast {
+        ant.checksum file: archivePath
+    }
+}
+
+task release {
+    dependsOn build
+    dependsOn removeOldRelease
+    dependsOn copyToTemp
+    dependsOn removeSrc
+    dependsOn archive
+}
+
+archive.mustRunAfter removeSrc
+removeSrc.mustRunAfter copyToTemp
+copyToTemp.mustRunAfter build, removeOldRelease

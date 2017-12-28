@@ -1,0 +1,3 @@
+include 'com.ibm.iot4i'
+
+rootProject.name = 'iot4i-shield-toolkit'

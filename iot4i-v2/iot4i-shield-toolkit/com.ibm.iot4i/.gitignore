@@ -1,0 +1,10 @@
+/.apt_generated/
+/output/
+/.toolkitList
+/bin/
+impl/lib
+/build/
+/caches/
+/daemon/
+/native/
+/wrapper/

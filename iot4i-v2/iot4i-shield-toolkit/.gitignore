@@ -1,0 +1,8 @@
+.gradle
+*.sab
+/build/
+/output/
+/caches/
+/daemon/
+/native/
+/wrapper/

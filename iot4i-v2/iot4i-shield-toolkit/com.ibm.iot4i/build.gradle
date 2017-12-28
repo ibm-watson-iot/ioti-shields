@@ -1,0 +1,116 @@
+apply plugin: 'com.jfrog.artifactory'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath(group: 'org.jfrog.buildinfo', name: 'build-info-extractor-gradle', version: '3.2.0')
+    }
+}
+
+sourceSets {
+    test {
+        java {
+            srcDirs = ['impl/java/src/test/java']
+        }
+        resources.srcDirs = ['impl/java/src/test/resources']
+        output.classesDir = 'src/test/bin'
+    }   
+    main {
+        java {
+            srcDirs = ['impl/java/src']
+        }
+        output.classesDir = 'impl/java/bin'
+    }
+}
+
+processResources {
+    from ('impl/java/src') {
+        include '**/*.properties'
+    }
+}
+
+repositories {
+    flatDir {
+       dirs 'opt'
+    }
+    jcenter()
+}
+
+dependencies {
+    compile 'com.ibm.streams:com.ibm.streams.operator:4.2.1.1'
+    compile 'com.ibm.streams:com.ibm.streams.operator.internal:4.2.1.1'
+    compile 'com.ibm.streams:com.ibm.streams.base:4.2.1.1'
+    compile 'com.ibm.streams:com.ibm.streams.spl.messages:4.2.1.1'
+    compile 'com.ibm.streams:com.ibm.streams.spl.messages.general:4.2.1.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.ibm.icu:com.ibm.icu:54.1.1'
+    compile 'org.apache.commons:commons-math:2.2'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.3'
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.1'
+    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.21'
+    compile 'junit:junit:4.12'
+    compile name: 'JSON4J'
+}
+
+task getDeps(type: Copy) {
+    into "impl/lib"
+    from configurations.runtime
+    exclude 'com.ibm.streams.*.jar'
+}
+
+task copyLibToImpl(type: Copy) {
+    into "impl/lib"
+    from "build/libs/"
+}
+
+task deleteDeps(type: Delete) {
+    delete "bin"
+    delete "output"
+    delete fileTree(dir : 'com.ibm.iot4i', exclude : ['Functions.spl'])
+    delete fileTree(dir : 'impl/lib/', include : ['com.ibm.iot4i*.jar'])
+}
+
+task deleteImplLibJar {
+    delete fileTree(dir : 'impl/lib', include : ['com.ibm.iot4i*.jar'])
+}
+
+eclipse {
+  pathVariables 'GRADLE_USER_HOME': gradle.gradleUserHomeDir
+    project {
+        buildCommand 'com.ibm.streams.studio.splproject.builder.SPLProjectBuilder'
+        natures 'com.ibm.streams.studio.splproject.SPLProjectNature', 'org.eclipse.xtext.ui.shared.xtextNature', 'com.ibm.etools.systems.projects.core.remoteunixnature'
+    }
+    classpath {
+        downloadSources=true
+        downloadJavadoc=true
+    }
+}
+
+artifactory {
+    contextUrl = 'https://na-blue.artifactory.swg-devops.com/artifactory'
+    resolve {
+        repoKey = 'iot-insurance-maven'
+        username = System.getenv("ARTIFACTORY_USER")
+        password = System.getenv("ARTIFACTORY_API_KEY")
+        maven = true
+    }
+}
+
+task tests(type: Test, description: 'Runs the unit tests.', group: 'Verification') {
+    testClassesDir = sourceSets.test.output.classesDir
+    classpath = sourceSets.test.runtimeClasspath
+    beforeTest { desc ->
+        println "Executing test '${desc.name}'..."
+    }
+    afterTest { desc, result -> 
+        println "Finished executing test '${desc.name}' [${desc.className}] with result: ${result.resultType}"
+    }
+}
+
+compileJava.dependsOn getDeps, deleteImplLibJar
+build.finalizedBy copyLibToImpl
+clean.dependsOn deleteDeps

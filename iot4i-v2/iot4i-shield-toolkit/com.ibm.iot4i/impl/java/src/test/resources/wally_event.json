@@ -1,0 +1,28 @@
+{
+	"deviceType": "Wally",
+	"id": "f2119183-6e94-4435-bc02-7db366f2a6c5",
+	"snid": "90-7a-f1-00-51-d6-2a-70",
+	"gatewayId": "90-7a-f1-ee-47-68", 
+	"type": "SENSOR",
+	"hwType": 8,
+	"data_type": "EVENT",
+	"traitStates": {
+		"traitStates":{
+			"Temperature": {
+				"traitType": "temperatureTrait",
+				"updated": "2017-12-06T04:40:49.102Z",
+				"temperatureC": 17
+			},
+			"Humidity": {
+				"traitType": "humidityTrait",
+				"updated": "2017-12-06T04:40:49.102Z",
+				"humidityPct": 56
+			},
+			"WaterSense": {
+				"traitType": "waterSenseTrait",
+				"updated": "2017-12-06T04:40:49.102Z",
+				"waterPresent": false
+			}
+		}
+	}
+}
