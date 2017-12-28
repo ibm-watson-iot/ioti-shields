@@ -59,3 +59,28 @@ An operator that receives hazards, prepare them, then calls the MH sink.
 
 
 There are also similar operators] for IBM IoT platform.
+
+
+## Build
+
+```
+cd com.ibm.iot4i
+../gradlew build
+```
+
+## Release
+```
+./gradlew release
+```
+
+**NOTE:** The release will be available in the `build/release/output` folder. 
+
+
+## Test
+
+```
+cd com.ibm.iot4i
+../gradlew tests
+```
+
+
