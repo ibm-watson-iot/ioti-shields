@@ -1,4 +1,4 @@
-[Derecated]. Use public repo: https://github.com/ibm-watson-iot/ioti-shields
+# IoT4I API
 
 ## iot4i-v1
 
