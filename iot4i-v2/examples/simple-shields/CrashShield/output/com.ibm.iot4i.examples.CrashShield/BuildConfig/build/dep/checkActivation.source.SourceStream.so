@@ -1,3 +1,0 @@
-	@$(CXX) $(SPL_CXXFLAGS) -o bin/checkActivation.source.SourceStream.so -fPIC -shared $(SOcheckActivation.source.SourceStream) -lstreams-stdtk-javaop -lstreams-stdtk-runtime -L /opt/ibm/InfoSphere_Streams/4.2.1.1/java/jre/lib/amd64/j9vm -Wl,-rpath -Wl,/opt/ibm/InfoSphere_Streams/4.2.1.1/java/jre/lib/amd64/j9vm -lpthread -ldl -lstreams-stdtk-javaop -lpthread -ldl -lstreams-stdtk-runtime $(SPL_LDFLAGS)\
-	    build/operator/checkActivation/source/SourceStream.o \
-	    build/type/BeJwrMSo2zk6tLDbPTS0uTkxPBQAysQYl.o 

@@ -1,7 +1,0 @@
-#!/bin/bash
-if [ -z "$STREAMS_INSTALL" ]; then
-   echo "STREAMS_INSTALL is not set"
-   exit 1
-fi
-SCRIPT_PATH=`dirname $0`
-$STREAMS_INSTALL/java/bin/java -jar $SCRIPT_PATH/sab "$@"
