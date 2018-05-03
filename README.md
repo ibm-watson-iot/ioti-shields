@@ -1,5 +1,5 @@
 # IBM IoT for Insurance Shields Repository
-The Shields Repository complements the IoT for Insurance [Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSQNYQ_bas/iot-insurance/kc_welcome_bas.html). The shield code is provided documentthe implementation of IoT4I Cloud shields alongisde ready to use shield queries for the protected home scenario.
+The Shields Repository complements the IoT for Insurance [Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSQNYQ_bas/iot-insurance/kc_welcome_bas.html). The shield source code is provided to document the implementation of IoT4I Cloud shields alongisde ready to use shield queries for the protected home scenario.
 
 ## Cloud Shield toolkit
 The [Cloud Shield Toolkit](./shield-toolkit) contains all the operators, functions and dependencies needed to develop a shield.
