@@ -12,7 +12,6 @@ This shield expects the following configs:
 {
   "stream1Topic": "transformed-events", 
   "stream2Topic": "transformed-events", 
-  "hazardsSinkTopic": "hazards", 
   "actionParams": { 
   },
   "stream1Conditions": [""], 
@@ -21,9 +20,8 @@ This shield expects the following configs:
 }
 ```
 
-- **stream1Topic** : the message hub topic for the first data stream.
-- **stream2Topic** : the message hub topic for the second data stream
-- **hazardsSinkTopic** : the message hub topic of the hazards stream
+- **stream1Topic** : the message hub topic for the first data stream could be `transformed-events` or `value-data`.
+- **stream2Topic** : the message hub topic for the second data stream could be `transformed-events` or `value-data`
 - **actionParams** : the params needed by the external action, example is show below:
 
 ```json
@@ -50,8 +48,7 @@ These parameters needs to be provided when submitting/updating the shield code u
    "jobOptions":{
       "config": {
            "stream1Topic": "transformed-events", 
-           "stream2Topic": "transformed-events", 
-           "hazardsSinkTopic": "hazards", 
+           "stream2Topic": "value-data", 
            "actionParams": { 
            },
            "stream1Conditions": [""], 
@@ -180,7 +177,6 @@ In this case, the shield **jobOptions** will be like:
       "config": {
         "stream1Topic": "transformed-events",
          "stream2Topic": "value-data",
-         "hazardsSinkTopic": "hazards",
          "actionParams": {
            "hazardTitle": "Hazard detected !"
          },
