@@ -8,7 +8,7 @@ The [Cloud Shield Toolkit](./shield-toolkit) contains all the operators, functio
 The [Cloud Shield Template](./shield-template) shows the structure of a shield.
 
 ## Shield Examples
-IoT for insurance provides two shields out of the box: the `simple query` shield and the `complex query` shield. To learn how to add shields to IoT for Insurance, see Creating Shields](https://www.ibm.com/support/knowledgecenter/en/SSQNYQ_bas/iot-insurance/iotinsurance_shield_toolkit.html) in the IBM IoT for Insurance Knowledge Center.
+IoT for insurance provides two shields out of the box: the `simple query` shield and the `complex query` shield. To learn how to add shields to IoT for Insurance, see [Creating Shields](https://www.ibm.com/support/knowledgecenter/en/SSQNYQ_bas/iot-insurance/iotinsurance_shield_toolkit.html) in the IBM IoT for Insurance Knowledge Center.
 
 For details on the shield implementation and query examples see:
 1. [Queryable Simple Shield](./QueryableSimpleShield)
