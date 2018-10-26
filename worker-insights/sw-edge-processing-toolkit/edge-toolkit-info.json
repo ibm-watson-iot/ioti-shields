@@ -1,0 +1,7 @@
+{
+  "name": "Edge Processing Toolkit",
+  "version": "1.4.4",
+  "description": "Toolkit for edge processing for Safer Workplace",
+  "detailedDescription": "This toolkit is used to implement shields and jobs which run on the edge.",
+  "changelog": ""
+}

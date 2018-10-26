@@ -1,0 +1,28 @@
+{
+  // this is just for running shield-info.js and tests. webpack has own config
+  "env": {
+    "custom-resolver": {
+      "presets": [
+        [
+          "env",
+          {
+            "targets": {
+              "node": "6.10.1"
+            }
+          }
+        ]
+      ],
+      "plugins": [
+        [
+          "module-resolver",
+          {
+            "root": [
+              "./node_modules/@iot4i/sw-edge-processing-toolkit",
+              "./src"
+            ]
+          }
+        ]
+      ]
+    }
+  }
+}

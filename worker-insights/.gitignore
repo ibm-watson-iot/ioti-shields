@@ -1,0 +1,24 @@
+# Eclipse
+bin/
+**/.project
+.settings/
+.classpath
+.cache-main
+
+# IntelliJ
+.idea
+
+# VS-Code
+.vscode
+
+# Linux
+*~
+
+# Mac
+.DS_Store
+
+# NodeJS
+node_modules
+npm-debug.log
+
+/dist

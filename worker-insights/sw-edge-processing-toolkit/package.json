@@ -1,0 +1,12 @@
+{
+  "name": "@iot4i/sw-edge-processing-toolkit",
+  "version": "1.4.4",
+  "description": "Toolkit for edge processing for Safer Workplace",
+  "author": "IBM",
+  "license": "IPL-1.0",
+  "engines": {
+    "node": "^6.* || >= 7.*"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

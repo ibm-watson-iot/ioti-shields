@@ -1,0 +1,30 @@
+{
+  "actionParams": {
+    "userId": "someUserId",
+    "vendorId": "someVendorId",
+    "vendor": "vendor"
+  },
+  "location": {
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        125.6,
+        20.1
+      ]
+    },
+    "properties": {
+      "vendorId": "someVendorId",
+      "timestamp": 1530540149000,
+      "userId": 5678
+    }
+  },
+  "iotsource": {
+  },
+  "timestamp": 1531627648875,
+  "shieldId": "someShieldId",
+  "userId": "someUserId",
+  "vendorId": "someVendorId",
+  "vendor": "vendor",
+  "class": "Panic"
+}
