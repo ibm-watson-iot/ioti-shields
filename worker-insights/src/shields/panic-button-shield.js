@@ -35,7 +35,7 @@ class PanicButtonShield extends BaseShield {
 
   entryCondition(payload) {
     this.logger.debug('entryCondition');
-    return (payload.data.RightButton);
+    return !!(payload.data.RightButton);
   }
 
   processing(payload) {
