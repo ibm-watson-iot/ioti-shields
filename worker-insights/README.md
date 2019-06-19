@@ -174,11 +174,11 @@ command and then run `mocha` on `dist/tests-js`.
 
 The simple queryable shields is used in simple use cases such as panic button pressed, high temperature, high stress, etc..
 The shield can be configured with json based queries where internally the [json path query library](https://github.com/json-path/JsonPath) is used to evaluate the queries against the sensor event payloads. 
-To use this shield, the following params needs to be configured:
+To use this shield, the following parameters need to be configured:
 
 
 - `minHazardInterval`: an integer to describe the minimum interval in seconds before a new hazard is sent. Default is 60 seconds.
-- `queriesDescription`: a text to explain the json queries purpose (use case). 
+- `queriesDescription`: text to explain the purpose of the json queries (use case). 
 - `hazardTitles`: an object to describe the possible hazard titles, for example:
  ```json
 {
@@ -186,9 +186,9 @@ To use this shield, the following params needs to be configured:
 }
 ```
 - `jsonQueries`: an array that contains the json queries. Every query is an `object` and should have the following fields:
-    * `type`: events type. This can be either of `[ steps, calories, ascent, intensityMinutes, heartRate, heartRateVariability, stress, oxygenLevel, ecg, accelerometer, gyroscope, magnetometer, barometricPressure, luxometer, battery, temperature, pressure, humidity, airQuality, button, motion ]`
+    * `type`: events type. This can be any of `[ steps, calories, ascent, intensityMinutes, heartRate, heartRateVariability, stress, oxygenLevel, ecg, accelerometer, gyroscope, magnetometer, barometricPressure, luxometer, battery, temperature, pressure, humidity, airQuality, button, motion ]`
     * `condition`: the json query based on json path. For example, to generate hazard when stress score is more than some threshold, the condition will be `$..[?(@.stressScore > 80)]`
-    * `hazardTitle`: the name of the hazard title from the param `hazardTitles`. For example `title1`. If not specified, `default` title will be used which is `Hazard detected!`.
+    * `hazardTitle`: the name of the hazard title from the param `hazardTitles`. For example `title1`. If not specified, `default` title will be used, which is `Hazard detected!`.
 
 
 For example, assume we want to detect if a panic button is pressed and we have the following data coming from the sensor (a sensor tag sensor in this case):
@@ -202,7 +202,7 @@ For example, assume we want to detect if a panic button is pressed and we have t
 }
 ```
 
-Then the shield params will be configured as below:
+Then the shield parameters will be configured as below:
 
 ```json
 
