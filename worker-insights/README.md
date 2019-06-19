@@ -187,7 +187,7 @@ To use this shield, the following params needs to be configured:
 ```
 - `jsonQueries`: an array that contains the json queries. Every query is an `object` and should have the following fields:
     * `type`: events type. This can be either of `[ steps, calories, ascent, intensityMinutes, heartRate, heartRateVariability, stress, oxygenLevel, ecg, accelerometer, gyroscope, magnetometer, barometricPressure, luxometer, battery, temperature, pressure, humidity, airQuality, button, motion ]`
-    * `condition`: the json query based on json path. For example, to generate hazard when stress score is more than some threshold, the condition will be `$..[?(stressScore > 80)]`
+    * `condition`: the json query based on json path. For example, to generate hazard when stress score is more than some threshold, the condition will be `$..[?(@.stressScore > 80)]`
     * `hazardTitle`: the name of the hazard title from the param `hazardTitles`. For example `title1`. If not specified, `default` title will be used which is `Hazard detected!`.
 
 
@@ -222,5 +222,5 @@ Then the shield params will be configured as below:
 }
 ```
 
-To verify that the json queries will work properly on the sensor data, online tools can be used such as [this](https://jsonpath.com/),
+To verify that the json queries will work properly on the sensor data, online tools can be used such as [this](https://jsonpath.herokuapp.com/),
 
