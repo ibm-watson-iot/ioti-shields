@@ -1,9 +1,9 @@
 # Edge Shields for IBM IoT Worker Insights
 
-Information about IBM Maximo Worker Insights is available in [IBM Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSQNYQ_bas/iot-insurance/safer_workplace/worker_summary.html)
+Information about IBM Maximo Worker Insights is available in [IBM Knowledge Center](https://www.ibm.com/support/knowledgecenter/SSQNYQ_bas/worker-insights/kc_welcome_bas.html)
 
 # Prerequisites
-1. Download the edge-processing-toolkit from Worker Insights API with your account. [Extending the solution with APIs](https://www.ibm.com/support/knowledgecenter/SSQNYQ_bas/iot-insurance/iotinsurance_rest_apis.html?pos=2)
+1. Download the edge-processing-toolkit from Worker Insights API with your account. [Extending the solution with APIs](https://www.ibm.com/support/knowledgecenter/SSQNYQ_bas/worker-insights/rest_apis.html)
 2. Copy the downloaded `edge-toolkit-1.4.4.js` file into `sw-edge-processing-toolkit` folder.
 3. Rename the file to `edge-toolkit.js`
 4. Run `npm install`
