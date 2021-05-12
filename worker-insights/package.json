@@ -31,7 +31,7 @@
     "babel-runtime": "^6.26.0",
     "eventemitter3": "^3.1.0",
     "jsonpath": "^1.0.0",
-    "mathjs": "^4.0.0"
+    "mathjs": "^7.5.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
